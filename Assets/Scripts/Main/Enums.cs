@@ -24,6 +24,6 @@ public static class Enums
     {
         Dragons1,
         Dragons2,
-        Dragons3    
+        Dragons3
     }
 }
