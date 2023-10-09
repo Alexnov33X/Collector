@@ -36,7 +36,7 @@ public class CardDisplay : MonoBehaviour
     // 		//cardRarity.text = card.cardRarity.ToString();
     // 		//HideInformation();
     // 	}
-    // Use this for initialization
+
     void Start()
     {
         nameText.text = card.name;
