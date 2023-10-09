@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
+  m_Name: Amogus
+  m_EditorClassIdentifier: 
+  name: AMOGUS
+  description: 
+  artwork: {fileID: -2046621808, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
+  timeCost: 10
+  attack: 125
+  health: 13
+  cardType: 2
+  cardAffinity: 2
+  cardRarity: 2
+  cardId: 3
