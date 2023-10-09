@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -113.5, y: 169.20001}
+  m_AnchoredPosition: {x: 6.3, y: 199.8}
   m_SizeDelta: {x: 120.2, y: 115.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4549791110127512365
@@ -290,6 +290,8 @@ MonoBehaviour:
   healthText: {fileID: 2669155777854022802}
   cardType: {fileID: 765784090102222644}
   cardAffinity: {fileID: 1297648250872717925}
+  cardFront: {fileID: 7867467448787767152}
+  cardMask: {fileID: 7481298621731863593}
 --- !u!1 &3378122944588948549
 GameObject:
   m_ObjectHideFlags: 0
