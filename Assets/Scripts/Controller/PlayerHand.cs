@@ -12,7 +12,6 @@ public class PlayerHand : MonoBehaviour
         {
             card.card.timeCost--;
             // if (card.card.timeCost == 0)
-            // dsad
         }
         return;
     }

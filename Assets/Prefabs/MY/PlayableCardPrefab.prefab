@@ -199,7 +199,7 @@ RectTransform:
   m_GameObject: {fileID: 3192215170403785606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8668491148550068238}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53600d050c1bc8e40b942262099b2d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: 64c38e827f9acd84998ef3f01a00a139, type: 2}
 --- !u!114 &8092027150633869535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284f6221b1bcaac42a7e6a1e1c316f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: 64c38e827f9acd84998ef3f01a00a139, type: 2}
   nameText: {fileID: 2904393149137514192}
   descriptionText: {fileID: 6995955628607742257}
   artworkImage: {fileID: 2901188858747382696}
