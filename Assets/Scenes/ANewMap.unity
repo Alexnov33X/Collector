@@ -892,6 +892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53600d050c1bc8e40b942262099b2d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &634630730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3192215170403785606, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}
+  m_PrefabInstance: {fileID: 830352377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &707322995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,7 +1355,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3192215170403785606, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414315041}
   m_SourcePrefab: {fileID: 100100000, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}
 --- !u!1 &830942665
 GameObject:
@@ -2350,12 +2358,28 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6262024810375898463, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}
   m_PrefabInstance: {fileID: 830352377}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 634630730}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53600d050c1bc8e40b942262099b2d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1414315041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634630730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5e6de5cbfedfd4d841a99634d532a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 960540728, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
+  timeCost: 1
+  attack: 2
+  health: 3
 --- !u!1 &1420995554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,6 +2824,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 792145470}
     m_Modifications:
+    - target: {fileID: 237245088888122413, guid: eb05caa66f75a5e41b701a1e13d7bfcb, type: 3}
+      propertyPath: ent
+      value: 
+      objectReference: {fileID: 1414315041}
     - target: {fileID: 237245088888122413, guid: eb05caa66f75a5e41b701a1e13d7bfcb, type: 3}
       propertyPath: cardSlots.Array.size
       value: 12
