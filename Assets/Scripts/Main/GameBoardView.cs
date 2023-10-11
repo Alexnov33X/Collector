@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBoard : MonoBehaviour
+public class GameBoardView : MonoBehaviour
 {
     [Header("Slots")]
-    public Transform[] cardSlots;
+    public Transform[] playerCardSlots;
 
+    [Header("")]
     public Entity[] occupants;
 
     public void AddEntity(Entity e, int index)

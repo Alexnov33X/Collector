@@ -12,7 +12,7 @@ public class GameMaster : MonoBehaviour
     // public PlayerHand playerHand;
     // public PlayerHand enemyHand;
     //public TextMeshProUGUI deckSizeText;
-    public GameBoard gb;
+    public GameBoardView gb;
 
     public List<PlayableCard> discardPile;
     //public TextMeshProUGUI discardPileSizeText;

@@ -18,42 +18,42 @@ public class Entity : MonoBehaviour
     // public CardRarity cardRarity;
     int id;
 
-    public void BeforeAttack(GameBoard gb, int position)
+    public void BeforeAttack(GameBoardView gb, int position)
     {
 
     }
 
-    public void Attack(GameBoard gb, int position)
+    public void Attack(GameBoardView gb, int position)
     {
 
     }
 
-    public void AfterAttack(GameBoard gb, int position)
+    public void AfterAttack(GameBoardView gb, int position)
     {
 
     }
 
-    public void BeforeHit(GameBoard gb, int position, Entity Attacker, int damage)
+    public void BeforeHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
 
     }
 
-    public void OnHit(GameBoard gb, int position, Entity Attacker, int damage)
+    public void OnHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
         health -= damage;
     }
 
-    public void AfterHit(GameBoard gb, int position, Entity Attacker, int damage)
+    public void AfterHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
 
     }
 
-    public void OnPlay(GameBoard gb, int position)
+    public void OnPlay(GameBoardView gb, int position)
     {
 
     }
 
-    public void OnDeath(GameBoard gb, int position)
+    public void OnDeath(GameBoardView gb, int position)
     {
 
     }
