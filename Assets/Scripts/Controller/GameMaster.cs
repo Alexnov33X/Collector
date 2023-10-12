@@ -67,12 +67,12 @@ public class GameMaster : MonoBehaviour
         // //availableCardSlots = new bool[cardSlots.Length];
         // Debug.Log(Random.Range(0, battleSlots.Length));
         // Debug.Log(this);
-        GameObject newCardObject = Instantiate(PlayableCardPrefab, gameObject.transform);
+        //GameObject newCardObject = Instantiate(PlayableCardPrefab, gameObject.transform);
         // Получаем компонент PlayableCard на новом объекте
-        PlayableCard newCard = newCardObject.GetComponent<PlayableCard>();
+        /*PlayableCard newCard = newCardObject.GetComponent<PlayableCard>();
         PlayableCard newCard1 = newCardObject.GetComponent<PlayableCard>();
         newCard.card = card;
-        newCard1.card = card;
+        newCard1.card = card;*/
         //newCardObject.transform.SetParent(transform);
         // и так далее
     }
