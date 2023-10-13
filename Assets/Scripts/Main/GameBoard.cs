@@ -14,6 +14,7 @@ public class GameBoard : MonoBehaviour
     int enemySlots = 6;
 
     public Entity ent;
+     public Entity ent2;
     public GameObject EPrefab;
 
     public void AddEntityToPosition(Entity e, int index)
@@ -61,5 +62,6 @@ public class GameBoard : MonoBehaviour
         Debug.Log(occupants[0]);
         Debug.Log(occupants[0] == null);
         AddEntityToPlayerSide(ent, false);
+        AddEntityToPlayerSide(ent2, true);
     }
 }
