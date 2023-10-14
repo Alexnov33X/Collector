@@ -6,12 +6,11 @@ using UnityEngine.Playables;
 
 public class GameMaster : MonoBehaviour
 {
+    public static GameMaster instance;
     public List<PlayableCard> playerDeck;
     public List<PlayableCard> enemyDeck;
-    public List<PlayableCard> playerHand;
-    public List<PlayableCard> enemyHand;
-    // public PlayerHand playerHand;
-    // public PlayerHand enemyHand;
+    public PlayerHand playerHand;
+    public PlayerHand enemyHand;
     //public TextMeshProUGUI deckSizeText;
     public GameBoardView gb;
 
@@ -27,32 +26,23 @@ public class GameMaster : MonoBehaviour
         if (firstPlayerTurn)
         {
             turnCount++;
-            foreach (PlayableCard card in playerHand)
-            {
-                card.card.timeCost--;
-                if (card.card.timeCost == 0)
-                    PlayCard(card, true);
-            }
+            playerHand.TimePass();
         }
         else
-        {
-            foreach (PlayableCard card in enemyHand)
-            {
-                card.card.timeCost--;
-                if (card.card.timeCost == 0)
-                    PlayCard(card, false);
-            }
-        }
+            enemyHand.TimePass();
+        
+        return;
     }
 
     void DrawCard()
     {
-        if (firstPlayerTurn && playerDeck.Count > 0 && playerHand.Count < 6)
+        if (firstPlayerTurn && playerDeck.Count > 0 && playerHand.AmountOfCards() < 6)
         {
             PlayableCard randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
-            playerDeck.Add(randomCard);
+            playerHand.AddCardToHand(randomCard);
+            playerDeck.Remove(randomCard);
         }
-        else if (enemyDeck.Count > 0 && enemyHand.Count < 6)
+        else if (enemyDeck.Count > 0 && enemyHand.AmountOfCards() < 6)
         {
             PlayableCard randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
             enemyDeck.Add(randomCard);
@@ -63,14 +53,24 @@ public class GameMaster : MonoBehaviour
     public CardInfo card;
     private void Start()
     {
-        foreach (PlayableCard pc in playerHand)
-        if (pc!=null)
-        pc.GetComponent<CardDisplay>().HideInformation();
+TimePass();
+//DrawCard();
     }
 
-    
+
     public void PlayCard(PlayableCard gc, bool isPlayer)
     {
 
+    }
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this; // Устанавливаем GameMaster как единственный экземпляр
+        }
+        else
+        {
+            Destroy(gameObject); // Уничтожаем новые объекты GameMaster, чтобы сохранить только один
+        }
     }
 }

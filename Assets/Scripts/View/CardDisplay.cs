@@ -37,22 +37,24 @@ public class CardDisplay : MonoBehaviour
     // 		//HideInformation();
     // 	}
 
-    void Start()
+    void Start() 
     {
         nameText.text = card.name;
         descriptionText.text = card.description;
 
         artworkImage.sprite = card.artwork;
 
-        timeText.text = card.timeCost.ToString();
+        //timeText.text = card.timeCost.ToString();
         attackText.text = card.attack.ToString();
         healthText.text = card.health.ToString();
         cardType.text = card.cardType.ToString();
         cardAffinity.text = card.cardAffinity.ToString();
-        if (card.attack == 125)
-            HideInformation();
-        //cardRarity.text = card.cardRarity.ToString();
-        //HideInformation();
+    }
+    public void updateInformation(){
+        PlayableCard pc = GetComponent<PlayableCard>();
+        timeText.text = pc.timeCost.ToString();
+        attackText.text=pc.attack.ToString();
+        healthText.text=pc.health.ToString();
     }
 
     public void HideInformation()
@@ -65,5 +67,8 @@ public class CardDisplay : MonoBehaviour
         cardAffinity.gameObject.SetActive(false);
         cardFront.gameObject.SetActive(false);
         cardMask.gameObject.GetComponent<Mask>().enabled = false;
+        updateInformation();
+        // timeText.text = GetComponent<PlayableCard>().timeCost.ToString();
+        // Debug.Log(GetComponent<PlayableCard>().timeCost);
     }
 }
