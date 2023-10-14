@@ -30,22 +30,23 @@ public class GameMaster : MonoBehaviour
         }
         else
             enemyHand.TimePass();
-        
+
         return;
     }
 
-    void DrawCard()
+    void DrawCard(bool forPlayer)
     {
-        if (firstPlayerTurn && playerDeck.Count > 0 && playerHand.AmountOfCards() < 6)
+        if (forPlayer && playerDeck.Count > 0)
         {
             PlayableCard randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
             playerHand.AddCardToHand(randomCard);
             playerDeck.Remove(randomCard);
         }
-        else if (enemyDeck.Count > 0 && enemyHand.AmountOfCards() < 6)
+        else if (!forPlayer && enemyDeck.Count > 0)
         {
             PlayableCard randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
-            enemyDeck.Add(randomCard);
+            enemyHand.AddCardToHand(randomCard);
+            enemyDeck.Remove(randomCard);
         }
     }
 
@@ -53,15 +54,32 @@ public class GameMaster : MonoBehaviour
     public CardInfo card;
     private void Start()
     {
-TimePass();
-DrawCard();
-DrawCard();
+        // TimePass();
+        // DrawCard(true);
+        // DrawCard(true);
     }
 
+    public void GameTurn()
+    {
+        Debug.Log("CYCLE " + turnCount);
+        for (int i = 0; i < 2; i++)
+        {
+            TimePass();
+            DrawCard(firstPlayerTurn);
+            Combat(firstPlayerTurn);
+            firstPlayerTurn = !firstPlayerTurn;
+        }
+    }
+    public void Combat(bool forPlayer)
+    {
+        gb.OrderAttack(forPlayer);
+    }
 
     public void PlayCard(PlayableCard gc, bool isPlayer)
     {
-
+        Destroy(gc.gameObject);
+        Debug.Log("DEAD?");
+        //summon creature on player side
     }
     void Awake()
     {

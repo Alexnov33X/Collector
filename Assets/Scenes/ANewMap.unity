@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1201, y: -371}
+  m_AnchoredPosition: {x: 988, y: 15}
   m_SizeDelta: {x: 306.041, y: 133.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &117129309
@@ -227,16 +227,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DrawCard
+      - m_Target: {fileID: 1744357668}
+        m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
+        m_MethodName: GameTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: GameTurn
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &117129311
@@ -4414,6 +4414,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7289200618929384614, guid: eb05caa66f75a5e41b701a1e13d7bfcb, type: 3}
   m_PrefabInstance: {fileID: 1744357665}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1744357668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3124326952551920025, guid: eb05caa66f75a5e41b701a1e13d7bfcb, type: 3}
+  m_PrefabInstance: {fileID: 1744357665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55badcf7e4b649745989e1ebdcba3312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1761542991 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4966445416353541663, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}

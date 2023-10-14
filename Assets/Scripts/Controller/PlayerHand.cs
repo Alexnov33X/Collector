@@ -11,11 +11,16 @@ public class PlayerHand : MonoBehaviour
 
     public void TimePass()
     {
-        foreach (PlayableCard pc in handOfCards)
+        for (int i = 0; i < handOfCards.Count; i++)
         {
+            PlayableCard pc = handOfCards[i];
             pc.ChangeTimeCost(-1);
-            if (pc.card.timeCost == 0)
+            if (pc.timeCost == 0)
+            {
+                handOfCards.Remove(pc);
                 gm.PlayCard(pc, isPlayer);
+                i--;
+            }
         }
         return;
     }
@@ -30,7 +35,7 @@ public class PlayerHand : MonoBehaviour
             newCard.GetComponent<CardDisplay>().card = pc.card;
             newCard.GetComponent<CardDisplay>().HideInformation();
             newCard.transform.SetParent(transform);
-            newCard.transform.localScale= new Vector3(1,1,1);
+            newCard.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -41,7 +46,8 @@ public class PlayerHand : MonoBehaviour
         gm = GameMaster.instance;
         //TimePass();
         foreach (PlayableCard pc in handOfCards)
-            if (pc != null){
+            if (pc != null)
+            {
                 pc.Start();
                 pc.GetComponent<CardDisplay>().HideInformation();
             }

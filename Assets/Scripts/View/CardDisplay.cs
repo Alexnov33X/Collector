@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,10 +37,13 @@ public class CardDisplay : MonoBehaviour
     }
     public void updateInformation()
     {
-        PlayableCard pc = GetComponent<PlayableCard>();
-        timeText.text = pc.timeCost.ToString();
-        attackText.text = pc.attack.ToString();
-        healthText.text = pc.health.ToString();
+        if (gameObject != null)
+        {
+            PlayableCard pc = GetComponent<PlayableCard>();
+            timeText.text = pc.timeCost.ToString();
+            attackText.text = pc.attack.ToString();
+            healthText.text = pc.health.ToString();
+        }
     }
 
     public void HideInformation()

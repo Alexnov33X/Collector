@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,11 @@ public class PlayableCard : MonoBehaviour
     public CardType cardType;
     public CardAffinity cardAffinity;
     CardDisplay cd;
-    public void ChangeTimeCost(int change){
-        timeCost+=change;
-        cd.updateInformation();
+    public void ChangeTimeCost(int change)
+    {
+        timeCost += change;
+        if (cd.gameObject != null)
+            cd.updateInformation();
     }
     public void SetInformationFromSO()
     {
@@ -25,10 +28,11 @@ public class PlayableCard : MonoBehaviour
     }
     public void OnPlay()
     {
-//SetInformationFromSO();
+        //SetInformationFromSO();
     }
 
-    public void Start(){
+    public void Start()
+    {
         SetInformationFromSO();
         cd = GetComponent<CardDisplay>();
     }
