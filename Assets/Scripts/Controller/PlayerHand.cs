@@ -28,8 +28,9 @@ public class PlayerHand : MonoBehaviour
             newCard.GetComponent<PlayableCard>().card = pc.card;
             newCard.GetComponent<PlayableCard>().SetInformationFromSO();
             newCard.GetComponent<CardDisplay>().card = pc.card;
-            newCard.transform.localScale= new Vector3(1,1,1);
+            newCard.GetComponent<CardDisplay>().HideInformation();
             newCard.transform.SetParent(transform);
+            newCard.transform.localScale= new Vector3(1,1,1);
         }
     }
 

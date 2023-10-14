@@ -54,7 +54,8 @@ public class GameMaster : MonoBehaviour
     private void Start()
     {
 TimePass();
-//DrawCard();
+DrawCard();
+DrawCard();
     }
 
 

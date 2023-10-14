@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Abra
   description: sussy
   artwork: {fileID: 154936398, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  timeCost: 4
+  timeCost: 5
   attack: 2
   health: 3
   cardType: 0

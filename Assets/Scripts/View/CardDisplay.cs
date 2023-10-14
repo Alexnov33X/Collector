@@ -21,23 +21,7 @@ public class CardDisplay : MonoBehaviour
     public Image cardFront;
     public Image cardMask;
     //public Text cardRarity;
-
-    // public CardDisplay (CardInfo card) {
-    // 		nameText.text = card.name;
-    // 		descriptionText.text = card.description;
-
-    // 		artworkImage.sprite = card.artwork;
-
-    // 		timeText.text = card.timeCost.ToString();
-    // 		attackText.text = card.attack.ToString();
-    // 		healthText.text = card.health.ToString();
-    // 		cardType.text = card.cardType.ToString();
-    // 		cardAffinity.text = card.cardAffinity.ToString();
-    // 		//cardRarity.text = card.cardRarity.ToString();
-    // 		//HideInformation();
-    // 	}
-
-    void Start() 
+    void Start()
     {
         nameText.text = card.name;
         descriptionText.text = card.description;
@@ -50,11 +34,12 @@ public class CardDisplay : MonoBehaviour
         cardType.text = card.cardType.ToString();
         cardAffinity.text = card.cardAffinity.ToString();
     }
-    public void updateInformation(){
+    public void updateInformation()
+    {
         PlayableCard pc = GetComponent<PlayableCard>();
         timeText.text = pc.timeCost.ToString();
-        attackText.text=pc.attack.ToString();
-        healthText.text=pc.health.ToString();
+        attackText.text = pc.attack.ToString();
+        healthText.text = pc.health.ToString();
     }
 
     public void HideInformation()
@@ -68,7 +53,5 @@ public class CardDisplay : MonoBehaviour
         cardFront.gameObject.SetActive(false);
         cardMask.gameObject.GetComponent<Mask>().enabled = false;
         updateInformation();
-        // timeText.text = GetComponent<PlayableCard>().timeCost.ToString();
-        // Debug.Log(GetComponent<PlayableCard>().timeCost);
     }
 }
