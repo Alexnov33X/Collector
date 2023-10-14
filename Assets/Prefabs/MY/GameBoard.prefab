@@ -78,5 +78,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5a6bf5089ec8347bcf684c2f700834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCardSlots: []
-  occupants: []
+  playerCardSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  occupants:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ent: {fileID: 0}
+  ent2: {fileID: 0}
+  EPrefab: {fileID: 0}

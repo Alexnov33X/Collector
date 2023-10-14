@@ -12,8 +12,9 @@ public class GameBoardView : MonoBehaviour
     int playerSlots = 6;
     int enemySlots = 6;
 
+    [Header("For Testing")]
     public Entity ent;
-     public Entity ent2;
+    public Entity ent2;
     public GameObject EPrefab;
 
     public void AddEntityToPosition(Entity e, int index)
@@ -31,7 +32,7 @@ public class GameBoardView : MonoBehaviour
             while (occupants[i] != null)
                 i = Random.Range(0, playerSlots);
             occupants[i] = e;
-            e.transform.position = cardSlots[i].position;
+            e.transform.position = playerCardSlots[i].position;
         }
         else if (!isPlayer && enemyEntities < 6)
         {
@@ -39,7 +40,7 @@ public class GameBoardView : MonoBehaviour
             while (occupants[i] != null)
                 i = Random.Range(playerSlots, playerSlots + enemySlots);
             occupants[i] = e;
-            e.transform.position = cardSlots[i].position;
+            e.transform.position = playerCardSlots[i].position;
         }
     }
     public void OrderAttack(bool isPlayer) //проходим по всем сущностям и говорим им атаковать
@@ -59,8 +60,8 @@ public class GameBoardView : MonoBehaviour
     }
     private void Start() // для тестов
     {
-        Debug.Log(occupants[0]);
-        Debug.Log(occupants[0] == null);
+        //Debug.Log(occupants[0]);
+        //Debug.Log(occupants[0] == null);
         AddEntityToPlayerSide(ent, false);
         AddEntityToPlayerSide(ent2, true);
     }
