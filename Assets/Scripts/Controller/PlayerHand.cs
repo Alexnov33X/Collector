@@ -24,16 +24,17 @@ public class PlayerHand : MonoBehaviour
         }
         return;
     }
-    public void AddCardToHand(PlayableCard pc)
+    public void AddCardToHand(CardInfo ci)
     {
         if (AmountOfCards() < 6)
         {
-            handOfCards.Add(pc);
             GameObject newCard = Instantiate(cardPrefab);
-            newCard.GetComponent<PlayableCard>().card = pc.card;
-            newCard.GetComponent<PlayableCard>().SetInformationFromSO();
-            newCard.GetComponent<CardDisplay>().card = pc.card;
+            PlayableCard newPC = newCard.GetComponent<PlayableCard>();
+            newPC.card = ci;
+            newPC.SetInformationFromSO();
+            newCard.GetComponent<CardDisplay>().card = ci;
             newCard.GetComponent<CardDisplay>().HideInformation();
+            handOfCards.Add(newPC);
             newCard.transform.SetParent(transform);
             newCard.transform.localScale = new Vector3(1, 1, 1);
         }

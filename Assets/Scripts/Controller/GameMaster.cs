@@ -7,8 +7,8 @@ using UnityEngine.Playables;
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
-    public List<PlayableCard> playerDeck;
-    public List<PlayableCard> enemyDeck;
+    public List<CardInfo> playerDeck;
+    public List<CardInfo> enemyDeck;
     public PlayerHand playerHand;
     public PlayerHand enemyHand;
     //public TextMeshProUGUI deckSizeText;
@@ -38,13 +38,13 @@ public class GameMaster : MonoBehaviour
     {
         if (forPlayer && playerDeck.Count > 0)
         {
-            PlayableCard randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
+            CardInfo randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
             playerHand.AddCardToHand(randomCard);
             playerDeck.Remove(randomCard);
         }
         else if (!forPlayer && enemyDeck.Count > 0)
         {
-            PlayableCard randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
+            CardInfo randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
             enemyHand.AddCardToHand(randomCard);
             enemyDeck.Remove(randomCard);
         }
