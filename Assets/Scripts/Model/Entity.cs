@@ -17,12 +17,12 @@ public class Entity : MonoBehaviour
     // public CardRarity cardRarity;
     int id;
 
-    public void BeforeAttack(GameBoardView gb, int position)
+    public virtual void BeforeAttack(GameBoardView gb, int position)
     {
 
     }
 
-    public void Attack(GameBoardView gb, int position)
+    public virtual void Attack(GameBoardView gb, int position)
     {
         if (position < 6) //Player creature
         {
@@ -30,8 +30,8 @@ public class Entity : MonoBehaviour
                 gb.occupants[6 + position % 3].OnHit(gb, position, this, attack);
             else if (gb.occupants[6 + 3 + position % 3] != null)
                 gb.occupants[6 + 3 + position % 3].OnHit(gb, position, this, attack);
-            // else
-            // attackPlayer();
+            else
+            attackPlayer(gb, position);
         }
         else //Enemy Creature
         {
@@ -39,41 +39,44 @@ public class Entity : MonoBehaviour
                 gb.occupants[position % 3].OnHit(gb, position, this, attack);
             else if (gb.occupants[3 + position % 3] != null)
                 gb.occupants[3 + position % 3].OnHit(gb, position, this, attack);
-            // else
-            // attackPlayer(); 
+            else
+            attackPlayer(gb, position); 
         }
     }
-    void attackPlayer(int position)
+    public virtual void attackPlayer(GameBoardView gb, int position)
     { //Надо подумать где должен находится слот игрока и через что к нему обращаться
-
+        if (position < 6)
+            gb.enemyPlayer.OnHit(gb, position, this, attack);
+        else
+            gb.mainPlayer.OnHit(gb, position, this, attack);
     }
 
-    public void AfterAttack(GameBoardView gb, int position)
+    public virtual void AfterAttack(GameBoardView gb, int position)
     {
 
     }
 
-    public void BeforeHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void BeforeHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
 
     }
 
-    public void OnHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void OnHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
         health -= damage;
     }
 
-    public void AfterHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void AfterHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
 
     }
 
-    public void OnPlay(GameBoardView gb, int position)
+    public virtual void OnPlay(GameBoardView gb, int position)
     {
 
     }
 
-    public void OnDeath(GameBoardView gb, int position)
+    public virtual void OnDeath(GameBoardView gb, int position)
     {
 
     }

@@ -4,6 +4,8 @@ public class GameBoardView : MonoBehaviour
 {
     [Header("Slots")]
     public Transform[] playerCardSlots;
+    public Player mainPlayer;
+    public Player enemyPlayer;
 
     [Header("")]
     public Entity[] occupants;
