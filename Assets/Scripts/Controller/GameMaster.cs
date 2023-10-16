@@ -11,16 +11,15 @@ public class GameMaster : MonoBehaviour
     public List<CardInfo> enemyDeck;
     public PlayerHand playerHand;
     public PlayerHand enemyHand;
-    //public TextMeshProUGUI deckSizeText;
     public GameBoardView gb;
-
     public List<PlayableCard> discardPile;
-    //public TextMeshProUGUI discardPileSizeText;
     private Animator camAnim;
 
     bool firstPlayerTurn = true;
     int turnCount = 0;
 
+    public GameObject PlayableCardPrefab;
+    public CardInfo card;
     void TimePass()
     {
         if (firstPlayerTurn)
@@ -50,8 +49,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    public GameObject PlayableCardPrefab;
-    public CardInfo card;
+
     private void Start()
     {
         // TimePass();
@@ -91,5 +89,10 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject); // Уничтожаем новые объекты GameMaster, чтобы сохранить только один
         }
+    }
+
+    void GameOver()
+    {
+
     }
 }
