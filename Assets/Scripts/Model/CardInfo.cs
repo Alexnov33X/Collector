@@ -17,7 +17,7 @@ public class CardInfo : ScriptableObject
     public int Health;
 
     public CardType CardType;
-    public CardAffinity CardAffinity;
+    public CardUniverse CardAffinity;
     public CardRarity CardRarity;
 
     public int CardId;

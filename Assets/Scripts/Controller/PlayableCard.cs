@@ -9,16 +9,22 @@ public class PlayableCard : MonoBehaviour
     [HideInInspector] public int attack;
     [HideInInspector] public int health;
     [HideInInspector] public CardType cardType;
-    [HideInInspector] public CardAffinity cardAffinity;
+    [HideInInspector] public CardUniverse cardAffinity;
     
     private CardDisplay cd;
+
+    public void Start()
+    {
+        SetInformationFromSO();
+        cd = GetComponent<CardDisplay>();
+    }
 
     public void ChangeTimeCost(int change)
     {
         timeCost += change;
-        if (cd.gameObject != null)
-            cd.UpdateInformation();
+        cd?.UpdateInformation();
     }
+
     public void SetInformationFromSO()
     {
         timeCost = card.TimeCost;
@@ -27,19 +33,4 @@ public class PlayableCard : MonoBehaviour
         cardType = card.CardType;
         cardAffinity = card.CardAffinity;
     }
-    public void OnPlay()
-    {
-        //SetInformationFromSO();
-    }
-
-    public void Start()
-    {
-        SetInformationFromSO();
-        cd = GetComponent<CardDisplay>();
-    }
-    public GameObject SpawnThing()
-    {
-        return Instantiate(this.gameObject);
-    }
-
 }

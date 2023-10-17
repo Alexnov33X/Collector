@@ -1,8 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour
+/// <summary>
+/// Осуществляет логику управления рукой игрока: принятие карты из деки, уменьшение TimeCost карты и выход карты на поле.
+/// Нужно доделать и допеределать
+/// </summary>
+public class PlayerHandController : MonoBehaviour
 {
     public List<PlayableCard> handOfCards;
     public GameObject cardPrefab;
@@ -13,17 +16,17 @@ public class PlayerHand : MonoBehaviour
     {
         for (int i = 0; i < handOfCards.Count; i++)
         {
-            PlayableCard pc = handOfCards[i];
-            pc.ChangeTimeCost(-1);
-            if (pc.timeCost == 0)
+            handOfCards[i].ChangeTimeCost(-1);
+            if (handOfCards[i].timeCost == 0)
             {
-                handOfCards.Remove(pc);
-                gm.PlayCard(pc, isPlayer);
+                handOfCards.Remove(handOfCards[i]);
+                gm.PlayCard(handOfCards[i], isPlayer);
                 i--;
             }
         }
         return;
     }
+
     public void AddCardToHand(CardInfo ci)
     {
         if (AmountOfCards() < 6)

@@ -20,7 +20,7 @@ public static class Enums
         Legendary
     }
 
-    public enum CardAffinity
+    public enum CardUniverse
     {
         Dragons1,
         Dragons2,
