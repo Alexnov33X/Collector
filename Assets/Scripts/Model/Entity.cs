@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -11,6 +12,7 @@ public class Entity : MonoBehaviour
     public int timeCost = 1;
     public int attack;
     public int health;
+    public EntityDisplay ed;
     //Типы и аффинити вероятно нужны существу в бою, но пока можно их делать. Наверное
     // public CardType cardType;
     // public CardAffinity cardAffinity;
@@ -31,7 +33,7 @@ public class Entity : MonoBehaviour
             else if (gb.occupants[6 + 3 + position % 3] != null)
                 gb.occupants[6 + 3 + position % 3].OnHit(gb, position, this, attack);
             else
-            attackPlayer(gb, position);
+                attackPlayer(gb, position);
         }
         else //Enemy Creature
         {
@@ -40,7 +42,7 @@ public class Entity : MonoBehaviour
             else if (gb.occupants[3 + position % 3] != null)
                 gb.occupants[3 + position % 3].OnHit(gb, position, this, attack);
             else
-            attackPlayer(gb, position); 
+                attackPlayer(gb, position);
         }
     }
     public virtual void attackPlayer(GameBoardView gb, int position)
@@ -64,6 +66,9 @@ public class Entity : MonoBehaviour
     public virtual void OnHit(GameBoardView gb, int position, Entity Attacker, int damage)
     {
         health -= damage;
+        ed.updateInformation();
+        if (health < 1)
+            OnDeath(gb, position);
     }
 
     public virtual void AfterHit(GameBoardView gb, int position, Entity Attacker, int damage)
@@ -78,6 +83,6 @@ public class Entity : MonoBehaviour
 
     public virtual void OnDeath(GameBoardView gb, int position)
     {
-
+        Destroy(this.gameObject);
     }
 }

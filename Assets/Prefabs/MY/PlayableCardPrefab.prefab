@@ -238,6 +238,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 64c38e827f9acd84998ef3f01a00a139, type: 2}
+  timeCost: 0
+  attack: 0
+  health: 0
+  cardType: 0
+  cardAffinity: 0
+  cardEntity: {fileID: 0}
+  entityPrefab: {fileID: 3192215170403785606, guid: 6c24c6daa2ab23b499c97ff30a36a96a, type: 3}
 --- !u!114 &8092027150633869535
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3587,13 +3587,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 522819293}
-  - {fileID: 1744357666}
   - {fileID: 1155226430}
   - {fileID: 1462464440}
   - {fileID: 939510998}
   - {fileID: 644615792}
   - {fileID: 870030169}
   - {fileID: 677743877}
+  - {fileID: 1744357666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4577,6 +4577,7 @@ MonoBehaviour:
   timeCost: 1
   attack: 0
   health: 0
+  ed: {fileID: 0}
 --- !u!114 &1821170747 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6262024810375898463, guid: 03bc2139b1a14e34db4c37203c42dc49, type: 3}
@@ -4973,6 +4974,7 @@ MonoBehaviour:
   timeCost: 1
   attack: 0
   health: 0
+  ed: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class GameBoardView : MonoBehaviour
     public Entity ent;
     public Entity ent2;
     public GameObject EPrefab;
+    public GameObject entityPrefab;
 
     public void AddEntityToPosition(Entity e, int index)
     {
@@ -30,19 +31,35 @@ public class GameBoardView : MonoBehaviour
     {
         if (isPlayer && playerEntities < 6)
         {
+            GameObject newEntity = Instantiate(entityPrefab);
+            Entity update = newEntity.GetComponent<Entity>();
+            update.transform.SetParent(transform);
+            update.transform.localScale = new Vector3(1, 1, 1);
+            update.health = e.health;
+            update.artwork = e.artwork;
+            update.attack = e.attack;
             int i = Random.Range(0, playerSlots);
             while (occupants[i] != null)
                 i = Random.Range(0, playerSlots);
-            occupants[i] = e;
-            e.transform.position = playerCardSlots[i].position;
+            occupants[i] = update;
+            update.transform.position = playerCardSlots[i].position;
+            playerEntities++;
         }
         else if (!isPlayer && enemyEntities < 6)
         {
+            GameObject newEntity = Instantiate(entityPrefab);
+            Entity update = newEntity.GetComponent<Entity>();
+            update.transform.SetParent(transform);
+            update.transform.localScale = new Vector3(1, 1, 1);
+            update.health = e.health;
+            update.artwork = e.artwork;
+            update.attack = e.attack;
             int i = Random.Range(playerSlots, playerSlots + enemySlots);
             while (occupants[i] != null)
                 i = Random.Range(playerSlots, playerSlots + enemySlots);
-            occupants[i] = e;
-            e.transform.position = playerCardSlots[i].position;
+            occupants[i] = update;
+            update.transform.position = playerCardSlots[i].position;
+            enemyEntities++;
         }
     }
     public void OrderAttack(bool isPlayer) //проходим по всем сущностям и говорим им атаковать
@@ -64,8 +81,8 @@ public class GameBoardView : MonoBehaviour
     {
         //Debug.Log(occupants[0]);
         //Debug.Log(occupants[0] == null);
-        AddEntityToPlayerSide(ent, false);
-        AddEntityToPlayerSide(ent2, true);
+        // AddEntityToPlayerSide(ent, false);
+        // AddEntityToPlayerSide(ent2, true);
     }
 }
 

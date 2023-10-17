@@ -17,8 +17,8 @@ public class PlayerHand : MonoBehaviour
             pc.ChangeTimeCost(-1);
             if (pc.timeCost == 0)
             {
-                handOfCards.Remove(pc);
                 gm.PlayCard(pc, isPlayer);
+                handOfCards.Remove(pc);
                 i--;
             }
         }

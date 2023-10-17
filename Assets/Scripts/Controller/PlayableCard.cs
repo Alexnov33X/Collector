@@ -12,6 +12,10 @@ public class PlayableCard : MonoBehaviour
     public CardType cardType;
     public CardAffinity cardAffinity;
     CardDisplay cd;
+
+    [Header("Entity shenanigans")]
+    public Entity cardEntity;
+    public GameObject entityPrefab;
     public void ChangeTimeCost(int change)
     {
         timeCost += change;
@@ -36,9 +40,20 @@ public class PlayableCard : MonoBehaviour
         SetInformationFromSO();
         cd = GetComponent<CardDisplay>();
     }
-    public GameObject SpawnThing()
+    public Entity SpawnEntity()
     {
-        return Instantiate(this.gameObject);
+        //GameObject newEntity = Instantiate(entityPrefab);
+        Entity newE = new Entity
+        {
+            attack = attack,
+            health = health,
+            artwork = card.artwork
+        };
+        // newEntity.GetComponent<EntityDisplay>().card = ci;
+        // newCard.GetComponent<CardDisplay>().HideInformation();
+
+        // newEntity.transform.localScale = new Vector3(1, 1, 1);
+        return newE;
     }
 
 }

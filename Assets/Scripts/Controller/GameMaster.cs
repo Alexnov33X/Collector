@@ -75,6 +75,8 @@ public class GameMaster : MonoBehaviour
 
     public void PlayCard(PlayableCard gc, bool isPlayer)
     {
+        Entity e = gc.SpawnEntity();
+        gb.AddEntityToPlayerSide(e, isPlayer);
         Destroy(gc.gameObject);
         Debug.Log("DEAD?");
         //summon creature on player side
