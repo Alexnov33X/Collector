@@ -42,13 +42,11 @@ public class PlayableCard : MonoBehaviour
     }
     public Entity SpawnEntity()
     {
-        //GameObject newEntity = Instantiate(entityPrefab);
-        Entity newE = new Entity
-        {
-            attack = attack,
-            health = health,
-            artwork = card.artwork
-        };
+        GameObject newEntity = Instantiate(entityPrefab);
+        Entity newE = newEntity.GetComponent<Entity>();
+        newE.attack = attack;
+        newE.health = health;
+        newE.artwork = card.artwork;
         // newEntity.GetComponent<EntityDisplay>().card = ci;
         // newCard.GetComponent<CardDisplay>().HideInformation();
 

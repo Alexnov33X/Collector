@@ -76,6 +76,8 @@ public class GameMaster : MonoBehaviour
     public void PlayCard(PlayableCard gc, bool isPlayer)
     {
         Entity e = gc.SpawnEntity();
+        e.transform.SetParent(transform);
+        e.transform.localScale = new Vector3(1,1,1);
         gb.AddEntityToPlayerSide(e, isPlayer);
         Destroy(gc.gameObject);
         Debug.Log("DEAD?");
