@@ -1,30 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
+
 public class PlayableCard : MonoBehaviour
 {
     public CardInfo card;
-    public int timeCost;
-    public int attack;
-    public int health;
-    public CardType cardType;
-    public CardAffinity cardAffinity;
-    CardDisplay cd;
+
+    [HideInInspector] public int timeCost;
+    [HideInInspector] public int attack;
+    [HideInInspector] public int health;
+    [HideInInspector] public CardType cardType;
+    [HideInInspector] public CardAffinity cardAffinity;
+    
+    private CardDisplay cd;
+
     public void ChangeTimeCost(int change)
     {
         timeCost += change;
         if (cd.gameObject != null)
-            cd.updateInformation();
+            cd.UpdateInformation();
     }
     public void SetInformationFromSO()
     {
-        timeCost = card.timeCost;
-        attack = card.attack;
-        health = card.health;
-        cardType = card.cardType;
-        cardAffinity = card.cardAffinity;
+        timeCost = card.TimeCost;
+        attack = card.Attack;
+        health = card.Health;
+        cardType = card.CardType;
+        cardAffinity = card.CardAffinity;
     }
     public void OnPlay()
     {

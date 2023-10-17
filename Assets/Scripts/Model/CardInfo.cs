@@ -1,27 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class CardInfo : ScriptableObject
 {
-    public new string name;
-    public string description;
+    public string Name;
+    [TextArea]
+    public string Description;
 
-    public Sprite artwork;
+    public Sprite Artwork;
+    public Sprite Rarity;
+    public Sprite Universe;
 
-    public int timeCost = 1;
-    public int attack;
-    public int health;
-    public CardType cardType;
-    public CardAffinity cardAffinity;
-    public CardRarity cardRarity;
+    public int TimeCost = 1;
+    public int Attack;
+    public int Health;
 
-    public int cardId;
+    public CardType CardType;
+    public CardAffinity CardAffinity;
+    public CardRarity CardRarity;
+
+    public int CardId;
 
     public void Print()
     {
-        Debug.Log(name + ": " + description + " The card costs: " + timeCost);
+        Debug.Log(Name + ": " + Description + " The card costs: " + TimeCost);
     }
 }

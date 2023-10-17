@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
   m_Name: Amogus
   m_EditorClassIdentifier: 
-  name: AMOGUS
-  description: 
-  artwork: {fileID: -2046621808, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
-  timeCost: 10
-  attack: 125
-  health: 13
-  cardType: 2
-  cardAffinity: 2
-  cardRarity: 2
-  cardId: 3
+  Name: Amogus
+  Description: 
+  Artwork: {fileID: 0}
+  Rarity: {fileID: 0}
+  Universe: {fileID: 0}
+  TimeCost: 1
+  Attack: 0
+  Health: 0
+  CardType: 0
+  CardAffinity: 0
+  CardRarity: 0
+  CardId: 0

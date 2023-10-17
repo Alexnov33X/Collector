@@ -1,41 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
+    [Header("Card Reference")]
     public CardInfo card;
 
-    public Text nameText;
-    public Text descriptionText;
+    [Header("Name and Description")]
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public Image artworkImage;
+    [Header("Parametrs Text")]
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI attackText;
+    [SerializeField] private TextMeshProUGUI healthText;
+   
+    [Header("Artwork")]
+    [SerializeField] private Image artworkImage;
 
-    public Text timeText;
-    public Text attackText;
-    public Text healthText;
-    public Text cardType;
-    public Text cardAffinity;
+    [Header("Parametrs Images")]
+    [SerializeField] private Image rarityImage;
+    [SerializeField] private Image universeImage;
 
-    public Image cardFront;
-    public Image cardMask;
-    //public Text cardRarity;
+    [Header("Info Block")]
+    [SerializeField] private GameObject infoBlock;
+
+    [Header("Button")]
+    [SerializeField] private Button button;
+
+    private bool isInfoVisible;
+
     void Start()
     {
-        nameText.text = card.name;
-        descriptionText.text = card.description;
+        isInfoVisible = false;
 
-        artworkImage.sprite = card.artwork;
+        button.onClick.AddListener(ChangeInfoBlockVisibility);
 
-        //timeText.text = card.timeCost.ToString();
-        attackText.text = card.attack.ToString();
-        healthText.text = card.health.ToString();
-        cardType.text = card.cardType.ToString();
-        cardAffinity.text = card.cardAffinity.ToString();
+        InitializeCardView();
     }
-    public void updateInformation()
+
+    private void InitializeCardView()
+    {
+        nameText.text = card.Name;
+        descriptionText.text = card.Description;
+
+        timeText.text = card.TimeCost.ToString();
+        attackText.text = card.Attack.ToString();
+        healthText.text = card.Health.ToString();
+
+        artworkImage.sprite = card.Artwork;
+        rarityImage.sprite = card.Rarity;
+        universeImage.sprite = card.Universe;
+    }
+
+    private void ChangeInfoBlockVisibility()
+    {
+        isInfoVisible = !isInfoVisible;
+
+        infoBlock.SetActive(isInfoVisible);
+    }
+
+    public void UpdateInformation()
     {
         if (gameObject != null)
         {
@@ -52,10 +78,6 @@ public class CardDisplay : MonoBehaviour
         descriptionText.gameObject.SetActive(false);
         attackText.gameObject.SetActive(false);
         healthText.gameObject.SetActive(false);
-        cardType.gameObject.SetActive(false);
-        cardAffinity.gameObject.SetActive(false);
-        cardFront.gameObject.SetActive(false);
-        cardMask.gameObject.GetComponent<Mask>().enabled = false;
-        updateInformation();
+        UpdateInformation();
     }
 }
