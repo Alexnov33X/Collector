@@ -504,7 +504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53600d050c1bc8e40b942262099b2d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
 --- !u!114 &4834798107963705418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,8 +526,7 @@ MonoBehaviour:
   universeImage: {fileID: 5727834446367468955}
   infoBlock: {fileID: 8713661493119928320}
   button: {fileID: 5246034946775880668}
-  cardBoardBehaviour: {fileID: 9041863311758538659}
-  card: {fileID: 0}
+  cardEntity: {fileID: 8941789626114691951}
 --- !u!114 &8941789626114691951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +543,7 @@ MonoBehaviour:
   timeCost: 1
   attack: 0
   health: 0
+  card: {fileID: 0}
 --- !u!1 &2267520259465119545
 GameObject:
   m_ObjectHideFlags: 0

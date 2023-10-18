@@ -5,11 +5,11 @@ using UnityEngine;
 /// </summary>
 public class CardBoardBehaviour : MonoBehaviour
 {
-    private Creature creature;
+    private CardEntity creature;
 
     private void Start()
     {
-        creature = GetComponent<Creature>();
+        creature = GetComponent<CardEntity>();
     }
 
     public void ChangeTimeCost(int change)
