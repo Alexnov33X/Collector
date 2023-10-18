@@ -4,15 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
+/// <summary>
+/// это God-object. У него нет одной конкретной области ответственности. Такое мы будем убивать и декомпозировать.
+/// Частично декомпозировал
+/// </summary>
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
 
-    public GameBoardView gb;
-    public List<PlayableCard> discardPile;
+    public GameBoardDisplay gb;
+    public List<CardBoardBehaviour> discardPile;
 
     public GameObject PlayableCardPrefab;
-    public CardInfo card;
+    public CardScriptableObject card;
 
     void Awake()
     {
@@ -31,7 +35,7 @@ public class GameMaster : MonoBehaviour
         gb.OrderAttack(forPlayer);
     }
 
-    public void PlayCard(PlayableCard gc, bool isPlayer)
+    public void PlayCard(CardBoardBehaviour gc, bool isPlayer)
     {
         Destroy(gc.gameObject);
         Debug.Log("DEAD?");

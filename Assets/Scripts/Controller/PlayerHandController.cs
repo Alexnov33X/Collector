@@ -7,56 +7,56 @@ using UnityEngine;
 /// </summary>
 public class PlayerHandController : MonoBehaviour
 {
-    public List<PlayableCard> handOfCards;
+    public List<Creature> handOfCards;
     public GameObject cardPrefab;
     public bool isPlayer;
-    GameMaster gm;
-
-    public void TimePass()
-    {
-        for (int i = 0; i < handOfCards.Count; i++)
-        {
-            handOfCards[i].ChangeTimeCost(-1);
-            if (handOfCards[i].timeCost == 0)
-            {
-                handOfCards.Remove(handOfCards[i]);
-                gm.PlayCard(handOfCards[i], isPlayer);
-                i--;
-            }
-        }
-        return;
-    }
-
-    public void AddCardToHand(CardInfo ci)
-    {
-        if (AmountOfCards() < 6)
-        {
-            GameObject newCard = Instantiate(cardPrefab);
-            PlayableCard newPC = newCard.GetComponent<PlayableCard>();
-            newPC.card = ci;
-            newPC.SetInformationFromSO();
-            newCard.GetComponent<CardDisplay>().card = ci;
-            newCard.GetComponent<CardDisplay>().HideInformation();
-            handOfCards.Add(newPC);
-            newCard.transform.SetParent(transform);
-            newCard.transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
 
     private void Start()
     {
-        PlayableCard[] childCards = GetComponentsInChildren<PlayableCard>();
+        /*Creature[] childCards = GetComponentsInChildren<Creature>();
         handOfCards.AddRange(childCards);
-        gm = GameMaster.instance;
-        //TimePass();
-        foreach (PlayableCard pc in handOfCards)
+        foreach (Creature pc in handOfCards)
+        {
             if (pc != null)
             {
-                pc.Start();
+                pc.InitializeCard();
                 pc.GetComponent<CardDisplay>().HideInformation();
             }
-        //TimePass();
+        }*/
     }
+
+    public void TimePass()
+    {
+        /*for (int i = 0; i < handOfCards.Count; i++)
+        {
+            handOfCards[i].ChangeTimeCost(-1);
+            if (handOfCards[i].card.TimeCost == 0)
+            {
+                handOfCards.Remove(handOfCards[i]);
+                GameMaster.instance.PlayCard(handOfCards[i], isPlayer);
+                i--;
+            }
+        }*/
+    }
+
+    public void AddCardToHand(CardScriptableObject cardSO)
+    {
+        /*if (AmountOfCards() < 6)
+        {
+            GameObject newCard = Instantiate(cardPrefab);
+            
+            CardBoardBehaviour cardBehaviour = newCard.GetComponent<CardBoardBehaviour>();
+            cardBehaviour.card = cardSO;
+            cardBehaviour.InitializeCard();
+
+            //newCard.GetComponent<CardDisplay>().cardBehaviour = cardSO;
+            newCard.GetComponent<CardDisplay>().HideInformation();
+            handOfCards.Add(cardBehaviour);
+            newCard.transform.SetParent(transform);
+            newCard.transform.localScale = new Vector3(1, 1, 1);
+        }*/
+    }
+
     public int AmountOfCards()
     {
         return handOfCards.Count;

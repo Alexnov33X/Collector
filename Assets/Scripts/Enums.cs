@@ -26,4 +26,13 @@ public static class Enums
         Dragons2,
         Dragons3
     }
+
+    /// <summary>
+    /// Состояние карты на игровом поле. В руке\На доске.
+    /// </summary>
+    public enum CardState
+    {
+        OnHand,
+        OnBoard
+    }
 }

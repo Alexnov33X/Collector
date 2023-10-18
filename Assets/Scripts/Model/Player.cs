@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Creature
 {
     public PlayerDisplay pd;
     // Start is called before the first frame update
@@ -13,7 +13,7 @@ public class Player : Entity
         pd.updateInformation();
     }
 
-   public override void OnHit (GameBoardView gb, int position, Entity Attacker, int damage)
+   public override void OnHit (GameBoardDisplay gb, int position, Creature Attacker, int damage)
     {
         health -= damage;
         pd.updateInformation();

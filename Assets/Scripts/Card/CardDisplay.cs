@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [Header("Card Reference")]
-    public CardInfo card;
-
     [Header("Name and Description")]
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
@@ -29,7 +26,20 @@ public class CardDisplay : MonoBehaviour
     [Header("Button")]
     [SerializeField] private Button button;
 
+    [Header("Entity")]
+    [SerializeField] public Creature creature;
+
     private bool isInfoVisible;
+
+    private void OnEnable()
+    {
+        EventBus.OnCardsInfoChanged += UpdateInformation;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnCardsInfoChanged -= UpdateInformation;
+    }
 
     void Start()
     {
@@ -42,16 +52,16 @@ public class CardDisplay : MonoBehaviour
 
     private void InitializeCardView()
     {
-        nameText.text = card.Name;
-        descriptionText.text = card.Description;
+        nameText.text = creature.cardData.Name;
+        descriptionText.text = creature.cardData.Description;
 
-        timeText.text = card.TimeCost.ToString();
-        attackText.text = card.Attack.ToString();
-        healthText.text = card.Health.ToString();
+        timeText.text = creature.cardData.TimeCost.ToString();
+        attackText.text = creature.cardData.Attack.ToString();
+        healthText.text = creature.cardData.Health.ToString();
 
-        artworkImage.sprite = card.Artwork;
-        rarityImage.sprite = card.Rarity;
-        universeImage.sprite = card.Universe;
+        artworkImage.sprite = creature.cardData.ArtworkImage;
+        rarityImage.sprite = creature.cardData.RarityImage;
+        universeImage.sprite = creature.cardData.UniverseImage;
     }
 
     private void ChangeInfoBlockVisibility()
@@ -65,10 +75,9 @@ public class CardDisplay : MonoBehaviour
     {
         if (gameObject != null)
         {
-            PlayableCard pc = GetComponent<PlayableCard>();
-            timeText.text = pc.timeCost.ToString();
-            attackText.text = pc.attack.ToString();
-            healthText.text = pc.health.ToString();
+            timeText.text = creature.cardData.TimeCost.ToString();
+            attackText.text = creature.cardData.Attack.ToString();
+            healthText.text = creature.cardData.Health.ToString();
         }
     }
 

@@ -2,27 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Creature : MonoBehaviour
 {
-
-
     public Sprite artwork;
 
     public int timeCost = 1;
     public int attack;
     public int health;
-    //Типы и аффинити вероятно нужны существу в бою, но пока можно их делать. Наверное
-    // public CardType cardType;
-    // public CardAffinity cardAffinity;
-    // public CardRarity cardRarity;
-    int id;
 
-    public virtual void BeforeAttack(GameBoardView gb, int position)
+    public CardScriptableObject card;
+
+    [HideInInspector] public CardData cardData;
+
+    private void Start()
+    {
+        InitializeCard();
+    }
+
+    public void InitializeCard()
+    {
+        cardData = new CardData(card);
+    }
+
+    public virtual void BeforeAttack(GameBoardDisplay gb, int position)
     {
 
     }
 
-    public virtual void Attack(GameBoardView gb, int position)
+    public virtual void Attack(GameBoardDisplay gb, int position)
     {
         if (position < 6) //Player creature
         {
@@ -43,7 +50,7 @@ public class Entity : MonoBehaviour
             attackPlayer(gb, position); 
         }
     }
-    public virtual void attackPlayer(GameBoardView gb, int position)
+    public virtual void attackPlayer(GameBoardDisplay gb, int position)
     { //Надо подумать где должен находится слот игрока и через что к нему обращаться
         if (position < 6)
             gb.enemyPlayer.OnHit(gb, position, this, attack);
@@ -51,32 +58,32 @@ public class Entity : MonoBehaviour
             gb.mainPlayer.OnHit(gb, position, this, attack);
     }
 
-    public virtual void AfterAttack(GameBoardView gb, int position)
+    public virtual void AfterAttack(GameBoardDisplay gb, int position)
     {
 
     }
 
-    public virtual void BeforeHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void BeforeHit(GameBoardDisplay gb, int position, Creature Attacker, int damage)
     {
 
     }
 
-    public virtual void OnHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void OnHit(GameBoardDisplay gb, int position, Creature Attacker, int damage)
     {
         health -= damage;
     }
 
-    public virtual void AfterHit(GameBoardView gb, int position, Entity Attacker, int damage)
+    public virtual void AfterHit(GameBoardDisplay gb, int position, Creature Attacker, int damage)
     {
 
     }
 
-    public virtual void OnPlay(GameBoardView gb, int position)
+    public virtual void OnPlay(GameBoardDisplay gb, int position)
     {
 
     }
 
-    public virtual void OnDeath(GameBoardView gb, int position)
+    public virtual void OnDeath(GameBoardDisplay gb, int position)
     {
 
     }

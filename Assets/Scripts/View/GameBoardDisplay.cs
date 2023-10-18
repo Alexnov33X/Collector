@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameBoardView : MonoBehaviour
+public class GameBoardDisplay : MonoBehaviour
 {
     [Header("Slots")]
     public Transform[] playerCardSlots;
@@ -8,25 +8,33 @@ public class GameBoardView : MonoBehaviour
     public Player enemyPlayer;
 
     [Header("")]
-    public Entity[] occupants;
+    public Creature[] occupants;
     int playerEntities = 0;
     int enemyEntities = 0;
     int playerSlots = 6;
     int enemySlots = 6;
 
     [Header("For Testing")]
-    public Entity ent;
-    public Entity ent2;
+    public Creature ent;
+    public Creature ent2;
     public GameObject EPrefab;
-
-    public void AddEntityToPosition(Entity e, int index)
+    
+    private void Start() // для тестов
+    {
+        //Debug.Log(occupants[0]);
+        //Debug.Log(occupants[0] == null);
+        AddEntityToPlayerSide(ent, false);
+        AddEntityToPlayerSide(ent2, true);
+    }
+    
+    public void AddEntityToPosition(Creature e, int index)
     {
         occupants[index] = e;
         playerEntities++;
         return;
     }
 
-    public void AddEntityToPlayerSide(Entity e, bool isPlayer) //случайно выбираем не занятую позицию и вставляет туда существо
+    public void AddEntityToPlayerSide(Creature e, bool isPlayer) //случайно выбираем не занятую позицию и вставляет туда существо
     {
         if (isPlayer && playerEntities < 6)
         {
@@ -60,12 +68,6 @@ public class GameBoardView : MonoBehaviour
                     occupants[i].Attack(this, i);
         }
     }
-    private void Start() // для тестов
-    {
-        //Debug.Log(occupants[0]);
-        //Debug.Log(occupants[0] == null);
-        AddEntityToPlayerSide(ent, false);
-        AddEntityToPlayerSide(ent2, true);
-    }
+    
 }
 

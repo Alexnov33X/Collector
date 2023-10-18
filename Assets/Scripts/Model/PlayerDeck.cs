@@ -8,8 +8,8 @@ using UnityEngine;
 /// </summary>
 public static class PlayerDeck
 {
-    public static List<CardInfo> playerDeck; 
-    public static List<CardInfo> enemyDeck;
+    public static List<CardScriptableObject> playerDeck; 
+    public static List<CardScriptableObject> enemyDeck;
 
     public static PlayerHandController playerHand;
     public static PlayerHandController enemyHand;
@@ -18,13 +18,13 @@ public static class PlayerDeck
     {
         if (forPlayer && playerDeck.Count > 0)
         {
-            CardInfo randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
+            CardScriptableObject randomCard = playerDeck[Random.Range(0, playerDeck.Count)];
             playerHand.AddCardToHand(randomCard);
             playerDeck.Remove(randomCard);
         }
         else if (!forPlayer && enemyDeck.Count > 0)
         {
-            CardInfo randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
+            CardScriptableObject randomCard = enemyDeck[Random.Range(0, enemyDeck.Count)];
             enemyHand.AddCardToHand(randomCard);
             enemyDeck.Remove(randomCard);
         }

@@ -9,4 +9,9 @@ public static class EventBus
     /// При изменении количества карт в деке игрока
     /// </summary>
     public static Action OnPlayerDeckCardsChanged;
+
+    /// <summary>
+    /// При обновлении статов карте на игровом поле
+    /// </summary>
+    public static Action OnCardsInfoChanged;
 }
