@@ -5,7 +5,7 @@ using UnityEngine;
 /// Отвечает за отображение количества оставшихся карт в деке игрока.
 /// Обновляется по ивенту.
 /// </summary>
-public class PlayerDeckDisplay : MonoBehaviour
+public class PlayerBattleDeckDisplay : MonoBehaviour
 {
     public TextMeshProUGUI amountOfCards;
 
@@ -26,6 +26,6 @@ public class PlayerDeckDisplay : MonoBehaviour
 
     private void UpdateCardsAmountText()
     {
-        amountOfCards.text = PlayerDeck.CurrentDeck.Count.ToString();
+        amountOfCards.text = PlayerDecks.CurrentDeck.Count.ToString();
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Сущность. Хранит в себе данные о картах в деках игрока. Обрабатывает инфу о картах для корректного билдинга дек.
+/// Сущность. Хранит в себе данные о картах в деках игрока. Обрабатывает инфу о картах для корректного билдинга колод.
 /// </summary>
-public static class PlayerDeck
+public static class PlayerDecks
 {
     /// <summary>
     /// Константы, по геймплею:
@@ -23,13 +23,6 @@ public static class PlayerDeck
     /// </summary>
     private static List<CardScriptableObject> currentDeck = new List<CardScriptableObject>();
     public static List<CardScriptableObject> CurrentDeck { get { return currentDeck; } set => currentDeck = value; }
-
-    /// <summary>
-    /// Дествующая колода игрока, которая используется для боевки. Инициализируется при начале боя(при загрузке сцены BattleScene) и 
-    /// используется только для боя. Инициализация происходит в BattleBootstrapp.
-    /// </summary>
-    private static List<CardScriptableObject> battleDeck = new List<CardScriptableObject>();
-    public static List<CardScriptableObject> BattleDeck { get { return currentDeck; } set => currentDeck = value; }
 
     /// <summary>
     /// Добавление карты в колоду

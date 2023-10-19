@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
 /// Сущность. Хранит в себе данные о картах в руке игрока. Может обрабатывать эту инфу.
+/// Переносит карту из деки в руку и из руки на доску
 /// </summary>
 public class PlayerHand : MonoBehaviour
 {
@@ -15,9 +17,8 @@ public class PlayerHand : MonoBehaviour
 
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary> 
+    public GameObject CardPrefab;
+
     private List<CardEntity> handList;
 
     private void Start()
@@ -25,36 +26,19 @@ public class PlayerHand : MonoBehaviour
         handList = new List<CardEntity>(HandCapacity);
     }
 
-    public void TimePass()
+    public void AddCardToHand()
     {
-        for (int i = 0; i < handList.Count; i++)
+        if (handList.Count() < 6)
         {
-            //playerHand.cardScriptables[i].ChangeTimeCost(-1);
-            if (handList[i].cardData.TimeCost == 0)
-            {
-                handList.Remove(handList[i]);
-                GameMaster.instance.PlayCard(handList[i]);
-                i--;
-            }
-        }
-    }
-
-    public void AddCardToHand(CardScriptableObject cardSO)
-    {
-        /*if (AmountOfCards() < 6)
-        {
-            GameObject newCard = Instantiate(cardPrefab);
+            CardScriptableObject transferedCard = PlayerBattleDeck.TransferCardToHand();
             
-            CardBoardBehaviour cardBehaviour = newCard.GetComponent<CardBoardBehaviour>();
-            cardBehaviour.card = cardSO;
-            cardBehaviour.InitializeCard();
-
-            //newCard.GetComponent<CardDisplay>().cardBehaviour = cardSO;
-            newCard.GetComponent<CardDisplay>().HideInformation();
-            handOfCards.Add(cardBehaviour);
-            newCard.transform.SetParent(transform);
-            newCard.transform.localScale = new Vector3(1, 1, 1);
-        }*/
+            GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
+            
+            CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();
+            newCardEntity.InitializeCard(transferedCard);
+            
+            handList.Add(newCardEntity);
+        }
     }
 
     public void RemoveCardFromHand()
@@ -70,10 +54,5 @@ public class PlayerHand : MonoBehaviour
     public CardData GetCardDataFromIndex(int i)
     {
         return handList[i].cardData;
-    }
-
-    public void InitializeCardDataFromIndex(int i)
-    {
-        handList[i].InitializeCard();
     }
 }

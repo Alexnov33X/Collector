@@ -25,11 +25,11 @@ public static class PlayerStats
     private static void LoadPlayerDecks()
     {
         //временная затычка, пока мы без БД
-        PlayerDeck.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
+        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
     }
 
     private static void SyncPlayerDecks()
     {
-        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDeck.CurrentDeck;
+        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck;
     }
 }

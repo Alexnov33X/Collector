@@ -527,7 +527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 0}
-  cardState: 0
+  handLayer: {fileID: 841722661735203565}
+  boardLayer: {fileID: 2267520259465119545}
 --- !u!1 &2267520259465119545
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,15 +13,15 @@ public class TurnTransmitter : MonoBehaviour
     public PlayerHand playerHand;
     public PlayerHand enemyHand;
 
-    void TimePass()
+    void TimePassA()
     {
         if (firstPlayerTurn)
         {
             turnCount++;
-            playerHand.TimePass();
+            TimePassB();
         }
         else
-            enemyHand.TimePass();
+            TimePassB();
 
         return;
     }
@@ -31,10 +31,24 @@ public class TurnTransmitter : MonoBehaviour
         Debug.Log("CYCLE " + turnCount);
         for (int i = 0; i < 2; i++)
         {
-            TimePass();
+            TimePassA();
             /*DrawCard(firstPlayerTurn);
             Combat(firstPlayerTurn);*/
             firstPlayerTurn = !firstPlayerTurn;
+        }
+    }
+
+    public void TimePassB()
+    {
+        for (int i = 0; i < playerHand.GetHandLength(); i++)
+        {
+            //playerHand.cardScriptables[i].ChangeTimeCost(-1);
+            /*if (handList[i].cardData.TimeCost == 0)
+            {
+                handList.Remove(handList[i]);
+                GameMaster.instance.PlayCard(handList[i]);
+                i--;
+            }*/
         }
     }
 }

@@ -11,23 +11,25 @@ using static Enums;
 /// </summary>
 public class CardEntity : MonoBehaviour
 {
-    public CardScriptableObject card;
-
     [SerializeField] private GameObject handLayer;
     [SerializeField] private GameObject boardLayer;
 
     [HideInInspector] public CardData cardData;
 
-    public void InitializeCard()
+    public void InitializeCard(CardScriptableObject card)
     {
         cardData = new CardData(card);
         EventBus.OnEntityCardInitialized?.Invoke();
+
+        handLayer.SetActive(true);
     }
 
     public void ChangeCardState()
     {
         cardData.CardState = CardState.OnBoard;
 
+        handLayer.SetActive(false);
+        boardLayer.SetActive(true);
     } 
 
     public void ChangeTimeCost(int change)

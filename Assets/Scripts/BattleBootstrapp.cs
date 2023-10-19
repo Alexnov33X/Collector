@@ -11,6 +11,6 @@ public class BattleBootstrapp : MonoBehaviour
         PlayerStats.LoadPlayerData();
 
         //Инициализируем боевую колоду игрока
-        PlayerDeck.BattleDeck = PlayerDeck.CurrentDeck;
+        PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
     }
 }
