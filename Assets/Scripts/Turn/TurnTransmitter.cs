@@ -24,7 +24,7 @@ public class TurnTransmitter : MonoBehaviour
     /// - Фаза атаки
     /// - Фаза конца хода
     /// </summary>
-    private void ExucuteOneTurn()
+    public void ExucuteOneTurn()
     {
         StartingPhase();
         playerHand.ExecuteHandPhases();

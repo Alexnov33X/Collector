@@ -72,7 +72,10 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private void CostReductionPhase()
     {
-
+        foreach (CardEntity card in handList)
+        {
+            card.ReduceCardCost();
+        }
     }
 
     /// <summary>
@@ -90,6 +93,9 @@ public class PlayerHand : MonoBehaviour
             newCardEntity.InitializeCard(transferedCard);
 
             handList.Add(newCardEntity);
+
+            Debug.Log("PH_CTP: CardTranfered; \t" +
+                "HandListCount:" + handList.Count);
         }
     }
 

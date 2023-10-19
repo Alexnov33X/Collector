@@ -28,6 +28,7 @@ public class CardEntity : MonoBehaviour
     public void InitializeCard(CardScriptableObject card)
     {
         cardData = new CardData(card);
+        cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke();
 
         handLayer.SetActive(true);

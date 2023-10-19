@@ -107,4 +107,24 @@ public class CardData
 
         cardId = cardInfo.CardId;
     }
+
+    public void PrintCardData()
+    {
+        Debug.Log(
+            "CD_PCD: \t " +
+            "name:" + name + "\t " +
+            "description:" + description + "\t " +
+            "artworkImage:" + artworkImage + "\t " +
+            "rarityImage:" + rarityImage + "\t " +
+            "universeImage:" + universeImage + "\t " +
+            "cardCost:" + cardCost + "\t " +
+            "attack:" + attack + "\t " +
+            "health:" + health + "\t " +
+            "cardType:" + cardType + "\t " +
+            "cardUniverse:" + cardUniverse + "\t " +
+            "cardRarity:" + cardRarity + "\t " +
+            "cardState:" + cardState + "\t " +
+            "cardId:" + cardId
+            );
+    }
 }

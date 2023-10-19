@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerBattleDeckDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI amountOfCards;
+    [SerializeField] private TextMeshProUGUI amountOfCards;
 
     private void OnEnable()
     {

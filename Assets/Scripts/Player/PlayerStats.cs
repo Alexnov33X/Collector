@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -25,7 +26,7 @@ public static class PlayerStats
     private static void LoadPlayerDecks()
     {
         //временная затычка, пока мы без БД
-        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
+        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck.OfType<CardScriptableObject>().ToList();
 
         //Инициализируем боевую колоду игрока
         PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
@@ -33,6 +34,6 @@ public static class PlayerStats
 
     private static void SyncPlayerDecks()
     {
-        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck;
+        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck.ToArray();
     }
 }

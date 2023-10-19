@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 335955649268848071}
   - component: {fileID: 8941789626114691951}
   m_Layer: 5
-  m_Name: HandCard
+  m_Name: CardPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

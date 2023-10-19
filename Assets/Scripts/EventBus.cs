@@ -20,11 +20,6 @@ public static class EventBus
     /// </summary>
     public static Action OnEntityCardInitialized;
 
-/*    /// <summary>
-    /// При изменении состояния карты
-    /// </summary>
-    public static Action OnCardStateChanged;*/
-
     /// <summary>
     /// При инициализации CardData в CardEntity
     /// </summary>

@@ -7,5 +7,5 @@ using UnityEngine;
 /// </summary>
 public class DeckOnServer : ScriptableObject
 {
-    public List<CardScriptableObject> currentDeck;
+    public CardScriptableObject[] currentDeck;
 }
