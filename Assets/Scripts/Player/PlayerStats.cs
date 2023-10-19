@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Хранит всю информацию, которую будем загружать с сервера: валюты, тиккеты и деки игрока.
@@ -24,11 +25,11 @@ public static class PlayerStats
     private static void LoadPlayerDecks()
     {
         //временная затычка, пока мы без БД
-        PlayerDeck.CurrentDeck = ServerSurrogate.Instance.deckOnServer.currentDeck;
+        PlayerDeck.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
     }
 
     private static void SyncPlayerDecks()
     {
-        ServerSurrogate.Instance.deckOnServer.currentDeck = PlayerDeck.CurrentDeck;
+        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDeck.CurrentDeck;
     }
 }

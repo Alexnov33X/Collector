@@ -17,8 +17,19 @@ public static class PlayerDeck
     private const int maxCardNumber = 14;
     #endregion
 
-    private static List<CardScriptableObject> currentDeck;
+    /// <summary>
+    /// Действующая колода игрока.
+    /// НЕ ИСПОЛЬЗОВАТЬ ДЛЯ БОЯ
+    /// </summary>
+    private static List<CardScriptableObject> currentDeck = new List<CardScriptableObject>();
     public static List<CardScriptableObject> CurrentDeck { get { return currentDeck; } set => currentDeck = value; }
+
+    /// <summary>
+    /// Дествующая колода игрока, которая используется для боевки. Инициализируется при начале боя(при загрузке сцены BattleScene) и 
+    /// используется только для боя. Инициализация происходит в BattleBootstrapp.
+    /// </summary>
+    private static List<CardScriptableObject> battleDeck = new List<CardScriptableObject>();
+    public static List<CardScriptableObject> BattleDeck { get { return currentDeck; } set => currentDeck = value; }
 
     /// <summary>
     /// Добавление карты в колоду

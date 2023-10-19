@@ -205,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
-        m_MethodName: GameTurn
+      - m_Target: {fileID: 1064683764}
+        m_TargetAssemblyTypeName: PlayerHand, Assembly-CSharp
+        m_MethodName: TimePass
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -489,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 506204233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1276,7 +1276,7 @@ Transform:
   m_GameObject: {fileID: 777987366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: -1.23, z: 0}
+  m_LocalPosition: {x: 6, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1662,7 +1662,7 @@ GameObject:
   - component: {fileID: 1064683759}
   - component: {fileID: 1064683761}
   - component: {fileID: 1064683762}
-  - component: {fileID: 1064683763}
+  - component: {fileID: 1064683764}
   m_Layer: 5
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &1064683763
+--- !u!114 &1064683764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1738,13 +1738,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1064683758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cefd513d6f827d241a7dd1b5f84d3491, type: 3}
+  m_Script: {fileID: 11500000, guid: 576e00335985f7c4491a30dca8a0a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handOfCards:
-  - {fileID: 0}
-  cardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
-  isPlayer: 1
 --- !u!1 &1066039003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a6eb949938e2d4d8ffaefaafa1da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckOnServer: {fileID: 11400000, guid: 534eb4cd2f40b6041aaede699af572a9, type: 2}
+  deckOnServerRef: {fileID: 11400000, guid: 534eb4cd2f40b6041aaede699af572a9, type: 2}
+  deckOnServer: []
 --- !u!4 &1372877071
 Transform:
   m_ObjectHideFlags: 0
@@ -2257,7 +2254,7 @@ Transform:
   m_GameObject: {fileID: 1372877069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: -2.58, z: 0}
+  m_LocalPosition: {x: 6, y: -1.1299999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

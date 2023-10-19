@@ -34,11 +34,13 @@ public class CardOnHandDisplay : MonoBehaviour
     private void OnEnable()
     {
         EventBus.OnCardsInfoChanged += UpdateInformation;
+        EventBus.OnEntityCardInitialized += InitializeCardView;
     }
 
     private void OnDisable()
     {
         EventBus.OnCardsInfoChanged -= UpdateInformation;
+        EventBus.OnEntityCardInitialized -= InitializeCardView;
     }
 
     void Start()
@@ -46,8 +48,6 @@ public class CardOnHandDisplay : MonoBehaviour
         isInfoVisible = false;
 
         button.onClick.AddListener(ChangeInfoBlockVisibility);
-
-        InitializeCardView();
     }
 
     private void InitializeCardView()

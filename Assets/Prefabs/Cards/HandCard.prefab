@@ -89,6 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9201402755638625307}
+  - component: {fileID: 5283603377382214960}
   m_Layer: 5
   m_Name: HandLayer
   m_TagString: Untagged
@@ -118,6 +119,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 204.38, y: 298.58}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5283603377382214960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841722661735203565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d7bed92b222b84999e20be2ba5a2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 582500302386665543}
+  descriptionText: {fileID: 8435707011121609612}
+  timeText: {fileID: 7292518729013871779}
+  attackText: {fileID: 240179570311209005}
+  healthText: {fileID: 2525207249356644051}
+  artworkImage: {fileID: 2357946489116424401}
+  rarityImage: {fileID: 3972545873576109835}
+  universeImage: {fileID: 5727834446367468955}
+  infoBlock: {fileID: 8713661493119928320}
+  button: {fileID: 5246034946775880668}
+  cardEntity: {fileID: 8941789626114691951}
 --- !u!1 &892859631147476378
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,8 +485,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 335955649268848071}
-  - component: {fileID: 9041863311758538659}
-  - component: {fileID: 4834798107963705418}
   - component: {fileID: 8941789626114691951}
   m_Layer: 5
   m_Name: HandCard
@@ -492,41 +514,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9041863311758538659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655264287443387262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53600d050c1bc8e40b942262099b2d2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4834798107963705418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655264287443387262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d7bed92b222b84999e20be2ba5a2aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 582500302386665543}
-  descriptionText: {fileID: 8435707011121609612}
-  timeText: {fileID: 7292518729013871779}
-  attackText: {fileID: 240179570311209005}
-  healthText: {fileID: 2525207249356644051}
-  artworkImage: {fileID: 2357946489116424401}
-  rarityImage: {fileID: 3972545873576109835}
-  universeImage: {fileID: 5727834446367468955}
-  infoBlock: {fileID: 8713661493119928320}
-  button: {fileID: 5246034946775880668}
-  cardEntity: {fileID: 8941789626114691951}
 --- !u!114 &8941789626114691951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,11 +526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5e6de5cbfedfd4d841a99634d532a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artwork: {fileID: 0}
-  timeCost: 1
-  attack: 0
-  health: 0
   card: {fileID: 0}
+  cardState: 0
 --- !u!1 &2267520259465119545
 GameObject:
   m_ObjectHideFlags: 0

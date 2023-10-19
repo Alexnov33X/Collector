@@ -10,8 +10,8 @@ public class TurnTransmitter : MonoBehaviour
     bool firstPlayerTurn = true;
     int turnCount = 0;
 
-    public PlayerHandController playerHand;
-    public PlayerHandController enemyHand;
+    public PlayerHand playerHand;
+    public PlayerHand enemyHand;
 
     void TimePass()
     {

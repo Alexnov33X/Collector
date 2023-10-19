@@ -6,9 +6,9 @@ public class ServerSurrogate : MonoBehaviour
 {
     public static ServerSurrogate Instance;
 
-    public DeckOnServer deckOnServer;
+    public DeckOnServer currentDeckOnServer;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {

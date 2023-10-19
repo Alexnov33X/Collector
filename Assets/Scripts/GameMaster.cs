@@ -13,7 +13,6 @@ public class GameMaster : MonoBehaviour
     public static GameMaster instance;
 
     public GameBoardDisplay gb;
-    public List<CardBoardBehaviour> discardPile;
 
     public GameObject PlayableCardPrefab;
     public CardScriptableObject card;
@@ -35,9 +34,9 @@ public class GameMaster : MonoBehaviour
         gb.OrderAttack(forPlayer);
     }
 
-    public void PlayCard(CardBoardBehaviour gc, bool isPlayer)
+    public void PlayCard(CardEntity cardEntity)
     {
-        Destroy(gc.gameObject);
+        Destroy(cardEntity.gameObject);
         Debug.Log("DEAD?");
         //summon creature on player side
     }

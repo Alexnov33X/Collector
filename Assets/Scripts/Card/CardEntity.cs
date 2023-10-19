@@ -1,21 +1,42 @@
 using UnityEngine;
+using static Enums;
 
+/// <summary>
+/// Здесь описывается логика поведения карты:
+/// - Инициализация данных карты
+/// - Изменение TimeCost
+/// - Изменения CardState
+/// - Уничтожение карты
+/// ! Логика боевки должна быть отдельно, не здесь.
+/// </summary>
 public class CardEntity : MonoBehaviour
 {
     public CardScriptableObject card;
 
-    [HideInInspector] public CardData cardData;
+    [SerializeField] private GameObject handLayer;
+    [SerializeField] private GameObject boardLayer;
 
-    private void Awake()
-    {
-        InitializeCard();
-    }
+    [HideInInspector] public CardData cardData;
 
     public void InitializeCard()
     {
         cardData = new CardData(card);
+        EventBus.OnEntityCardInitialized?.Invoke();
     }
 
+    public void ChangeCardState()
+    {
+        cardData.CardState = CardState.OnBoard;
+
+    } 
+
+    public void ChangeTimeCost(int change)
+    {
+        cardData.TimeCost += change;
+        EventBus.OnCardsInfoChanged?.Invoke();
+    }
+
+    #region BattleSystem need to Decomposite
     public virtual void BeforeAttack(GameBoardDisplay gb, int position)
     {
 
@@ -79,4 +100,5 @@ public class CardEntity : MonoBehaviour
     {
 
     }
+    #endregion
 }
