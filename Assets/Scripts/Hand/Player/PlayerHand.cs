@@ -17,8 +17,14 @@ public class PlayerHand : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Префаб карты
+    /// </summary>
     public GameObject CardPrefab;
 
+    /// <summary>
+    /// Список, представляющий собой руку, хранит карты(их компонент CardEntity)
+    /// </summary>
     private List<CardEntity> handList;
 
     private void OnEnable()

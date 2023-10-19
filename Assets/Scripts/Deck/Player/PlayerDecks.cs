@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// Сущность. Хранит в себе данные о картах в деках игрока. Обрабатывает инфу о картах для корректного билдинга колод.

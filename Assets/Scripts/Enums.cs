@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Все наши Enum
+/// </summary>
 public static class Enums
 {
     public enum CardType

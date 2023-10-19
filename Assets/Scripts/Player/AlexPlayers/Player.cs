@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Лучше назвать Hero, а Player, это про самого игрока
+/// </summary>
 public class Player : CardEntity
 {
     public PlayerDisplay pd;

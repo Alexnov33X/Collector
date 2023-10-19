@@ -1,7 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Точка входа. Здесь можно четко прописать порядок инициализации всех объектов.(Не обязветельно всех, но желательно)
+/// Точка входа при запуске сцены BattleScene. 
+/// Здесь можно четко прописать порядок инициализации всех объектов.(Не обязветельно всех, но желательно)
 /// </summary>
 public class BattleBootstrapp : MonoBehaviour
 {
@@ -9,8 +10,5 @@ public class BattleBootstrapp : MonoBehaviour
     {
         //Загружаем инфу с воображаемого сервера(В будущем вынесем в MainBootstrapp)
         PlayerStats.LoadPlayerData();
-
-        //Инициализируем боевую колоду игрока
-        PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
     }
 }

@@ -26,6 +26,9 @@ public static class PlayerStats
     {
         //временная затычка, пока мы без БД
         PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
+
+        //Инициализируем боевую колоду игрока
+        PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
     }
 
     private static void SyncPlayerDecks()

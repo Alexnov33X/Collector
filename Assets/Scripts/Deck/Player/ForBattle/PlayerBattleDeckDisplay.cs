@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Отвечает за отображение количества оставшихся карт в деке игрока.
+/// Отвечает за отображение количества оставшихся карт в деке игрока во время битвы.
 /// Обновляется по ивенту.
 /// </summary>
 public class PlayerBattleDeckDisplay : MonoBehaviour
