@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Отвечает за отображение карты в руке
+/// </summary>
 public class CardOnHandDisplay : MonoBehaviour
 {
     [Header("Name and Description")]
@@ -9,7 +12,7 @@ public class CardOnHandDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
 
     [Header("Parametrs Text")]
-    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI attackText;
     [SerializeField] private TextMeshProUGUI healthText;
    
@@ -55,7 +58,7 @@ public class CardOnHandDisplay : MonoBehaviour
         nameText.text = cardEntity.cardData.Name;
         descriptionText.text = cardEntity.cardData.Description;
 
-        timeText.text = cardEntity.cardData.TimeCost.ToString();
+        costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
 
@@ -64,6 +67,9 @@ public class CardOnHandDisplay : MonoBehaviour
         universeImage.sprite = cardEntity.cardData.UniverseImage;
     }
 
+    /// <summary>
+    /// Используется для отображения\скрытия блока с информацией карты при нажатии на нее.
+    /// </summary>
     private void ChangeInfoBlockVisibility()
     {
         isInfoVisible = !isInfoVisible;
@@ -71,9 +77,12 @@ public class CardOnHandDisplay : MonoBehaviour
         infoBlock.SetActive(isInfoVisible);
     }
 
+    /// <summary>
+    /// Используется для обновления информации на карте в руке\на доске
+    /// </summary>
     public void UpdateInformation()
     {
-        timeText.text = cardEntity.cardData.TimeCost.ToString();
+        costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
     }

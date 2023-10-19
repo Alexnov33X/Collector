@@ -3,31 +3,67 @@ using UnityEngine;
 
 public class CardData
 {
+    #region Class Fields
     /// <summary>
-    /// Поля класса
+    /// Название карты
     /// </summary>
     private string name;
+    /// <summary>
+    /// Описание карты
+    /// </summary>
     private string description;
 
+    /// <summary>
+    /// Спрайт Карты. Арт сущности
+    /// </summary>
     private Sprite artworkImage;
+    /// <summary>
+    /// Спрайт Кристалла Редкости карты
+    /// </summary>
     private Sprite rarityImage;
+    /// <summary>
+    /// Спрайт Вселенной к которой принадлежит персонаж
+    /// </summary>
     private Sprite universeImage;
 
-    private int timeCost;
+    /// <summary>
+    /// Стоимость карты.
+    /// Количество ходов, необходимое для розыгрыша карты
+    /// </summary>
+    private int cardCost;
+    /// <summary>
+    /// Значение атаки карты
+    /// </summary>
     private int attack;
+    /// <summary>
+    /// Значение здоровья карты
+    /// </summary>
     private int health;
 
+    /// <summary>
+    /// Тип карты: Существо\Заклинание\Артифакт\Поле
+    /// </summary>
     private CardType cardType;
+    /// <summary>
+    /// Вселенная карты
+    /// </summary>
     private CardUniverse cardUniverse;
+    /// <summary>
+    /// Редкость карты: Common,Rare, Epic,Legendary
+    /// </summary>
     private CardRarity cardRarity;
+    /// <summary>
+    /// Состояние карты: В руке\На доске
+    /// </summary>
     private CardState cardState;
 
-    private int cardId;
-
     /// <summary>
-    /// Getters and Setters
-    /// Выполняют функции метод для получения и записи данных в поля класса.
+    /// Id карты. Пока не юзаем, так как не нужен.
     /// </summary>
+    private int cardId;
+    #endregion
+
+    #region Class Properties
     public string Name { get => name; set => name = value; }
     public string Description { get => description; set => description = value; }
 
@@ -35,7 +71,7 @@ public class CardData
     public Sprite RarityImage { get => rarityImage; set => rarityImage = value; }
     public Sprite UniverseImage { get => universeImage; set => universeImage = value; }
 
-    public int TimeCost { get => timeCost; set => timeCost = value; }
+    public int CardCost { get => cardCost; set => cardCost = value; }
     public int Attack { get => attack; set => attack = value; }
     public int Health { get => health; set => health = value; }
 
@@ -45,6 +81,7 @@ public class CardData
     public CardState CardState { get => cardState; set => cardState = value; }
 
     public int CardId { get => cardId; set => cardId = value; }
+    #endregion
 
     /// <summary>
     /// Конструктор
@@ -59,7 +96,7 @@ public class CardData
         rarityImage = cardInfo.RarityImage;
         universeImage = cardInfo.UniverseImage;
 
-        timeCost = cardInfo.TimeCost;
+        cardCost = cardInfo.CardCost;
         attack = cardInfo.Attack;
         health = cardInfo.Health;
 
@@ -70,6 +107,4 @@ public class CardData
 
         cardId = cardInfo.CardId;
     }
-
-    //деструктор. Надо сделать, но позже
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
 
 /// <summary>
-/// Выполняет роль передатчика ходов. Вся логика связанная с передачей хода должна быть здесь.
-/// Нужно лучше уточнить условия игры: какие условие передачи хода, что происходит во время передачи хода, 
-/// после передачи, что не может оппонет когда ход не ну него.
+/// Выполняет роль передатчика ходов. Является точкой где храниться порядок фаз хода
+/// Выполняет фазы хода:
+/// - Фаза начало хода
+/// - Фаза конца хода
 /// </summary>
 public class TurnTransmitter : MonoBehaviour
 {
@@ -11,8 +12,39 @@ public class TurnTransmitter : MonoBehaviour
     int turnCount = 0;
 
     public PlayerHand playerHand;
-    public PlayerHand enemyHand;
 
+    /// <summary>
+    /// Выполняет все фазы одного хода. 
+    /// Порядок фаз:
+    /// - Фаза начало хода
+    /// - Фазы Руки:
+    ///     -- Фаза снижения стоимости
+    ///     -- Фаза выдачи карты
+    ///     -- Фаза призыва
+    /// - Фаза атаки
+    /// - Фаза конца хода
+    /// </summary>
+    private void ExucuteOneTurn()
+    {
+        StartingPhase();
+        playerHand.ExecuteHandPhases();
+        //Фаза атаки(еще нет боевой системы)
+        EndingPhase();
+    }
+
+    private void StartingPhase()
+    {
+
+    }
+
+    private void EndingPhase()
+    {
+
+    }
+
+    /// <summary>
+    /// Old Methods
+    /// </summary>
     void TimePassA()
     {
         if (firstPlayerTurn)
