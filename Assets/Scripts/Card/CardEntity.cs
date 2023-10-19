@@ -52,7 +52,6 @@ public class CardEntity : MonoBehaviour
     public void ReduceCardCost()
     {
         cardData.CardCost--;
-        EventBus.OnCardsInfoChanged?.Invoke();
     }
 
     /// <summary>
@@ -63,7 +62,6 @@ public class CardEntity : MonoBehaviour
     public void ReduceCardCost(int change)
     {
         cardData.CardCost += change;
-        EventBus.OnCardsInfoChanged?.Invoke();
     }
 
     #region BattleSystem need to Decomposite

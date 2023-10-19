@@ -76,6 +76,8 @@ public class PlayerHand : MonoBehaviour
         {
             card.ReduceCardCost();
         }
+
+        EventBus.OnCardsInfoChanged?.Invoke();
     }
 
     /// <summary>
@@ -94,8 +96,7 @@ public class PlayerHand : MonoBehaviour
 
             handList.Add(newCardEntity);
 
-            Debug.Log("PH_CTP: CardTranfered; \t" +
-                "HandListCount:" + handList.Count);
+            EventBus.OnPlayerDeckCardsChanged?.Invoke();
         }
     }
 
