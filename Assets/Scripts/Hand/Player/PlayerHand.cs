@@ -23,23 +23,34 @@ public class PlayerHand : MonoBehaviour
     public GameObject CardPrefab;
 
     /// <summary>
+    /// Точка призыва
+    /// </summary>
+    public Transform SummonPoint;
+
+    /// <summary>
     /// Список, представляющий собой руку, хранит карты(их компонент CardEntity)
     /// </summary>
     private List<CardEntity> handList;
 
+    /// <summary>
+    /// Лист который будет записывать в себя карты, которые нужно будет убрать из руки
+    /// </summary>
+    private List<CardEntity> removeCardsList;
+
     private void OnEnable()
     {
-        
+
     }
 
     private void OnDisable()
     {
-        
+
     }
 
     private void Start()
     {
         handList = new List<CardEntity>(HandCapacity);
+        removeCardsList = new List<CardEntity>();
     }
 
     #region Methods to get or set info to handList
@@ -85,19 +96,28 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private void CardTransferPhase()
     {
-        if (handList.Count() < 6)
+        //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
+        if (PlayerBattleDeck.BattleDeck.Count <= 0)
         {
-            CardScriptableObject transferedCard = PullRandomCard();
-
-            GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
-
-            CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();
-            newCardEntity.InitializeCard(transferedCard);
-
-            handList.Add(newCardEntity);
-
-            EventBus.OnPlayerDeckCardsChanged?.Invoke();
+            return;
         }
+
+        //Если в Руке не осталось места, то пропускаем фазу
+        if (handList.Count() >= HandCapacity)
+        {
+            return;
+        }
+
+        CardScriptableObject transferedCard = PullRandomCard();
+
+        GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
+
+        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();
+        newCardEntity.InitializeCard(transferedCard);
+
+        handList.Add(newCardEntity);
+
+        EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
     /// <summary>
@@ -106,6 +126,24 @@ public class PlayerHand : MonoBehaviour
     private void SummonPhase()
     {
 
+        foreach (CardEntity card in handList)
+        {
+            if (card.cardData.CardCost <= 0)
+            {
+                card.ChangeCardState();
+
+                card.gameObject.transform.SetParent(SummonPoint);
+                card.gameObject.transform.position = SummonPoint.position;
+
+                removeCardsList.Add(card);
+            }
+        }
+
+        foreach (CardEntity card in removeCardsList)
+        {
+            handList.Remove(card);
+        }
+        removeCardsList.Clear();
     }
 
     #region Additional Methods for Phases
@@ -123,7 +161,7 @@ public class PlayerHand : MonoBehaviour
 
         return card;
     }
-    
+
     private void RemoveCardFromHand()
     {
 

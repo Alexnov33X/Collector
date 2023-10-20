@@ -11,12 +11,12 @@ public class PlayerBattleDeckDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.OnPlayerDeckCardsChanged += UpdateCardsAmountText;
+        EventBus.OnPlayerBatttleDeckAmountChanged += UpdateCardsAmountText;
     }
 
     private void OnDisable()
     {
-        EventBus.OnPlayerDeckCardsChanged -= UpdateCardsAmountText;
+        EventBus.OnPlayerBatttleDeckAmountChanged -= UpdateCardsAmountText;
     }
 
     private void Start()

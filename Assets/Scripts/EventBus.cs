@@ -8,7 +8,7 @@ public static class EventBus
     /// <summary>
     /// При изменении количества карт в деке игрока
     /// </summary>
-    public static Action OnPlayerDeckCardsChanged;
+    public static Action OnPlayerBatttleDeckAmountChanged;
 
     /// <summary>
     /// При обновлении статов карте на игровом поле

@@ -111,19 +111,19 @@ public class CardData
     public void PrintCardData()
     {
         Debug.Log(
-            "CD_PCD: \t " +
-            "name:" + name + "\t " +
-            "description:" + description + "\t " +
-            "artworkImage:" + artworkImage + "\t " +
-            "rarityImage:" + rarityImage + "\t " +
-            "universeImage:" + universeImage + "\t " +
-            "cardCost:" + cardCost + "\t " +
-            "attack:" + attack + "\t " +
-            "health:" + health + "\t " +
-            "cardType:" + cardType + "\t " +
-            "cardUniverse:" + cardUniverse + "\t " +
-            "cardRarity:" + cardRarity + "\t " +
-            "cardState:" + cardState + "\t " +
+            "CD_PCD: \n " +
+            "name:" + name + "\n " +
+            "description:" + description + "\n " +
+            "artworkImage:" + artworkImage + "\n " +
+            "rarityImage:" + rarityImage + "\n " +
+            "universeImage:" + universeImage + "\n " +
+            "cardCost:" + cardCost + "\n " +
+            "attack:" + attack + "\n " +
+            "health:" + health + "\n " +
+            "cardType:" + cardType + "\n " +
+            "cardUniverse:" + cardUniverse + "\n " +
+            "cardRarity:" + cardRarity + "\n " +
+            "cardState:" + cardState + "\n " +
             "cardId:" + cardId
             );
     }
