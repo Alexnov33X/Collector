@@ -37,8 +37,9 @@ public class CardEntity : MonoBehaviour
     /// <summary>
     /// Используется, когда карта "призывается" - выходит из руки на доску
     /// </summary>
-    public void ChangeCardState()
+    public void ChangeCardState(GameBoardDisplay gb, bool isPlayer)
     {
+        gb.AddEntityToPlayerSide(this, isPlayer);
         cardData.CardState = CardState.OnBoard;
 
         handLayer.SetActive(false);
@@ -93,10 +94,10 @@ public class CardEntity : MonoBehaviour
     }
     public virtual void attackPlayer(GameBoardDisplay gb, int position)
     { //Надо подумать где должен находится слот игрока и через что к нему обращаться
-/*        if (position < 6)
+        if (position < 6)
             gb.enemyPlayer.OnHit(gb, position, this, cardData.Attack);
         else
-            gb.mainPlayer.OnHit(gb, position, this, cardData.Attack);*/
+            gb.mainPlayer.OnHit(gb, position, this, cardData.Attack);
     }
 
     public virtual void AfterAttack(GameBoardDisplay gb, int position)

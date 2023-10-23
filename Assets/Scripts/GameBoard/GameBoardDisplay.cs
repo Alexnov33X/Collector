@@ -16,13 +16,15 @@ public class GameBoardDisplay : MonoBehaviour
     public CardEntity ent;
     public CardEntity ent2;
     public GameObject EPrefab;
+
+    public Player p;
     
     private void Start() // для тестов
     {
         //Debug.Log(occupants[0]);
         //Debug.Log(occupants[0] == null);
-        AddEntityToPlayerSide(ent, false);
-        AddEntityToPlayerSide(ent2, true);
+        //AddEntityToPlayerSide(ent, false);
+        //AddEntityToPlayerSide(ent2, true);
     }
     
     public void AddEntityToPosition(CardEntity e, int index)

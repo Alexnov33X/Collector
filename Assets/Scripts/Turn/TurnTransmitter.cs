@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +11,7 @@ using UnityEngine;
 public class TurnTransmitter : MonoBehaviour
 {
     public PlayerHand playerHand;
+    public PlayerHand enemyHand;
 
     /// <summary>
     /// Выполняет все фазы одного хода. 
@@ -21,10 +24,26 @@ public class TurnTransmitter : MonoBehaviour
     /// - Фаза атаки
     /// - Фаза конца хода
     /// </summary>
+    //public void ExucuteOneTurn()
+    //{
+    //    StartingPhase();
+    //    playerHand.ExecuteHandPhases();
+    //    enemyHand.ExecuteHandPhases();
+    //    //Фаза атаки(еще нет боевой системы)
+    //    EndingPhase();
+    //}
+
     public void ExucuteOneTurn()
+    {
+        StartCoroutine(Tasks());
+    }
+    private IEnumerator Tasks()
     {
         StartingPhase();
         playerHand.ExecuteHandPhases();
+        yield return new WaitForSeconds(2);
+        enemyHand.ExecuteHandPhases();
+        yield return new WaitForSeconds(1);
         //Фаза атаки(еще нет боевой системы)
         EndingPhase();
     }

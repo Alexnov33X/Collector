@@ -22,6 +22,8 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     public GameObject CardPrefab;
 
+    public GameBoardDisplay gb;
+
     /// <summary>
     /// “очка призыва
     /// </summary>
@@ -36,6 +38,8 @@ public class PlayerHand : MonoBehaviour
     /// Ћист который будет записывать в себ€ карты, которые нужно будет убрать из руки
     /// </summary>
     private List<CardEntity> removeCardsList;
+
+    public bool isPlayer;
 
     private void OnEnable()
     {
@@ -130,7 +134,7 @@ public class PlayerHand : MonoBehaviour
         {
             if (card.cardData.CardCost <= 0)
             {
-                card.ChangeCardState();
+                card.ChangeCardState(gb, isPlayer);
 
                 card.gameObject.transform.SetParent(SummonPoint);
                 card.gameObject.transform.position = SummonPoint.position;
