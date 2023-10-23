@@ -23,6 +23,11 @@ public class PlayerHand : MonoBehaviour
     public GameObject CardPrefab;
 
     /// <summary>
+    /// Управляющая станция доски
+    /// </summary>
+    public GameBoardRegulator boardRegulator;
+
+    /// <summary>
     /// Точка призыва
     /// </summary>
     public Transform SummonPoint;
@@ -125,20 +130,17 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private void SummonPhase()
     {
-
         foreach (CardEntity card in handList)
         {
             if (card.cardData.CardCost <= 0)
             {
-                card.ChangeCardState();
-
-                card.gameObject.transform.SetParent(SummonPoint);
-                card.gameObject.transform.position = SummonPoint.position;
-
-                removeCardsList.Add(card);
+                //проверяет получилось ли призвать карту на доску
+                if (boardRegulator.TrySummonCardToPlayerBoard(card))
+                    removeCardsList.Add(card);
             }
         }
 
+        //Удаляем из руки карты,которые ушли на доску
         foreach (CardEntity card in removeCardsList)
         {
             handList.Remove(card);
