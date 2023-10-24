@@ -31,6 +31,7 @@ public class CardEntity : MonoBehaviour
         EventBus.OnEntityCardInitialized?.Invoke();
 
         handLayer.SetActive(true);
+        boardLayer.SetActive(false);
     }
 
     /// <summary>
@@ -42,6 +43,8 @@ public class CardEntity : MonoBehaviour
 
         handLayer.SetActive(false);
         boardLayer.SetActive(true);
+
+        EventBus.OnCardStateChanged?.Invoke();
     }
 
     /// <summary>

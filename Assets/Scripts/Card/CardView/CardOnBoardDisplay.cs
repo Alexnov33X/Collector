@@ -8,24 +8,12 @@ using UnityEngine.UI;
 /// </summary>
 public class CardOnBoardDisplay : MonoBehaviour
 {
-    [Header("Name and Description")]
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-
     [Header("Parametrs Text")]
-    [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI attackText;
     [SerializeField] private TextMeshProUGUI healthText;
 
     [Header("Artwork")]
     [SerializeField] private Image artworkImage;
-
-    [Header("Parametrs Images")]
-    [SerializeField] private Image rarityImage;
-    [SerializeField] private Image universeImage;
-
-    [Header("Info Block")]
-    [SerializeField] private GameObject infoBlock;
 
     [Header("Button")]
     [SerializeField] private Button button;
@@ -38,13 +26,13 @@ public class CardOnBoardDisplay : MonoBehaviour
     private void OnEnable()
     {
         EventBus.OnCardsInfoChanged += UpdateInformation;
-        EventBus.OnEntityCardInitialized += InitializeCardView;
+        EventBus.OnCardStateChanged += InitializeCardView;
     }
 
     private void OnDisable()
     {
         EventBus.OnCardsInfoChanged -= UpdateInformation;
-        EventBus.OnEntityCardInitialized -= InitializeCardView;
+        EventBus.OnCardStateChanged -= InitializeCardView;
     }
 
     void Start()
@@ -56,16 +44,10 @@ public class CardOnBoardDisplay : MonoBehaviour
 
     private void InitializeCardView()
     {
-        nameText.text = cardEntity.cardData.Name;
-        descriptionText.text = cardEntity.cardData.Description;
-
-        costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
 
-        artworkImage.sprite = cardEntity.cardData.ArtworkImage;
-        rarityImage.sprite = cardEntity.cardData.RarityImage;
-        universeImage.sprite = cardEntity.cardData.UniverseImage;
+        artworkImage.sprite = cardEntity.cardData.ArtworkBoardImage;
     }
 
     /// <summary>
@@ -75,12 +57,10 @@ public class CardOnBoardDisplay : MonoBehaviour
     {
         isInfoVisible = !isInfoVisible;
 
-        infoBlock.SetActive(isInfoVisible);
     }
 
     public void UpdateInformation()
     {
-        costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
     }

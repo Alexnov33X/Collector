@@ -16,7 +16,11 @@ public class CardData
     /// <summary>
     /// Спрайт Карты. Арт сущности
     /// </summary>
-    private Sprite artworkImage;
+    private Sprite artworkHandImage;    
+    /// <summary>
+    /// Спрайт Карты. Арт сущности
+    /// </summary>
+    private Sprite artworkBoardImage;
     /// <summary>
     /// Спрайт Кристалла Редкости карты
     /// </summary>
@@ -67,7 +71,8 @@ public class CardData
     public string Name { get => name; set => name = value; }
     public string Description { get => description; set => description = value; }
 
-    public Sprite ArtworkImage { get => artworkImage; set => artworkImage = value; }
+    public Sprite ArtworkHandImage { get => artworkHandImage; set => artworkHandImage = value; }
+    public Sprite ArtworkBoardImage { get => artworkBoardImage; set => artworkBoardImage = value; }
     public Sprite RarityImage { get => rarityImage; set => rarityImage = value; }
     public Sprite UniverseImage { get => universeImage; set => universeImage = value; }
 
@@ -92,7 +97,8 @@ public class CardData
         name = cardInfo.Name;
         description = cardInfo.Description;
 
-        artworkImage = cardInfo.ArtworkImage;
+        artworkHandImage = cardInfo.ArtworkHandImage;
+        artworkBoardImage = cardInfo.ArtworkBoardImage;
         rarityImage = cardInfo.RarityImage;
         universeImage = cardInfo.UniverseImage;
 
@@ -111,12 +117,9 @@ public class CardData
     public void PrintCardData()
     {
         Debug.Log(
-            "CD_PCD: \n " +
+            "Card Realeased to Hand: \n " +
             "name:" + name + "\n " +
             "description:" + description + "\n " +
-            "artworkImage:" + artworkImage + "\n " +
-            "rarityImage:" + rarityImage + "\n " +
-            "universeImage:" + universeImage + "\n " +
             "cardCost:" + cardCost + "\n " +
             "attack:" + attack + "\n " +
             "health:" + health + "\n " +

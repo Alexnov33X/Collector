@@ -23,6 +23,11 @@ public static class EventBus
     /// <summary>
     /// При инициализации CardData в CardEntity
     /// </summary>
+    public static Action OnCardStateChanged;
+
+    /// <summary>
+    /// При завершении хода
+    /// </summary>
     public static Action OnTurnEnded;
 
 }

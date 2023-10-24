@@ -1,21 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class CardScriptableObject : ScriptableObject
 {
+    [Header("Name and Description")]
     [Tooltip("Название карты")]
     public string Name;
     [Tooltip("Описание карты"), TextArea]
     public string Description;
 
-    [Tooltip("Спрайт Карты. Арт сущности")]
-    public Sprite ArtworkImage;
+    [Header("Sprite Elements")]
+    [Tooltip("Спрайт Карты в Руке")]
+    public Sprite ArtworkHandImage;
+    [Tooltip("Спрайт Карты на Доске")]
+    public Sprite ArtworkBoardImage;
     [Tooltip("Спрайт Кристалла Редкости карты")]
     public Sprite RarityImage;
     [Tooltip("Спрайт Вселенной к которой принадлежит персонаж")]
     public Sprite UniverseImage;
 
+    [Header("Card Stats")]
     [Tooltip("Стоимость карты.\r\n Количество ходов, необходимое для розыгрыша карты")]
     public int CardCost;
     [Tooltip("Значение атаки карты")]
@@ -23,6 +29,7 @@ public class CardScriptableObject : ScriptableObject
     [Tooltip("Значение здоровья карты")]
     public int Health;
 
+    [Header("Card Types")]
     [Tooltip("Тип карты: Существо\\Заклинание\\Артифакт\\Поле")]
     public CardType CardType;
     [Tooltip("Вселенная карты")]
@@ -30,6 +37,10 @@ public class CardScriptableObject : ScriptableObject
     [Tooltip("Редкость карты: Common,Rare, Epic,Legendary")]
     public CardRarity CardRarity;
 
+    [Header("Abilities")]
+    public List<CardAbility> abilities = new List<CardAbility>();
+
+    [Header("Card ID")]
     [Tooltip("Id карты. Пока не юзаем, так как не нужен.")]
     public int CardId;
 

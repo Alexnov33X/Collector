@@ -38,4 +38,11 @@ public static class Enums
         OnHand,
         OnBoard
     }
+
+    public enum CardAbility
+    {
+        DefaultVerticalLinearAttack,
+        DefaultHorizontalLinearAttack,
+        EveryoneAttack,
+    }
 }

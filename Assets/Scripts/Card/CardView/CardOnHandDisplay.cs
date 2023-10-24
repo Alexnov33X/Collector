@@ -62,7 +62,7 @@ public class CardOnHandDisplay : MonoBehaviour
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
 
-        artworkImage.sprite = cardEntity.cardData.ArtworkImage;
+        artworkImage.sprite = cardEntity.cardData.ArtworkHandImage;
         rarityImage.sprite = cardEntity.cardData.RarityImage;
         universeImage.sprite = cardEntity.cardData.UniverseImage;
     }
