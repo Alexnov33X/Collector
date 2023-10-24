@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Выполняет роль передатчика ходов. Является точкой где храниться порядок фаз хода
@@ -9,6 +11,7 @@ using UnityEngine;
 public class TurnTransmitter : MonoBehaviour
 {
     public PlayerHand playerHand;
+    public PlayerHand enemyHand;
 
     /// <summary>
     /// Выполняет все фазы одного хода. 
@@ -21,11 +24,23 @@ public class TurnTransmitter : MonoBehaviour
     /// - Фаза атаки
     /// - Фаза конца хода
     /// </summary>
+    //public void ExucuteOneTurn()
+    //{
+    //    StartingPhase();
+    //    playerHand.ExecuteHandPhases();
+    //    //Фаза атаки(еще нет боевой системы)
+    //    EndingPhase();
+    //}
     public void ExucuteOneTurn()
+    {
+        StartCoroutine(Tasks());
+    }
+    private IEnumerator Tasks()
     {
         StartingPhase();
         playerHand.ExecuteHandPhases();
-        //Фаза атаки(еще нет боевой системы)
+        yield return new WaitForSeconds(2);
+        enemyHand.ExecuteHandPhases();
         EndingPhase();
     }
 
@@ -38,4 +53,5 @@ public class TurnTransmitter : MonoBehaviour
     {
 
     }
+
 }

@@ -68,4 +68,6 @@ public class CardEntity : MonoBehaviour
     {
         cardData.CardCost += change;
     }
+
+
 }
