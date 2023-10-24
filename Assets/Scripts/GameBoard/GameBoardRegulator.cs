@@ -28,10 +28,10 @@ public class GameBoardRegulator : MonoBehaviour
     /// </summary>
     private void InitializeSideArrays()
     {
-        enemySide = new BoardCell[2, 3]
-        {
+        enemySide = new BoardCell[2, 3] 
+        { 
             { enemyFirstLine[0], enemyFirstLine[1], enemyFirstLine[2]},
-            { enemySecondLine[0], enemySecondLine[1], enemySecondLine[2] }
+            { enemySecondLine[0], enemySecondLine[1], enemySecondLine[2] } 
         };
 
         playerSide = new BoardCell[2, 3]
@@ -49,10 +49,10 @@ public class GameBoardRegulator : MonoBehaviour
     public bool TrySummonCardToPlayerBoard(CardEntity card)
     {
         BoardCell freeCell = ReturnFreeCell(playerSide);
-
+        
         if (freeCell == null)
             return false;
-
+        
         freeCell.SetCardinCell(card);
 
         return true;

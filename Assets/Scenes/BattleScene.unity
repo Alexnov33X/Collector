@@ -2395,8 +2395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64479697546aedd43a88134b45926342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handLayer: {fileID: 0}
-  boardLayer: {fileID: 0}
   pd: {fileID: 1150248108}
 --- !u!1 &1156526383
 GameObject:
@@ -3170,6 +3168,7 @@ GameObject:
   - component: {fileID: 1720185552}
   - component: {fileID: 1720185554}
   - component: {fileID: 1720185553}
+  - component: {fileID: 1720185555}
   m_Layer: 5
   m_Name: EnemyHand
   m_TagString: Untagged
@@ -3236,6 +3235,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &1720185555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720185551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576e00335985f7c4491a30dca8a0a8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+  boardRegulator: {fileID: 575844266}
+  SummonPoint: {fileID: 575844265}
 --- !u!1 &1736101997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,8 +3548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64479697546aedd43a88134b45926342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handLayer: {fileID: 644615791}
-  boardLayer: {fileID: 117129307}
   pd: {fileID: 2072095053}
 --- !u!1 &2074461822
 GameObject:

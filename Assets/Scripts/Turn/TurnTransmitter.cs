@@ -39,7 +39,7 @@ public class TurnTransmitter : MonoBehaviour
     {
         StartingPhase();
         playerHand.ExecuteHandPhases();
-        yield return new WaitForSeconds(2.0f); //добавляем задержку в 2 секунды между ходом игрока и оппонента
+        yield return new WaitForSeconds(2);
         enemyHand.ExecuteHandPhases();
         EndingPhase();
     }
