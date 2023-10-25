@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHand: {fileID: 1064683764}
+  enemyHand: {fileID: 1720185555}
 --- !u!4 &462947751
 Transform:
   m_ObjectHideFlags: 0
@@ -2057,6 +2058,7 @@ MonoBehaviour:
   CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
   boardRegulator: {fileID: 575844266}
   SummonPoint: {fileID: 575844265}
+  isPlayer: 1
 --- !u!1 &1066039003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,6 +3287,7 @@ GameObject:
   - component: {fileID: 1720185552}
   - component: {fileID: 1720185554}
   - component: {fileID: 1720185553}
+  - component: {fileID: 1720185555}
   m_Layer: 5
   m_Name: EnemyHand
   m_TagString: Untagged
@@ -3351,6 +3354,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &1720185555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720185551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576e00335985f7c4491a30dca8a0a8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+  boardRegulator: {fileID: 575844266}
+  SummonPoint: {fileID: 575844265}
+  isPlayer: 0
 --- !u!1 &1736101997
 GameObject:
   m_ObjectHideFlags: 0

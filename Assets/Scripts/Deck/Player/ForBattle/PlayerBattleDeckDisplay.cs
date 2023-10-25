@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerBattleDeckDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI amountOfCards;
+    public bool enemyDeck;
 
     private void OnEnable()
     {
@@ -26,6 +27,9 @@ public class PlayerBattleDeckDisplay : MonoBehaviour
 
     private void UpdateCardsAmountText()
     {
-        amountOfCards.text = PlayerDecks.CurrentDeck.Count.ToString();
+        if (enemyDeck)
+            amountOfCards.text = PlayerDecks.CurrentEnemyDeck.Count.ToString();
+        else
+            amountOfCards.text = PlayerDecks.CurrentDeck.Count.ToString();
     }
 }

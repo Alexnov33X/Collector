@@ -22,6 +22,9 @@ public static class PlayerDecks
     private static List<CardScriptableObject> currentDeck = new List<CardScriptableObject>();
     public static List<CardScriptableObject> CurrentDeck { get { return currentDeck; } set => currentDeck = value; }
 
+    private static List<CardScriptableObject> currentEnemyDeck = new List<CardScriptableObject>(); //Костылим вторую колоду для врага
+    public static List<CardScriptableObject> CurrentEnemyDeck { get { return currentEnemyDeck; } set => currentEnemyDeck = value; }
+
     /// <summary>
     /// Добавление карты в колоду
     /// </summary>

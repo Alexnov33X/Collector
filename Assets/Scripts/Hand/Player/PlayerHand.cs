@@ -35,12 +35,14 @@ public class PlayerHand : MonoBehaviour
     /// <summary>
     /// Список, представляющий собой руку, хранит карты(их компонент CardEntity)
     /// </summary>
-    private List<CardEntity> handList;
+    public List<CardEntity> handList;
 
     /// <summary>
     /// Лист который будет записывать в себя карты, которые нужно будет убрать из руки
     /// </summary>
     private List<CardEntity> removeCardsList;
+
+    public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
 
     private void OnEnable()
     {
@@ -135,7 +137,7 @@ public class PlayerHand : MonoBehaviour
             if (card.cardData.CardCost <= 0)
             {
                 //проверяет получилось ли призвать карту на доску
-                if (boardRegulator.TrySummonCardToPlayerBoard(card))
+                if (boardRegulator.TrySummonCardToPlayerBoard(card, isPlayer))
                     removeCardsList.Add(card);
             }
         }
@@ -156,12 +158,24 @@ public class PlayerHand : MonoBehaviour
     /// <returns>Возвращает ScriptableObject карты</returns>     
     private CardScriptableObject PullRandomCard()
     {
-        int elementIndex = Random.Range(0, PlayerBattleDeck.BattleDeck.Count);
+        if (isPlayer)
+        {
+            int elementIndex = Random.Range(0, PlayerBattleDeck.BattleDeck.Count);
 
-        CardScriptableObject card = PlayerBattleDeck.BattleDeck[elementIndex];
-        PlayerBattleDeck.BattleDeck.RemoveAt(elementIndex);
+            CardScriptableObject card = PlayerBattleDeck.BattleDeck[elementIndex];
+            PlayerBattleDeck.BattleDeck.RemoveAt(elementIndex);
 
-        return card;
+            return card;
+        }
+        else
+        {
+            int elementIndex = Random.Range(0, PlayerBattleDeck.EnemyBattleDeck.Count);
+
+            CardScriptableObject card = PlayerBattleDeck.EnemyBattleDeck[elementIndex];
+            PlayerBattleDeck.EnemyBattleDeck.RemoveAt(elementIndex);
+
+            return card;
+        }
     }
 
     private void RemoveCardFromHand()
