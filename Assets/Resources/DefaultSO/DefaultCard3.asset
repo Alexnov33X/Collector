@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
-  m_Name: DefaultCard1
+  m_Name: DefaultCard3
   m_EditorClassIdentifier: 
-  Name: Yasmin
+  Name: Tirion
   Description: When entering the battlefield, gives +1/+1 to its owner
-  ArtworkHandImage: {fileID: -1574563159, guid: d9ed777c31769c541a91623625e571c8, type: 3}
-  ArtworkBoardImage: {fileID: -454148264, guid: d9ed777c31769c541a91623625e571c8, type: 3}
-  RarityImage: {fileID: 21300000, guid: 95fe4e6d876a0cb408e430314a28f3c2, type: 3}
+  ArtworkHandImage: {fileID: 21300000, guid: 25cef1bb73e99b346a44fba23bed55ea, type: 3}
+  ArtworkBoardImage: {fileID: 21300000, guid: 25cef1bb73e99b346a44fba23bed55ea, type: 3}
+  RarityImage: {fileID: 21300000, guid: 95f70d3d2b482124888f59b059f36d38, type: 3}
   UniverseImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
-  CardCost: 4
-  Attack: 24
-  Health: 9
+  CardCost: 12
+  Attack: 30
+  Health: 20
   CardType: 0
   CardUniverse: 0
   CardRarity: 0
-  abilities: 0000000000000000
+  abilities: 
   CardId: 0
