@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class GameBoardRegulator : MonoBehaviour
 {
@@ -84,8 +85,12 @@ public class GameBoardRegulator : MonoBehaviour
         return null;
     }
 
-    //Проходимся по всем ячейкам и говорим им атаковать
     public void OrderAttackToCells(bool isPlayer)
+    {
+        StartCoroutine(CreatureAttacks(isPlayer));
+    }
+    //Проходимся по всем ячейкам и говорим им атаковать
+    public IEnumerator CreatureAttacks(bool isPlayer)
     {
         if (isPlayer)
             for (int i = 0; i < 2; i++)
@@ -93,7 +98,10 @@ public class GameBoardRegulator : MonoBehaviour
                 for (int j = 0; j < 3; j++)
                 {
                     if (playerSide[i, j].occupant != null)
+                    {
                         playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
+                        yield return new WaitForSeconds(1);
+                    }
                 }
             }
         else
@@ -103,8 +111,11 @@ public class GameBoardRegulator : MonoBehaviour
                 for (int j = 0; j < 3; j++)
                 {
                     if (enemySide[i, j].occupant != null)
+                    {
                         enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
-                }
+                        yield return new WaitForSeconds(1);
+                    }
+                    }
             }
         }
     }

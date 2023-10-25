@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Сущность. Хранит в себе данные о картах в руке игрока. Может обрабатывать эту инфу.
@@ -78,11 +79,19 @@ public class PlayerHand : MonoBehaviour
     /// - Фаза выдачи карты
     /// - Фаза призыва
     /// </summary>
+    /// 
     public void ExecuteHandPhases()
     {
+        StartCoroutine(Phases());
+    }
+    public IEnumerator Phases()
+    {
         CostReductionPhase();
+        yield return new WaitForSeconds(1);
         CardTransferPhase();
+        yield return new WaitForSeconds(1);
         SummonPhase();
+        yield return new WaitForSeconds(1);
         boardRegulator.OrderAttackToCells(isPlayer);
     }
 
