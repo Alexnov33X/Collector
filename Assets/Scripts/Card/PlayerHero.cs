@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeroHealth : MonoBehaviour
+public class PlayerHero : MonoBehaviour
 {
     public PlayerHeroDisplay pd;
 
