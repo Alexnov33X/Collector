@@ -83,6 +83,7 @@ public class PlayerHand : MonoBehaviour
         CostReductionPhase();
         CardTransferPhase();
         SummonPhase();
+        boardRegulator.OrderAttackToCells(isPlayer);
     }
 
     /// <summary>

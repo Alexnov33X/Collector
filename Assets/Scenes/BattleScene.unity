@@ -762,6 +762,8 @@ MonoBehaviour:
   - {fileID: 761505554}
   - {fileID: 1474690169}
   - {fileID: 1254515269}
+  enemyHero: {fileID: 566880690}
+  playerHero: {fileID: 1736102001}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfCards: {fileID: 377652124}
+  enemyDeck: 0
 --- !u!1 &752853517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,6 +2061,7 @@ MonoBehaviour:
   CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
   boardRegulator: {fileID: 575844266}
   SummonPoint: {fileID: 575844265}
+  handList: []
   isPlayer: 1
 --- !u!1 &1066039003
 GameObject:
@@ -2322,6 +2326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfCards: {fileID: 720275039}
+  enemyDeck: 0
 --- !u!1 &1177262407
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,6 +3374,7 @@ MonoBehaviour:
   CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
   boardRegulator: {fileID: 575844266}
   SummonPoint: {fileID: 575844265}
+  handList: []
   isPlayer: 0
 --- !u!1 &1736101997
 GameObject:

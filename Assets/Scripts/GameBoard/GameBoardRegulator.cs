@@ -15,8 +15,11 @@ public class GameBoardRegulator : MonoBehaviour
     /// <summary>
     /// Хранят в себе ячейки соответствующих сторон
     /// </summary>
-    private BoardCell[,] enemySide;
-    private BoardCell[,] playerSide;
+    public BoardCell[,] enemySide; //делаю публичным для упрощенного доступа других классов. Нет смысла это прятать...
+    public BoardCell[,] playerSide;
+
+    public PlayerHero enemyHero; //сохраняем ссылки на игроков на поле
+    public PlayerHero playerHero;
 
     private void Start()
     {
@@ -79,5 +82,30 @@ public class GameBoardRegulator : MonoBehaviour
         }
 
         return null;
+    }
+
+    //Проходимся по всем ячейкам и говорим им атаковать
+    public void OrderAttackToCells(bool isPlayer)
+    {
+        if (isPlayer)
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (playerSide[i, j].occupant != null)
+                        playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
+                }
+            }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (enemySide[i, j].occupant != null)
+                        enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
+                }
+            }
+        }
     }
 }

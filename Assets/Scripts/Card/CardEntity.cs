@@ -69,5 +69,43 @@ public class CardEntity : MonoBehaviour
         cardData.CardCost += change;
     }
 
+    //row и column - координаты этого существа на поле боя, для просчёта лина и эффектов вероятно нужен будет
+    //В этом методе ищем что атаковать и атакуем
+    public void Attack(GameBoardRegulator gb, bool isPlayer, int row, int column)
+    {
+        if (isPlayer)
+        {
+            if (gb.enemyFirstLine[column].isOccupied)
+                gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+            else if (gb.enemySecondLine[column].isOccupied)
+                gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+            else
+                gb.enemyHero.OnHit(cardData.Attack);
+        }
+        else
+        {
+            if (gb.playerFirstLine[column].isOccupied)
+                gb.playerFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+            else if (gb.playerSecondLine[column].isOccupied)
+                gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+            else
+                gb.playerHero.OnHit(cardData.Attack);
+        }
+    }
+
+    //метод получения удара. Если умираем то сообщаем об этом полю боя
+    public void OnHit(GameBoardRegulator gb, bool isPlayer, int row, int column, int damage)
+    {
+        cardData.Health -= damage;
+        EventBus.OnCardsInfoChanged?.Invoke();
+        if (cardData.Health <= 0)
+        {
+            if (isPlayer)
+                gb.playerSide[row, column].DestroyCardinCell();
+            else
+                gb.enemySide[row, column].DestroyCardinCell();
+
+        }
+    }
 
 }
