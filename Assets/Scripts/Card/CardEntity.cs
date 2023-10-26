@@ -24,7 +24,7 @@ public class CardEntity : MonoBehaviour
     /// Экземпляр класса, который будет хранить всю информацию о 
     /// </summary>
     [HideInInspector] public CardData cardData;
-
+    private float attackDelay = 0.7f;
     public void InitializeCard(CardScriptableObject card)
     {
         cardData = new CardData(card);
@@ -91,21 +91,54 @@ public class CardEntity : MonoBehaviour
         if (isPlayer)
         {
             if (gb.enemyFirstLine[column].isOccupied)
-                gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+            {
+                StartCoroutine(AttackAnimation(gb.enemyFirstLine[column].occupant.gameObject.transform.position, attackDelay));
+                gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);         
+            }
             else if (gb.enemySecondLine[column].isOccupied)
+            {
+                StartCoroutine(AttackAnimation(gb.enemySecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+          
+            }
             else
+            {
+                StartCoroutine(AttackAnimation(gb.enemyHero.gameObject.transform.position, attackDelay));
                 gb.enemyHero.OnHit(cardData.Attack);
+               
+            }
         }
         else
         {
             if (gb.playerFirstLine[column].isOccupied)
+            {
+                StartCoroutine(AttackAnimation(gb.playerFirstLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.playerFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+                
+            }
             else if (gb.playerSecondLine[column].isOccupied)
+            {
+                StartCoroutine(AttackAnimation(gb.playerSecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+                
+            }
             else
+            {
+                StartCoroutine(AttackAnimation(gb.playerHero.gameObject.transform.position, attackDelay));
                 gb.playerHero.OnHit(cardData.Attack);
+               
+            }
         }
+        
+    }
+
+    //LeanTween анимация для Атаки позиции
+    public IEnumerator AttackAnimation(Vector3 location, float time)
+    {
+        Vector3 tempLocation = gameObject.transform.position;
+        LeanTween.move(gameObject,location, time/3).setEaseInOutBounce();
+        yield return new WaitForSecondsRealtime(time / 3);
+        LeanTween.move(gameObject, tempLocation, time / 3).setEaseInOutBounce();
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя

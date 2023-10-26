@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// Выполняет роль передатчика ходов. Является точкой где храниться порядок фаз хода
@@ -12,6 +13,8 @@ public class TurnTransmitter : MonoBehaviour
 {
     public PlayerHand playerHand;
     public PlayerHand enemyHand;
+    public VictoryScreen vs;
+    public Button turnStep;
 
     /// <summary>
     /// Выполняет все фазы одного хода. 
@@ -31,6 +34,11 @@ public class TurnTransmitter : MonoBehaviour
     //    //Фаза атаки(еще нет боевой системы)
     //    EndingPhase();
     //}
+    void Start()
+    {
+        EventBus.OnGameVictory += Victory;
+        EventBus.OnGameLoss += Loss;
+    }
     public void ExucuteOneTurn()
     {
         StartCoroutine(Tasks());
@@ -52,6 +60,18 @@ public class TurnTransmitter : MonoBehaviour
     private void EndingPhase()
     {
 
+    }
+
+    private void Victory()
+    {
+        vs.EndGame(true);
+        turnStep.gameObject.SetActive(false);
+    }
+
+    private void Loss()
+    {
+        vs.EndGame(false);
+        turnStep.gameObject.SetActive(false);
     }
 
 }

@@ -6,8 +6,10 @@ public class PlayerHero : MonoBehaviour
 {
     public PlayerHeroDisplay pd;
 
-    private int health = 90;
+    [SerializeField] private int health = 90;
+    [SerializeField] private bool mainPlayer = false;
     public int Health { get => health; set => health = value; }
+    public bool MainPlayer { get => mainPlayer; set => mainPlayer = value; }
 
     void Start()
     {
@@ -17,6 +19,15 @@ public class PlayerHero : MonoBehaviour
     public void OnHit(int damage)
     {
         Health -= damage;
+        if (Health < 0)
+        {
+            Health = 0;
+            pd.updateInformation(Health.ToString());
+            if (mainPlayer)
+                EventBus.OnGameVictory?.Invoke();
+            else
+                EventBus.OnGameLoss?.Invoke();
+        }
         pd.updateInformation(Health.ToString());
     }
 
