@@ -94,7 +94,7 @@ public class PlayerHand : MonoBehaviour
     public IEnumerator Phases()
     {
         yield return StartCoroutine(CostReductionPhase());
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
         CardTransferPhase();
         yield return new WaitForSeconds(1);
         SummonPhase();

@@ -51,7 +51,7 @@ public class TurnTransmitter : MonoBehaviour
         playerHand.ExecuteHandPhases();
         yield return new WaitForSeconds(2);
         enemyHand.ExecuteHandPhases();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         EndingPhase();
     }
 
