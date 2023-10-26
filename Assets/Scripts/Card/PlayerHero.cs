@@ -23,7 +23,7 @@ public class PlayerHero : MonoBehaviour
         {
             Health = 0;
             pd.updateInformation(Health.ToString());
-            if (mainPlayer)
+            if (MainPlayer)
                 EventBus.OnGameVictory?.Invoke();
             else
                 EventBus.OnGameLoss?.Invoke();

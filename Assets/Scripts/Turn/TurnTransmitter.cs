@@ -38,6 +38,7 @@ public class TurnTransmitter : MonoBehaviour
     {
         EventBus.OnGameVictory += Victory;
         EventBus.OnGameLoss += Loss;
+        StartCoroutine(Tasks());
     }
     public void ExucuteOneTurn()
     {
@@ -45,10 +46,12 @@ public class TurnTransmitter : MonoBehaviour
     }
     private IEnumerator Tasks()
     {
+        yield return new WaitForSeconds(1);
         StartingPhase();
         playerHand.ExecuteHandPhases();
         yield return new WaitForSeconds(2);
         enemyHand.ExecuteHandPhases();
+        yield return new WaitForSeconds(4);
         EndingPhase();
     }
 
@@ -59,17 +62,20 @@ public class TurnTransmitter : MonoBehaviour
 
     private void EndingPhase()
     {
-
+        StartCoroutine(Tasks());
     }
 
     private void Victory()
     {
+        StopAllCoroutines();
         vs.EndGame(true);
         turnStep.gameObject.SetActive(false);
+
     }
 
     private void Loss()
     {
+        StopAllCoroutines();
         vs.EndGame(false);
         turnStep.gameObject.SetActive(false);
     }

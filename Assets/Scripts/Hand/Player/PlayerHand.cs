@@ -34,6 +34,11 @@ public class PlayerHand : MonoBehaviour
     public Transform SummonPoint;
 
     /// <summary>
+    /// Точка взятия карты
+    /// </summary>
+    public Transform DeckLocation;
+
+    /// <summary>
     /// Список, представляющий собой руку, хранит карты(их компонент CardEntity)
     /// </summary>
     public List<CardEntity> handList;
@@ -43,6 +48,7 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private List<CardEntity> removeCardsList;
     private float delay = 0.25f;
+    private float cardDrawDelay = 0.5f;
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
 
@@ -130,13 +136,22 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
-
+        
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();
+        //newCardExample.gameObject.SetActive(false);
         newCardEntity.InitializeCard(transferedCard);
 
         handList.Add(newCardEntity);
-
+        //Transform tempLocation = newCardExample.transform;
+        //newCardExample.transform.position = DeckLocation.position;
+        //newCardExample.gameObject.SetActive(true);
+        //StartCoroutine(MoveWithDelay(newCardExample, tempLocation, cardDrawDelay));
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
+    }
+    private IEnumerator MoveWithDelay(GameObject go,Transform position, float time)
+    {
+        LeanTween.move(go, position, time).setEaseInOutSine();
+        yield return new WaitForSecondsRealtime(time);
     }
 
     /// <summary>

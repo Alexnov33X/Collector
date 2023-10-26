@@ -13,7 +13,7 @@ public class VictoryScreen : MonoBehaviour
     }
     public void EndGame(bool victory)
     {
-        if (victory)
+        if (!victory)
             gameObject.SetActive(true);
         else
         {
