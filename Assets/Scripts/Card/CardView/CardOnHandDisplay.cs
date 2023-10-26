@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class CardOnHandDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI attackText;
     [SerializeField] private TextMeshProUGUI healthText;
-   
+
     [Header("Artwork")]
     [SerializeField] private Image artworkImage;
 
@@ -31,6 +32,7 @@ public class CardOnHandDisplay : MonoBehaviour
 
     [Header("Entity")]
     [SerializeField] private CardEntity cardEntity;
+    private float animationDelay = 0.25f;
 
     private bool isInfoVisible;
 
@@ -82,8 +84,20 @@ public class CardOnHandDisplay : MonoBehaviour
     /// </summary>
     public void UpdateInformation()
     {
+        if (costText.text != cardEntity.cardData.CardCost.ToString())
+            StartCoroutine(BounceCost());
         costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
+    }
+
+    public IEnumerator BounceCost()
+    {
+        Vector3 startSize = transform.localScale;
+        Vector3 newSize = new Vector3(startSize.x * 2, startSize.y * 2, startSize.z);
+        LeanTween.scale(costText.gameObject, newSize, animationDelay / 2).setDelay(0f);
+        yield return new WaitForSecondsRealtime(animationDelay / 2);
+        LeanTween.scale(costText.gameObject, startSize, animationDelay / 2).setDelay(0f);
+        yield return new WaitForSecondsRealtime(animationDelay / 2);
     }
 }

@@ -42,6 +42,7 @@ public class PlayerHand : MonoBehaviour
     /// Ћист который будет записывать в себ€ карты, которые нужно будет убрать из руки
     /// </summary>
     private List<CardEntity> removeCardsList;
+    private float delay = 0.25f;
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
 
@@ -86,7 +87,7 @@ public class PlayerHand : MonoBehaviour
     }
     public IEnumerator Phases()
     {
-        CostReductionPhase();
+        yield return StartCoroutine(CostReductionPhase());
         yield return new WaitForSeconds(1);
         CardTransferPhase();
         yield return new WaitForSeconds(1);
@@ -98,14 +99,15 @@ public class PlayerHand : MonoBehaviour
     /// <summary>
     /// - ‘аза снижени€ стоимости
     /// </summary>
-    private void CostReductionPhase()
+    private IEnumerator CostReductionPhase()
     {
         foreach (CardEntity card in handList)
         {
             card.ReduceCardCost();
+            yield return new WaitForSecondsRealtime(delay);
         }
 
-        EventBus.OnCardsInfoChanged?.Invoke();
+        //EventBus.OnCardsInfoChanged?.Invoke();
     }
 
     /// <summary>

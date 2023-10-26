@@ -44,9 +44,10 @@ public class BoardCell : MonoBehaviour
     private void SetCardCellTransform(CardEntity card)
     {
         card.ChangeCardState();
+        LeanTween.move(card.gameObject, gameObject.transform.position, 0.5f).setEase(LeanTweenType.easeInSine);
 
         card.gameObject.transform.SetParent(gameObject.transform);
-        card.gameObject.transform.position = gameObject.transform.position;
+        card.gameObject.transform.position = card.gameObject.transform.position;
     }
 
     public void DestroyCardinCell()
