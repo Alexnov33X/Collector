@@ -47,8 +47,7 @@ public class PlayerHand : MonoBehaviour
     /// Ћист который будет записывать в себ€ карты, которые нужно будет убрать из руки
     /// </summary>
     private List<CardEntity> removeCardsList;
-    private float delay = 0.25f;
-    private float cardDrawDelay = 0.5f;
+    private float delay = 0.25f; //задержка в секундах дл€ анимаций
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
 
@@ -112,7 +111,7 @@ public class PlayerHand : MonoBehaviour
             card.ReduceCardCost();
             yield return new WaitForSecondsRealtime(delay);
         }
-
+        //¬ызов ивента переехал в CardEntity, это не оптимально но добавл€ет эффект постепенных анимаций которые хотел —ан€
         //EventBus.OnCardsInfoChanged?.Invoke();
     }
 
@@ -136,8 +135,8 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
-        
-        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();
+
+        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать вз€тие карты из колоды
         //newCardExample.gameObject.SetActive(false);
         newCardEntity.InitializeCard(transferedCard);
 
@@ -148,7 +147,13 @@ public class PlayerHand : MonoBehaviour
         //StartCoroutine(MoveWithDelay(newCardExample, tempLocation, cardDrawDelay));
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
-    private IEnumerator MoveWithDelay(GameObject go,Transform position, float time)
+
+    /// <summary>
+    /// ѕытались сделать движение карт из колоды в руку
+    /// Ќе прокатило
+    /// Ќо метод оставили, может потом пригодитс€, он универсален
+    /// </summary>
+    private IEnumerator MoveWithDelay(GameObject go, Transform position, float time)
     {
         LeanTween.move(go, position, time).setEaseInOutSine();
         yield return new WaitForSecondsRealtime(time);

@@ -115,7 +115,7 @@ public class GameBoardRegulator : MonoBehaviour
                         enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
                         yield return new WaitForSeconds(1);
                     }
-                    }
+                }
             }
         }
     }

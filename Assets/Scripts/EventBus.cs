@@ -14,7 +14,7 @@ public static class EventBus
     /// При обновлении статов карте на игровом поле
     /// </summary>
     public static Action OnCardsInfoChanged;
-    
+
     /// <summary>
     /// При инициализации CardData в CardEntity
     /// </summary>

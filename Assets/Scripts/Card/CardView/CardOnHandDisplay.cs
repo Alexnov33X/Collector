@@ -84,13 +84,15 @@ public class CardOnHandDisplay : MonoBehaviour
     /// </summary>
     public void UpdateInformation()
     {
-        if (costText.text != cardEntity.cardData.CardCost.ToString())
+        if (costText.text != cardEntity.cardData.CardCost.ToString()) //из-за того что событие вызывается часто, то запускаем корутину только когда меняется значение
             StartCoroutine(BounceCost());
         costText.text = cardEntity.cardData.CardCost.ToString();
         attackText.text = cardEntity.cardData.Attack.ToString();
         healthText.text = cardEntity.cardData.Health.ToString();
     }
-
+    /// <summary>
+    /// Анимация изменения стоимости карты
+    /// </summary>
     public IEnumerator BounceCost()
     {
         Vector3 startSize = transform.localScale;

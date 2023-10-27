@@ -62,18 +62,6 @@ public class CardEntity : MonoBehaviour
         EventBus.OnCardsInfoChanged?.Invoke();
     }
 
-    //Анимация уменьшения маны
-    //public IEnumerator BounceCost()
-    //{
-    //    Vector3 startSize = transform.localScale;
-    //    Vector3 newSize = new Vector3(startSize.x * 2, startSize.y * 2, startSize.z);
-
-    //    LeanTween.scale(gameObject, newSize, 1 / 2).setDelay(0f);
-    //    yield return new WaitForSecondsRealtime(1 / 2);
-    //    LeanTween.scale(gameObject, startSize, 1 / 2).setDelay(0f);
-    //    yield return new WaitForSecondsRealtime(1 / 2);
-    //}
-
     /// <summary>
     /// Перегрузка метода для уменьшения стоимости.
     /// Использовать при необходимости увеличить стоимость на N значение

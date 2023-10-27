@@ -16,6 +16,13 @@ public class TurnTransmitter : MonoBehaviour
     public VictoryScreen vs;
     public Button turnStep;
 
+
+    void Start()
+    {
+        EventBus.OnGameVictory += Victory; //подписываемс€ на событи€ окончани€ игры
+        EventBus.OnGameLoss += Loss;
+        StartCoroutine(Tasks()); //запускаем игровой цикл
+    }
     /// <summary>
     /// ¬ыполн€ет все фазы одного хода. 
     /// ѕор€док фаз:
@@ -26,20 +33,12 @@ public class TurnTransmitter : MonoBehaviour
     ///     -- ‘аза призыва
     /// - ‘аза атаки
     /// - ‘аза конца хода
+    /// Ќо теперь делаем через корутины задержки +
+    /// “еперь бой работает автоматически без кнопок, 
+    /// правда с фиксированной задержкой.
+    /// Ёто приводит к тому что анимации иногда 
+    /// перенос€тс€ на следующий ход
     /// </summary>
-    //public void ExucuteOneTurn()
-    //{
-    //    StartingPhase();
-    //    playerHand.ExecuteHandPhases();
-    //    //‘аза атаки(еще нет боевой системы)
-    //    EndingPhase();
-    //}
-    void Start()
-    {
-        EventBus.OnGameVictory += Victory;
-        EventBus.OnGameLoss += Loss;
-        StartCoroutine(Tasks());
-    }
     public void ExucuteOneTurn()
     {
         StartCoroutine(Tasks());
@@ -62,15 +61,19 @@ public class TurnTransmitter : MonoBehaviour
 
     private void EndingPhase()
     {
-        StartCoroutine(Tasks());
+        StartCoroutine(Tasks()); //ѕока что тут просто перезапускаем игровой цикл
     }
 
+    /// <summary>
+    /// ћетоды победы и поражени€. ¬ них мы
+    /// останавливаем все корутины, к сожалению код продолжает выполн€тьс€
+    /// и если не повезЄт, то будут запускатьс€ новые корутины которые не останов€тс€
+    /// </summary>
     private void Victory()
     {
         StopAllCoroutines();
         vs.EndGame(true);
         turnStep.gameObject.SetActive(false);
-
     }
 
     private void Loss()

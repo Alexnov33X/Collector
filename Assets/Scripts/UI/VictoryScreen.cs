@@ -9,8 +9,11 @@ public class VictoryScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); //прячем объект в начале игры
     }
+    /// <summary>
+    /// В зависимости от победы или поражения меняем текст и показываем его
+    /// </summary>
     public void EndGame(bool victory)
     {
         if (!victory)
