@@ -21,10 +21,12 @@ public class GameBoardRegulator : MonoBehaviour
 
     public PlayerHero enemyHero; //сохраняем ссылки на игроков на поле
     public PlayerHero playerHero;
+    private float attackDelay = 1;
 
     private void Start()
     {
         InitializeSideArrays();
+        attackDelay = AnimationAndDelays.instance.attackAnimation;
     }
 
     /// <summary>
@@ -57,7 +59,6 @@ public class GameBoardRegulator : MonoBehaviour
             freeCell = ReturnFreeCell(playerSide);
         else
             freeCell = ReturnFreeCell(enemySide);
-
         if (freeCell == null)
             return false;
 
@@ -101,7 +102,7 @@ public class GameBoardRegulator : MonoBehaviour
                     if (playerSide[i, j].occupant != null)
                     {
                         playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }
             }
@@ -114,7 +115,7 @@ public class GameBoardRegulator : MonoBehaviour
                     if (enemySide[i, j].occupant != null)
                     {
                         enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }
             }

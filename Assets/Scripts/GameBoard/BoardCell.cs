@@ -10,9 +10,11 @@ public class BoardCell : MonoBehaviour
     /// Карта, которая занимает клетку
     /// </summary>
     [HideInInspector] public CardEntity occupant;
+    private float summonCardAnimation = 0.5f;
 
     private void Start()
     {
+        summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
         InitializeCell();
     }
 
@@ -33,7 +35,7 @@ public class BoardCell : MonoBehaviour
     {
         occupant = card;
         isOccupied = true;
-        
+
         SetCardCellTransform(card);
     }
 
@@ -44,7 +46,7 @@ public class BoardCell : MonoBehaviour
     private void SetCardCellTransform(CardEntity card)
     {
         card.ChangeCardState();
-        LeanTween.move(card.gameObject, gameObject.transform.position, 0.5f).setEase(LeanTweenType.easeInSine);
+        LeanTween.move(card.gameObject, gameObject.transform.position, summonCardAnimation).setEase(LeanTweenType.easeInSine);
         // Прикрепляем теперь карту к доске, чтобы она перекрывала игрыове ячейки
         //card.gameObject.transform.SetParent(gameObject.transform); 
         card.gameObject.transform.position = card.gameObject.transform.position;

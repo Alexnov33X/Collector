@@ -33,6 +33,7 @@ public class CardEntity : MonoBehaviour
 
         handLayer.SetActive(true);
         boardLayer.SetActive(false);
+        attackDelay = AnimationAndDelays.instance.attackAnimation;
     }
 
     /// <summary>
@@ -87,13 +88,11 @@ public class CardEntity : MonoBehaviour
             {
                 StartCoroutine(AttackAnimation(gb.enemySecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
-
             }
             else
             {
                 StartCoroutine(AttackAnimation(gb.enemyHero.gameObject.transform.position, attackDelay));
                 gb.enemyHero.OnHit(cardData.Attack);
-
             }
         }
         else
@@ -108,13 +107,11 @@ public class CardEntity : MonoBehaviour
             {
                 StartCoroutine(AttackAnimation(gb.playerSecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
-
             }
             else
             {
                 StartCoroutine(AttackAnimation(gb.playerHero.gameObject.transform.position, attackDelay));
                 gb.playerHero.OnHit(cardData.Attack);
-
             }
         }
 
@@ -127,7 +124,7 @@ public class CardEntity : MonoBehaviour
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
-        yield return new WaitForSecondsRealtime(time / 5);
+        yield return new WaitForSecondsRealtime(time / 4); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя

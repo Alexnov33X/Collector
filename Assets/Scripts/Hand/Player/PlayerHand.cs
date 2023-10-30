@@ -48,8 +48,11 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private List<CardEntity> removeCardsList;
     private float delay = 0.25f; //задержка в секундах для анимаций
+    private float cardReceiveDelay = 1;
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
+    private float delayBeforeSummon = 1;
+    private float summonCardAnimation = 0.5f;
 
     private void OnEnable()
     {
@@ -65,6 +68,10 @@ public class PlayerHand : MonoBehaviour
     {
         handList = new List<CardEntity>(HandCapacity);
         removeCardsList = new List<CardEntity>();
+        delay = AnimationAndDelays.instance.cardCostChangeAnimation; //берём параметр из хранилища
+        cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
+        delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
+        summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
     }
 
     #region Methods to get or set info to handList
@@ -86,18 +93,18 @@ public class PlayerHand : MonoBehaviour
     /// - Фаза призыва
     /// </summary>
     /// 
-    public void ExecuteHandPhases()
+    public IEnumerator ExecuteHandPhases()
     {
-        StartCoroutine(Phases());
+        yield return StartCoroutine(Phases());
     }
     public IEnumerator Phases()
     {
         yield return StartCoroutine(CostReductionPhase());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(cardReceiveDelay);
         CardTransferPhase();
-        yield return new WaitForSeconds(1);
-        SummonPhase();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delayBeforeSummon);
+        yield return SummonPhase();
+        //yield return new WaitForSeconds(summonCardAnimation);
         boardRegulator.OrderAttackToCells(isPlayer);
     }
 
@@ -162,7 +169,7 @@ public class PlayerHand : MonoBehaviour
     /// <summary>
     /// - Фаза призыва
     /// </summary>
-    private void SummonPhase()
+    private IEnumerator SummonPhase()
     {
         foreach (CardEntity card in handList)
         {
@@ -178,6 +185,7 @@ public class PlayerHand : MonoBehaviour
         foreach (CardEntity card in removeCardsList)
         {
             handList.Remove(card);
+            yield return new WaitForSeconds(summonCardAnimation);
         }
         removeCardsList.Clear();
     }

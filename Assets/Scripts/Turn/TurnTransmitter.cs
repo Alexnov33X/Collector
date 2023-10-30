@@ -16,12 +16,17 @@ public class TurnTransmitter : MonoBehaviour
     public VictoryScreen vs;
     public Button turnStep;
 
+    private float gameStartDelay = 1f;
+    private float delayBetweenPlayerAndEnemy = 2f;
 
     void Start()
     {
         EventBus.OnGameVictory += Victory; //подписываемс€ на событи€ окончани€ игры
         EventBus.OnGameLoss += Loss;
+        gameStartDelay = AnimationAndDelays.instance.gameStartDelay;
+        delayBetweenPlayerAndEnemy = AnimationAndDelays.instance.delayBetweenPlayerAndEnemy;
         StartCoroutine(Tasks()); //запускаем игровой цикл
+
     }
     /// <summary>
     /// ¬ыполн€ет все фазы одного хода. 
@@ -45,12 +50,12 @@ public class TurnTransmitter : MonoBehaviour
     }
     private IEnumerator Tasks()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(gameStartDelay);
         StartingPhase();
-        playerHand.ExecuteHandPhases();
-        yield return new WaitForSeconds(2);
-        enemyHand.ExecuteHandPhases();
-        yield return new WaitForSeconds(2);
+        yield return playerHand.ExecuteHandPhases();
+        yield return new WaitForSeconds(delayBetweenPlayerAndEnemy);
+        yield return enemyHand.ExecuteHandPhases();
+        yield return new WaitForSeconds(AnimationAndDelays.instance.delayBetweenTurns);
         EndingPhase();
     }
 
