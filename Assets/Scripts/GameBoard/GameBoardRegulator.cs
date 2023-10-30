@@ -61,6 +61,7 @@ public class GameBoardRegulator : MonoBehaviour
         if (freeCell == null)
             return false;
 
+        card.gameObject.transform.SetParent(gameObject.transform);
         freeCell.SetCardinCell(card);
 
         return true;

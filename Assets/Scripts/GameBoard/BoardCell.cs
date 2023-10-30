@@ -45,8 +45,8 @@ public class BoardCell : MonoBehaviour
     {
         card.ChangeCardState();
         LeanTween.move(card.gameObject, gameObject.transform.position, 0.5f).setEase(LeanTweenType.easeInSine);
-
-        card.gameObject.transform.SetParent(gameObject.transform);
+        // Прикрепляем теперь карту к доске, чтобы она перекрывала игрыове ячейки
+        //card.gameObject.transform.SetParent(gameObject.transform); 
         card.gameObject.transform.position = card.gameObject.transform.position;
     }
 
