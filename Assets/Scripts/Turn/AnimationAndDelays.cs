@@ -31,6 +31,9 @@ public class AnimationAndDelays : MonoBehaviour
     public float delayBetweenTurns = 2f;
     void Start()
     {
+    }
+    private void Awake()
+    {
         // “еперь, провер€ем существование экземпл€ра
         if (instance == null)
         { // Ёкземпл€р менеджера был найден

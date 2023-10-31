@@ -14,7 +14,6 @@ public class BoardCell : MonoBehaviour
 
     private void Start()
     {
-        summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
         InitializeCell();
     }
 
@@ -25,6 +24,7 @@ public class BoardCell : MonoBehaviour
     {
         isOccupied = false;
         occupant = null;
+        summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
     }
 
     /// <summary>
