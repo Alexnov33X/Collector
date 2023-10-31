@@ -152,6 +152,7 @@ public class PlayerHand : MonoBehaviour
         var rect = fiddle.AddComponent<RectTransform>();
         fiddle.transform.SetParent(transform);
         fiddle.transform.localScale = Vector3.one;
+        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
         newCardEntity.InitializeCard(transferedCard);
 
         handList.Add(newCardEntity);
@@ -174,6 +175,7 @@ public class PlayerHand : MonoBehaviour
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
         yield return new WaitForSecondsRealtime(time);
         go.transform.SetParent(transform);
+        go.GetComponent<RectTransform>().position = new Vector3(go.GetComponent<RectTransform>().position.x, go.GetComponent<RectTransform>().position.y, 0);
         Destroy(fiddle);
 
     }
