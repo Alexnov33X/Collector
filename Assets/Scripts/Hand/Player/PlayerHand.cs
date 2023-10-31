@@ -144,8 +144,8 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-        GameObject fiddle = new GameObject("Fiddle");
-        fiddle.transform.SetParent(gameObject.transform);
+        GameObject fiddle = Instantiate(CardPrefab, gameObject.transform);
+        fiddle.SetActive(true);
         //fiddle = Instantiate(fiddle, gameObject.transform);
         //TestCard.transform.position = DeckLocation.position;
 
@@ -170,8 +170,8 @@ public class PlayerHand : MonoBehaviour
     {
         LeanTween.move(go, position, time).setEaseInOutSine();
         yield return new WaitForSecondsRealtime(time);
-        go.transform.SetParent(another.transform);
-        Destroy(another);
+        go.transform.SetParent(gameObject.transform);
+        //Destroy(another);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
