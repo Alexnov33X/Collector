@@ -2728,12 +2728,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardCostChangeAnimation: 0.25
   attackAnimation: 0.8
-  gameStartDelay: 1
-  delayBetweenPlayerAndEnemy: 2
-  cardReceiveDelay: 1
+  gameStartDelay: 0
+  delayBetweenPlayerAndEnemy: 0
+  cardReceiveDelay: 0.2
   delayBeforeSummon: 1
   summonCardAnimation: 0.5
-  delayBetweenTurns: 2
+  delayBetweenTurns: 0
 --- !u!1 &1254515265
 GameObject:
   m_ObjectHideFlags: 0

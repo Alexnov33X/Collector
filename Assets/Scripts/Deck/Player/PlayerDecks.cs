@@ -1,32 +1,32 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Сущность. Хранит в себе данные о картах в деках игрока. Обрабатывает инфу о картах для корректного билдинга колод.
+/// РЎСѓС‰РЅРѕСЃС‚СЊ. РҐСЂР°РЅРёС‚ РІ СЃРµР±Рµ РґР°РЅРЅС‹Рµ Рѕ РєР°СЂС‚Р°С… РІ РґРµРєР°С… РёРіСЂРѕРєР°. РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РёРЅС„Сѓ Рѕ РєР°СЂС‚Р°С… РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ Р±РёР»РґРёРЅРіР° РєРѕР»РѕРґ.
 /// </summary>
 public static class PlayerDecks
 {
     /// <summary>
-    /// Константы, по геймплею:
-    /// Максимальное кол-во карт
-    /// В колоде может быть не более 1 легендарной карты из 1 вселенной
-    /// ... и т.д.
+    /// РљРѕРЅСЃС‚Р°РЅС‚С‹, РїРѕ РіРµР№РјРїР»РµСЋ:
+    /// РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ РєР°СЂС‚
+    /// Р’ РєРѕР»РѕРґРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµ Р±РѕР»РµРµ 1 Р»РµРіРµРЅРґР°СЂРЅРѕР№ РєР°СЂС‚С‹ РёР· 1 РІСЃРµР»РµРЅРЅРѕР№
+    /// ... Рё С‚.Рґ.
     /// </summary>
     #region Consts
     private const int maxCardNumber = 14;
     #endregion
 
     /// <summary>
-    /// Действующая колода игрока.
-    /// НЕ ИСПОЛЬЗОВАТЬ ДЛЯ БОЯ
+    /// Р”РµР№СЃС‚РІСѓСЋС‰Р°СЏ РєРѕР»РѕРґР° РёРіСЂРѕРєР°.
+    /// РќР• РРЎРџРћР›Р¬Р—РћР’РђРўР¬ Р”Р›РЇ Р‘РћРЇ
     /// </summary>
     private static List<CardScriptableObject> currentDeck = new List<CardScriptableObject>();
     public static List<CardScriptableObject> CurrentDeck { get { return currentDeck; } set => currentDeck = value; }
 
-    private static List<CardScriptableObject> currentEnemyDeck = new List<CardScriptableObject>(); //Костылим вторую колоду для врага
+    private static List<CardScriptableObject> currentEnemyDeck = new List<CardScriptableObject>(); //РљРѕСЃС‚С‹Р»РёРј РІС‚РѕСЂСѓСЋ РєРѕР»РѕРґСѓ РґР»СЏ РІСЂР°РіР°
     public static List<CardScriptableObject> CurrentEnemyDeck { get { return currentEnemyDeck; } set => currentEnemyDeck = value; }
 
     /// <summary>
-    /// Добавление карты в колоду
+    /// Р”РѕР±Р°РІР»РµРЅРёРµ РєР°СЂС‚С‹ РІ РєРѕР»РѕРґСѓ
     /// </summary>
     public static void AddCard(CardScriptableObject card) 
     {
@@ -34,7 +34,7 @@ public static class PlayerDecks
     }
 
     /// <summary>
-    /// Удаление карты из колоды
+    /// РЈРґР°Р»РµРЅРёРµ РєР°СЂС‚С‹ РёР· РєРѕР»РѕРґС‹
     /// </summary>
     public static void RemoveCard()
     {
@@ -46,10 +46,10 @@ public static class PlayerDecks
     /// </summary>
     private static bool ValidateCardAddition(CardScriptableObject cardToValidate)
     {
-        //будет проверять можно ли добавить эту карту в деку, согласно всем необходимым правилам Декбилдинга
+        //Р±СѓРґРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊ РјРѕР¶РЅРѕ Р»Рё РґРѕР±Р°РІРёС‚СЊ СЌС‚Сѓ РєР°СЂС‚Сѓ РІ РґРµРєСѓ, СЃРѕРіР»Р°СЃРЅРѕ РІСЃРµРј РЅРµРѕР±С…РѕРґРёРјС‹Рј РїСЂР°РІРёР»Р°Рј Р”РµРєР±РёР»РґРёРЅРіР°
         return true;
     }
 
-    //Методы описывающие правила декбилдинга(В сути своей просто будут возвращать bool true, если карта соответсвует конкретному правилу и наоборот)
+    //РњРµС‚РѕРґС‹ РѕРїРёСЃС‹РІР°СЋС‰РёРµ РїСЂР°РІРёР»Р° РґРµРєР±РёР»РґРёРЅРіР°(Р’ СЃСѓС‚Рё СЃРІРѕРµР№ РїСЂРѕСЃС‚Рѕ Р±СѓРґСѓС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ bool true, РµСЃР»Рё РєР°СЂС‚Р° СЃРѕРѕС‚РІРµС‚СЃРІСѓРµС‚ РєРѕРЅРєСЂРµС‚РЅРѕРјСѓ РїСЂР°РІРёР»Сѓ Рё РЅР°РѕР±РѕСЂРѕС‚)
     
 }

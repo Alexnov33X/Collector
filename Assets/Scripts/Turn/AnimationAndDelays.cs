@@ -5,28 +5,28 @@ using UnityEngine;
 public class AnimationAndDelays : MonoBehaviour
 {
     public static AnimationAndDelays instance = null;
-    [Header("Общее время анимации изменения стоимости карты")]
+    [Header("РћР±С‰РµРµ РІСЂРµРјСЏ Р°РЅРёРјР°С†РёРё РёР·РјРµРЅРµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё РєР°СЂС‚С‹")]
     [SerializeField]
     public float cardCostChangeAnimation = 0.25f;
-    [Header("Общее время анимации атаки карт")]
+    [Header("РћР±С‰РµРµ РІСЂРµРјСЏ Р°РЅРёРјР°С†РёРё Р°С‚Р°РєРё РєР°СЂС‚")]
     [SerializeField]
     public float attackAnimation = 0.8f;
-    [Header("Задержка перед первым ходом в игре")]
+    [Header("Р—Р°РґРµСЂР¶РєР° РїРµСЂРµРґ РїРµСЂРІС‹Рј С…РѕРґРѕРј РІ РёРіСЂРµ")]
     [SerializeField]
     public float gameStartDelay = 1f;
-    [Header("Задержка перехода хода к врагу")]
+    [Header("Р—Р°РґРµСЂР¶РєР° РїРµСЂРµС…РѕРґР° С…РѕРґР° Рє РІСЂР°РіСѓ")]
     [SerializeField]
     public float delayBetweenPlayerAndEnemy = 2f;
-    [Header("Задержка взятия карты (без анимации, просто задержка)")]
+    [Header("Р—Р°РґРµСЂР¶РєР° РІР·СЏС‚РёСЏ РєР°СЂС‚С‹ (Р±РµР· Р°РЅРёРјР°С†РёРё, РїСЂРѕСЃС‚Рѕ Р·Р°РґРµСЂР¶РєР°)")]
     [SerializeField]
     public float cardReceiveDelay = 1f;
-    [Header("Задержка перед началом призыва карт")]
+    [Header("Р—Р°РґРµСЂР¶РєР° РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј РїСЂРёР·С‹РІР° РєР°СЂС‚")]
     [SerializeField]
     public float delayBeforeSummon = 1f;
-    [Header("Анимация призыва карт")]
+    [Header("РђРЅРёРјР°С†РёСЏ РїСЂРёР·С‹РІР° РєР°СЂС‚")]
     [SerializeField]
     public float summonCardAnimation = 0.5f;
-    [Header("Задержка между переход на следующий ход (когда оба игрока походили)")]
+    [Header("Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ РїРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ С…РѕРґ (РєРѕРіРґР° РѕР±Р° РёРіСЂРѕРєР° РїРѕС…РѕРґРёР»Рё)")]
     [SerializeField]
     public float delayBetweenTurns = 2f;
     void Start()
@@ -34,14 +34,14 @@ public class AnimationAndDelays : MonoBehaviour
     }
     private void Awake()
     {
-        // Теперь, проверяем существование экземпляра
+        // РўРµРїРµСЂСЊ, РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌРєР·РµРјРїР»СЏСЂР°
         if (instance == null)
-        { // Экземпляр менеджера был найден
-            instance = this; // Задаем ссылку на экземпляр объекта
+        { // Р­РєР·РµРјРїР»СЏСЂ РјРµРЅРµРґР¶РµСЂР° Р±С‹Р» РЅР°Р№РґРµРЅ
+            instance = this; // Р—Р°РґР°РµРј СЃСЃС‹Р»РєСѓ РЅР° СЌРєР·РµРјРїР»СЏСЂ РѕР±СЉРµРєС‚Р°
         }
         else if (instance == this)
-        { // Экземпляр объекта уже существует на сцене
-            Destroy(gameObject); // Удаляем объект
+        { // Р­РєР·РµРјРїР»СЏСЂ РѕР±СЉРµРєС‚Р° СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РЅР° СЃС†РµРЅРµ
+            Destroy(gameObject); // РЈРґР°Р»СЏРµРј РѕР±СЉРµРєС‚
         }
     }
 }
