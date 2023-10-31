@@ -29,6 +29,9 @@ public class AnimationAndDelays : MonoBehaviour
     [Header("Задержка между переход на следующий ход (когда оба игрока походили)")]
     [SerializeField]
     public float delayBetweenTurns = 2f;
+    [Header("Время анимации взятия карты")]
+    [SerializeField]
+    public float drawingCardAnimation = 1f;
     void Start()
     {
     }

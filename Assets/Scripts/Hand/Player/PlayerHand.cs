@@ -53,6 +53,7 @@ public class PlayerHand : MonoBehaviour
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
     private float delayBeforeSummon = 1;
     private float summonCardAnimation = 0.5f;
+    private float drawingCardAnimation = 1f;
 
     private void OnEnable()
     {
@@ -72,6 +73,7 @@ public class PlayerHand : MonoBehaviour
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
+        drawingCardAnimation = AnimationAndDelays.instance.drawingCardAnimation;
     }
 
     #region Methods to get or set info to handList
@@ -164,6 +166,7 @@ public class PlayerHand : MonoBehaviour
     {
         LeanTween.move(go, position, time).setEaseInOutSine();
         yield return new WaitForSecondsRealtime(time);
+        //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
     /// <summary>
