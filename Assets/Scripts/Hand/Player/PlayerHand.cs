@@ -146,13 +146,6 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-<<<<<<< Updated upstream
-        GameObject fiddle = Instantiate(CardPrefab, gameObject.transform);
-        fiddle.SetActive(true);
-        //fiddle = Instantiate(fiddle, gameObject.transform);
-        //TestCard.transform.position = DeckLocation.position;
-=======
->>>>>>> Stashed changes
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
         var fiddle = new GameObject("A"); //IT FUCKING WORKS
@@ -160,16 +153,12 @@ public class PlayerHand : MonoBehaviour
         fiddle.transform.SetParent(transform);
         fiddle.transform.localScale = Vector3.one;
         newCardEntity.InitializeCard(transferedCard);
-        StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
+
         handList.Add(newCardEntity);
         //Transform tempLocation = newCardExample.transform;
         //newCardExample.transform.position = DeckLocation.position;
         //newCardExample.gameObject.SetActive(true);
-<<<<<<< Updated upstream
-        //StartCoroutine(MoveWithDelay(newCardExample, tempLocation, cardDrawDelay));
-=======
         StartCoroutine(MoveWithDelay(newCardExample, rect.transform, 0.5f, fiddle));
->>>>>>> Stashed changes
         //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
@@ -178,25 +167,15 @@ public class PlayerHand : MonoBehaviour
     /// Не прокатило
     /// Но метод оставили, может потом пригодится, он универсален
     /// </summary>
-<<<<<<< Updated upstream
-    private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject another)
-=======
     private IEnumerator MoveWithDelay(GameObject go, Transform position, float time, GameObject fiddle)
->>>>>>> Stashed changes
     {
         LeanTween.move(go, position, time).setEaseInOutSine();
         //LeanTween.move()
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
         yield return new WaitForSecondsRealtime(time);
-<<<<<<< Updated upstream
-        go.transform.SetParent(gameObject.transform);
-        //Destroy(another);
-        EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
-=======
         go.transform.SetParent(transform);
         Destroy(fiddle);
-        
->>>>>>> Stashed changes
+
     }
 
     /// <summary>
