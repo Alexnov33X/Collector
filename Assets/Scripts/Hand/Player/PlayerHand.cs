@@ -143,18 +143,22 @@ public class PlayerHand : MonoBehaviour
 
         CardScriptableObject transferedCard = PullRandomCard();
 
-        GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
+        GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+        GameObject fiddle = new GameObject("Fiddle");
+        fiddle.transform.SetParent(gameObject.transform);
+        //fiddle = Instantiate(fiddle, gameObject.transform);
+        //TestCard.transform.position = DeckLocation.position;
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
         //newCardExample.gameObject.SetActive(false);
         newCardEntity.InitializeCard(transferedCard);
-
+        StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
         handList.Add(newCardEntity);
         //Transform tempLocation = newCardExample.transform;
         //newCardExample.transform.position = DeckLocation.position;
         //newCardExample.gameObject.SetActive(true);
         //StartCoroutine(MoveWithDelay(newCardExample, tempLocation, cardDrawDelay));
-        EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
+        //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
     /// <summary>
@@ -162,11 +166,13 @@ public class PlayerHand : MonoBehaviour
     /// Не прокатило
     /// Но метод оставили, может потом пригодится, он универсален
     /// </summary>
-    private IEnumerator MoveWithDelay(GameObject go, Transform position, float time)
+    private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject another)
     {
         LeanTween.move(go, position, time).setEaseInOutSine();
         yield return new WaitForSecondsRealtime(time);
-        //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
+        go.transform.SetParent(another.transform);
+        Destroy(another);
+        EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
     /// <summary>
