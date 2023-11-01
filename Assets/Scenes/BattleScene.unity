@@ -2203,6 +2203,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 1123603648}
   handList: []
   isPlayer: 1
+  cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1066039003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2735,7 @@ MonoBehaviour:
   delayBeforeSummon: 1
   summonCardAnimation: 0.5
   delayBetweenTurns: 0
+  drawingCardAnimation: 1
 --- !u!1 &1254515265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3605,6 +3607,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 2012055068}
   handList: []
   isPlayer: 0
+  cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1736101997
 GameObject:
   m_ObjectHideFlags: 0
