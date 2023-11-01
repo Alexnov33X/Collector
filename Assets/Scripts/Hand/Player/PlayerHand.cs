@@ -105,7 +105,7 @@ public class PlayerHand : MonoBehaviour
     {
         yield return StartCoroutine(CostReductionPhase());
         yield return new WaitForSeconds(cardReceiveDelay);
-        CardTransferPhase();
+        yield return StartCoroutine(CardTransferPhase());
         yield return new WaitForSeconds(delayBeforeSummon);
         yield return SummonPhase();
         //yield return new WaitForSeconds(summonCardAnimation);
@@ -125,22 +125,22 @@ public class PlayerHand : MonoBehaviour
         //Вызов ивента переехал в CardEntity, это не оптимально но добавляет эффект постепенных анимаций которые хотел Саня
         //EventBus.OnCardsInfoChanged?.Invoke();
     }
-
+    public GameObject cardFiddle;
     /// <summary>
     /// - Фаза выдачи карты
     /// </summary>
-    private void CardTransferPhase()
+    private IEnumerator CardTransferPhase()
     {
         //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
         if (PlayerBattleDeck.BattleDeck.Count <= 0)
         {
-            return;
+            yield return new WaitForSecondsRealtime(0.01f); ;
         }
 
         //Если в Руке не осталось места, то пропускаем фазу
         if (handList.Count() >= HandCapacity)
         {
-            return;
+            yield return new WaitForSecondsRealtime(0.01f);
         }
 
         CardScriptableObject transferedCard = PullRandomCard();
@@ -148,32 +148,48 @@ public class PlayerHand : MonoBehaviour
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
-        var fiddle = new GameObject("A"); //IT FUCKING WORKS
-        var rect = fiddle.AddComponent<RectTransform>();
-        fiddle.transform.SetParent(transform);
-        fiddle.transform.localScale = Vector3.one;
-        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-        newCardEntity.InitializeCard(transferedCard);
+        var fiddle = Instantiate(cardFiddle, gameObject.transform);
 
+        yield return NewMethod(fiddle);
+        Debug.Log("Courutine done");
+        
+        newCardEntity.InitializeCard(transferedCard);
+        
         handList.Add(newCardEntity);
         //Transform tempLocation = newCardExample.transform;
         //newCardExample.transform.position = DeckLocation.position;
         //newCardExample.gameObject.SetActive(true);
-        StartCoroutine(MoveWithDelay(newCardExample, rect.transform, 0.5f, fiddle));
+        yield return MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle);
         //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
+    private IEnumerator NewMethod(GameObject fiddle)
+    {
+        //fiddle.transform.SetParent(transform);
+        //fiddle.transform.localScale = Vector3.one;
+        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+        yield return new WaitForEndOfFrame();
+        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+        // Debug.Log(rect.position);
+        Debug.Log(fiddle.transform.position);
+
+    }
     /// <summary>
     /// Пытались сделать движение карт из колоды в руку
     /// Не прокатило
     /// Но метод оставили, может потом пригодится, он универсален
     /// </summary>
-    private IEnumerator MoveWithDelay(GameObject go, Transform position, float time, GameObject fiddle)
+    private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject fiddle)
     {
-        LeanTween.move(go, position, time).setEaseInOutSine();
+        //Debug.Log(go.transform.position + " " + position);
+        //Debug.Log(fiddle.transform.position);
+        LeanTween.move(go, new Vector2(position.x, position.y), time).setEaseInOutSine();
         //LeanTween.move()
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
         yield return new WaitForSecondsRealtime(time);
+        go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
         go.transform.SetParent(transform);
         go.GetComponent<RectTransform>().position = new Vector3(go.GetComponent<RectTransform>().position.x, go.GetComponent<RectTransform>().position.y, 0);
         Destroy(fiddle);
