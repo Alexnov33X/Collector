@@ -18,7 +18,7 @@ public static class EventBus
     /// <summary>
     /// При инициализации CardData в CardEntity
     /// </summary>
-    public static Action OnEntityCardInitialized;
+    public static Action<bool> OnEntityCardInitialized;
 
     /// <summary>
     /// При инициализации CardData в CardEntity

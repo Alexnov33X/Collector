@@ -56,7 +56,7 @@ public class CardOnHandDisplay : MonoBehaviour
         animationDelay = AnimationAndDelays.instance.cardCostChangeAnimation;
     }
 
-    private void InitializeCardView()
+    private void InitializeCardView(bool enemyside)
     {
         nameText.text = cardEntity.cardData.Name;
         descriptionText.text = cardEntity.cardData.Description;
@@ -68,6 +68,9 @@ public class CardOnHandDisplay : MonoBehaviour
         artworkImage.sprite = cardEntity.cardData.ArtworkHandImage;
         rarityImage.sprite = cardEntity.cardData.RarityImage;
         universeImage.sprite = cardEntity.cardData.UniverseImage;
+        if (enemyside)
+            rarityImage.rectTransform.position = new Vector3(rarityImage.rectTransform.position.x, rarityImage.rectTransform.position.y, rarityImage.rectTransform.position.z - 290);
+
     }
 
     /// <summary>
@@ -102,5 +105,6 @@ public class CardOnHandDisplay : MonoBehaviour
         yield return new WaitForSecondsRealtime(animationDelay / 2);
         LeanTween.scale(costText.gameObject, startSize, animationDelay / 2).setDelay(0f);
         yield return new WaitForSecondsRealtime(animationDelay / 2);
+        costText.gameObject.transform.position = new Vector3(costText.gameObject.transform.position.x, costText.gameObject.transform.position.y, 0);
     }
 }

@@ -25,11 +25,11 @@ public class CardEntity : MonoBehaviour
     /// </summary>
     [HideInInspector] public CardData cardData;
     private float attackDelay = 0.8f;
-    public void InitializeCard(CardScriptableObject card)
+    public void InitializeCard(CardScriptableObject card, bool isEnemy)
     {
         cardData = new CardData(card);
         cardData.PrintCardData();
-        EventBus.OnEntityCardInitialized?.Invoke();
+        EventBus.OnEntityCardInitialized?.Invoke(isEnemy);
 
         handLayer.SetActive(true);
         boardLayer.SetActive(false);

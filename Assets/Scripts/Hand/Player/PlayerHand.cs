@@ -145,21 +145,21 @@ public class PlayerHand : MonoBehaviour
 
         CardScriptableObject transferedCard = PullRandomCard();
 
-        GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+        GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
-        var fiddle = Instantiate(cardFiddle, gameObject.transform);
+        //var fiddle = Instantiate(cardFiddle, gameObject.transform);
 
-        yield return NewMethod(fiddle);
+        //yield return NewMethod(fiddle);
         Debug.Log("Courutine done");
         
-        newCardEntity.InitializeCard(transferedCard);
+        newCardEntity.InitializeCard(transferedCard, !isPlayer);
         
         handList.Add(newCardEntity);
         //Transform tempLocation = newCardExample.transform;
         //newCardExample.transform.position = DeckLocation.position;
         //newCardExample.gameObject.SetActive(true);
-        yield return MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle);
+        //yield return MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle);
         //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
