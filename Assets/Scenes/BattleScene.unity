@@ -3021,7 +3021,7 @@ MonoBehaviour:
   m_text: 27
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19b6074311325bd41b2aada8970f285e, type: 2}
-  m_sharedMaterial: {fileID: -3701922774936130652, guid: 19b6074311325bd41b2aada8970f285e, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 09903776e5816b043926e12788429044, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3356,7 +3356,7 @@ MonoBehaviour:
   m_text: 27
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19b6074311325bd41b2aada8970f285e, type: 2}
-  m_sharedMaterial: {fileID: -3701922774936130652, guid: 19b6074311325bd41b2aada8970f285e, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: b9c373329b7570947875becaa55a43d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3840,7 +3840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1983246349
 RectTransform:
   m_ObjectHideFlags: 0
