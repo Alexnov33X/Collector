@@ -145,12 +145,12 @@ public class PlayerHand : MonoBehaviour
 
         CardScriptableObject transferedCard = PullRandomCard();
 
-        GameObject newCardExample = Instantiate(CardPrefab, gameObject.transform);
+        GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
-        //var fiddle = Instantiate(cardFiddle, gameObject.transform);
+        var fiddle = Instantiate(cardFiddle, gameObject.transform);
 
-        //yield return NewMethod(fiddle);
+       // yield return StartCoroutine(NewMethod(fiddle));
         Debug.Log("Courutine done");
         
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
@@ -159,23 +159,23 @@ public class PlayerHand : MonoBehaviour
         //Transform tempLocation = newCardExample.transform;
         //newCardExample.transform.position = DeckLocation.position;
         //newCardExample.gameObject.SetActive(true);
-        //yield return MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle);
+        yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
+        Debug.Log(newCardExample.transform.position.z);
         //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
-    private IEnumerator NewMethod(GameObject fiddle)
-    {
-        //fiddle.transform.SetParent(transform);
-        //fiddle.transform.localScale = Vector3.one;
-        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-        yield return new WaitForEndOfFrame();
-        fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-        // Debug.Log(rect.position);
-        Debug.Log(fiddle.transform.position);
-
-    }
+    //private IEnumerator NewMethod(GameObject fiddle)
+    //{
+    //    //fiddle.transform.SetParent(transform);
+    //    //fiddle.transform.localScale = Vector3.one;
+    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+    //    LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+    //    yield return new WaitForEndOfFrame();
+    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
+    //    // Debug.Log(rect.position);
+    //    Debug.Log(fiddle.transform.position);
+    //}
     /// <summary>
     /// Пытались сделать движение карт из колоды в руку
     /// Не прокатило
@@ -185,15 +185,18 @@ public class PlayerHand : MonoBehaviour
     {
         //Debug.Log(go.transform.position + " " + position);
         //Debug.Log(fiddle.transform.position);
-        LeanTween.move(go, new Vector2(position.x, position.y), time).setEaseInOutSine();
-        //LeanTween.move()
+        var x = go.GetComponent<RectTransform>();
+        Debug.Log(x.position.z);
+        LeamnTween.moveLocal(go, new Vector3(position.x, position.y, 0), time);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
+        Debug.Log(x.position.z);
         yield return new WaitForSecondsRealtime(time);
-        go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
+        Debug.Log(x.position.z);
+        //go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
         go.transform.SetParent(transform);
-        go.GetComponent<RectTransform>().position = new Vector3(go.GetComponent<RectTransform>().position.x, go.GetComponent<RectTransform>().position.y, 0);
+        Debug.Log(x.position.z);
+        //go.GetComponent<RectTransform>().position = new Vector3(go.GetComponent<RectTransform>().position.x, go.GetComponent<RectTransform>().position.y, 0);
         Destroy(fiddle);
-
     }
 
     /// <summary>
