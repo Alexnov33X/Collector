@@ -134,13 +134,13 @@ public class PlayerHand : MonoBehaviour
         //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
         if (PlayerBattleDeck.BattleDeck.Count <= 0)
         {
-            yield return new WaitForSecondsRealtime(0.01f); ;
+            yield return new WaitForEndOfFrame();
         }
 
         //Если в Руке не осталось места, то пропускаем фазу
         if (handList.Count() >= HandCapacity)
         {
-            yield return new WaitForSecondsRealtime(0.01f);
+            yield return new WaitForEndOfFrame();
         }
 
         CardScriptableObject transferedCard = PullRandomCard();
@@ -149,33 +149,15 @@ public class PlayerHand : MonoBehaviour
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
         var fiddle = Instantiate(cardFiddle, gameObject.transform);
-
-       // yield return StartCoroutine(NewMethod(fiddle));
-        Debug.Log("Courutine done");
         
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
         
         handList.Add(newCardEntity);
-        //Transform tempLocation = newCardExample.transform;
-        //newCardExample.transform.position = DeckLocation.position;
-        //newCardExample.gameObject.SetActive(true);
+
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
         Debug.Log(newCardExample.transform.position.z);
-        //EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
     }
 
-    //private IEnumerator NewMethod(GameObject fiddle)
-    //{
-    //    //fiddle.transform.SetParent(transform);
-    //    //fiddle.transform.localScale = Vector3.one;
-    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-    //    LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-    //    yield return new WaitForEndOfFrame();
-    //    fiddle.transform.position = new Vector3(fiddle.transform.position.x, fiddle.transform.position.y, 0);
-    //    // Debug.Log(rect.position);
-    //    Debug.Log(fiddle.transform.position);
-    //}
     /// <summary>
     /// Пытались сделать движение карт из колоды в руку
     /// Не прокатило
@@ -183,19 +165,11 @@ public class PlayerHand : MonoBehaviour
     /// </summary>
     private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject fiddle)
     {
-        //Debug.Log(go.transform.position + " " + position);
-        //Debug.Log(fiddle.transform.position);
         var x = go.GetComponent<RectTransform>();
-        Debug.Log(x.position.z);
         LeanTween.moveLocal(go, new Vector3(position.x, position.y, 0), time);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
-        Debug.Log(x.position.z);
-        yield return new WaitForSecondsRealtime(time);
-        Debug.Log(x.position.z);
-        //go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 0);
-        go.transform.SetParent(transform);
-        Debug.Log(x.position.z);
-        //go.GetComponent<RectTransform>().position = new Vector3(go.GetComponent<RectTransform>().position.x, go.GetComponent<RectTransform>().position.y, 0);
+        yield return new WaitForSecondsRealtime(time);  
+        go.transform.SetParent(transform);  
         Destroy(fiddle);
     }
 

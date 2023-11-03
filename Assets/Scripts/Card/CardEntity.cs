@@ -124,7 +124,6 @@ public class CardEntity : MonoBehaviour
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
-        //yield return new WaitForSecondsRealtime(time / 3); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
     }
     public IEnumerator AttackAnimationLocal(Vector3 location, float time)
     {
@@ -132,7 +131,6 @@ public class CardEntity : MonoBehaviour
         LeanTween.moveLocal(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
-        //yield return new WaitForSecondsRealtime(time / 3); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя
