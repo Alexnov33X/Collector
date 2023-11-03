@@ -77,6 +77,8 @@ public class TurnTransmitter : MonoBehaviour
     private void Victory()
     {
         StopAllCoroutines();
+        playerHand.StopAllCoroutines();
+        enemyHand.StopAllCoroutines();
         vs.EndGame(true);
         turnStep.gameObject.SetActive(false);
     }
@@ -84,6 +86,8 @@ public class TurnTransmitter : MonoBehaviour
     private void Loss()
     {
         StopAllCoroutines();
+        playerHand.StopAllCoroutines();
+        enemyHand.StopAllCoroutines();
         vs.EndGame(false);
         turnStep.gameObject.SetActive(false);
     }
