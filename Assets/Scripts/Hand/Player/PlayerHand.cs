@@ -187,7 +187,7 @@ public class PlayerHand : MonoBehaviour
         //Debug.Log(fiddle.transform.position);
         var x = go.GetComponent<RectTransform>();
         Debug.Log(x.position.z);
-        LeamnTween.moveLocal(go, new Vector3(position.x, position.y, 0), time);
+        LeanTween.moveLocal(go, new Vector3(position.x, position.y, 0), time);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
         Debug.Log(x.position.z);
         yield return new WaitForSecondsRealtime(time);

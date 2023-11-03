@@ -75,23 +75,23 @@ public class CardEntity : MonoBehaviour
 
     //row и column - координаты этого существа на поле боя, для просчёта лина и эффектов вероятно нужен будет
     //В этом методе ищем что атаковать и атакуем
-    public void Attack(GameBoardRegulator gb, bool isPlayer, int row, int column)
+    public IEnumerator Attack(GameBoardRegulator gb, bool isPlayer, int row, int column)
     {
         if (isPlayer)
         {
             if (gb.enemyFirstLine[column].isOccupied)
             {
-                StartCoroutine(AttackAnimation(gb.enemyFirstLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimation(gb.enemyFirstLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
             }
             else if (gb.enemySecondLine[column].isOccupied)
             {
-                StartCoroutine(AttackAnimation(gb.enemySecondLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimation(gb.enemySecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
             }
             else
             {
-                StartCoroutine(AttackAnimation(gb.enemyHero.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimation(gb.enemySecondLine[column].transform.position + new Vector3(0,100, 0), attackDelay));
                 gb.enemyHero.OnHit(cardData.Attack);
             }
         }
@@ -99,22 +99,22 @@ public class CardEntity : MonoBehaviour
         {
             if (gb.playerFirstLine[column].isOccupied)
             {
-                StartCoroutine(AttackAnimation(gb.playerFirstLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimation(gb.playerFirstLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.playerFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
 
             }
             else if (gb.playerSecondLine[column].isOccupied)
             {
-                StartCoroutine(AttackAnimation(gb.playerSecondLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return  StartCoroutine(AttackAnimation(gb.playerSecondLine[column].occupant.gameObject.transform.position, attackDelay));
                 gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
             }
             else
             {
-                StartCoroutine(AttackAnimation(gb.playerHero.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimation(gb.playerSecondLine[column].transform.position - new Vector3(0, 100, 0), attackDelay));
                 gb.playerHero.OnHit(cardData.Attack);
             }
         }
-
+        Debug.Log("OVARDIA");
     }
 
     //LeanTween анимация для Атаки позиции
@@ -124,7 +124,7 @@ public class CardEntity : MonoBehaviour
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
-        yield return new WaitForSecondsRealtime(time / 4); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
+        //yield return new WaitForSecondsRealtime(time / 3); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя

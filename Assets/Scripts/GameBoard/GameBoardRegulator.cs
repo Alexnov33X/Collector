@@ -101,7 +101,7 @@ public class GameBoardRegulator : MonoBehaviour
                 {
                     if (playerSide[i, j].occupant != null)
                     {
-                        playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
+                        yield return playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
                         yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }
@@ -114,7 +114,7 @@ public class GameBoardRegulator : MonoBehaviour
                 {
                     if (enemySide[i, j].occupant != null)
                     {
-                        enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
+                        yield return enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
                         yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }
