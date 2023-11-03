@@ -18,7 +18,7 @@ MonoBehaviour:
   ArtworkBoardImage: {fileID: 21300000, guid: 196f1e2ac724af5468f3c5bbfc16d414, type: 3}
   RarityImage: {fileID: 21300000, guid: 95f70d3d2b482124888f59b059f36d38, type: 3}
   UniverseImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
-  CardCost: 12
+  CardCost: 4
   Attack: 30
   Health: 20
   CardType: 0
