@@ -166,10 +166,10 @@ public class PlayerHand : MonoBehaviour
     private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject fiddle)
     {
         var x = go.GetComponent<RectTransform>();
-        LeanTween.moveLocal(go, new Vector3(position.x, position.y, 0), time);
+        LeanTween.move(go, position, time);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
         yield return new WaitForSecondsRealtime(time);  
-        go.transform.SetParent(transform);  
+        go.transform.SetParent(transform, true);  
         Destroy(fiddle);
     }
 
