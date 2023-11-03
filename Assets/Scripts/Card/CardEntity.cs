@@ -91,7 +91,7 @@ public class CardEntity : MonoBehaviour
             }
             else
             {
-                yield return StartCoroutine(AttackAnimation(gb.enemySecondLine[column].transform.position + new Vector3(0,100, 0), attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(transform.position + new Vector3(0, 500 + 200*row, 0), attackDelay));
                 gb.enemyHero.OnHit(cardData.Attack);
             }
         }
@@ -110,7 +110,7 @@ public class CardEntity : MonoBehaviour
             }
             else
             {
-                yield return StartCoroutine(AttackAnimation(gb.playerSecondLine[column].transform.position - new Vector3(0, 100, 0), attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(transform.position - new Vector3(0, 500 + 200 * row, 0), attackDelay));
                 gb.playerHero.OnHit(cardData.Attack);
             }
         }
@@ -122,6 +122,14 @@ public class CardEntity : MonoBehaviour
     {
         Vector3 tempLocation = gameObject.transform.position;
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
+        yield return new WaitForSecondsRealtime(time / 2);
+        LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
+        //yield return new WaitForSecondsRealtime(time / 3); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
+    }
+    public IEnumerator AttackAnimationLocal(Vector3 location, float time)
+    {
+        Vector3 tempLocation = gameObject.transform.position;
+        LeanTween.moveLocal(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
         //yield return new WaitForSecondsRealtime(time / 3); //делаем меньше задержку, чтобы после анимации удара убавлялось здоровья а не после всей анимации
