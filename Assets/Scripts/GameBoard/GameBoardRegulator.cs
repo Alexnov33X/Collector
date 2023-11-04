@@ -76,12 +76,17 @@ public class GameBoardRegulator : MonoBehaviour
     /// <returns>Возвращает свободный BoardCell или null</returns>
     public BoardCell ReturnFreeCell(BoardCell[,] boardSide)
     {
-        foreach (BoardCell cell in boardSide)
+
+        int index = Random.Range(0, 6); //finding random spawn spot
+
+        if (!boardSide[index / 3, index % 3].isOccupied) // need unit counter, when counter = 6 do not search
+            return boardSide[index / 3, index % 3];
+        else
         {
-            if (!cell.isOccupied)
-            {
-                return cell;
-            }
+            index = Random.Range(0, 6);
+            while (boardSide[index / 3, index % 3].isOccupied)
+                index = Random.Range(0, 6);
+            return boardSide[index / 3, index % 3];
         }
 
         return null;
