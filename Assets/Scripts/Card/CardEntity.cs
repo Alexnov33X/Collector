@@ -11,6 +11,8 @@ using static Enums;
 /// </summary>
 public class CardEntity : MonoBehaviour
 {
+    private const int Y = 240;
+
     /// <summary>
     /// Слой для отображения в руке
     /// </summary>
@@ -81,12 +83,12 @@ public class CardEntity : MonoBehaviour
         {
             if (gb.enemyFirstLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimation(gb.enemyFirstLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(gb.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
                 gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
             }
             else if (gb.enemySecondLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimation(gb.enemySecondLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(gb.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
                 gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
             }
             else
@@ -99,13 +101,13 @@ public class CardEntity : MonoBehaviour
         {
             if (gb.playerFirstLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimation(gb.playerFirstLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(gb.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                 gb.playerFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
 
             }
             else if (gb.playerSecondLine[column].isOccupied)
             {
-                yield return  StartCoroutine(AttackAnimation(gb.playerSecondLine[column].occupant.gameObject.transform.position, attackDelay));
+                yield return  StartCoroutine(AttackAnimationLocal(gb.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                 gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
             }
             else
@@ -118,6 +120,7 @@ public class CardEntity : MonoBehaviour
     }
 
     //LeanTween анимация для Атаки позиции
+    // 238
     public IEnumerator AttackAnimation(Vector3 location, float time)
     {
         Vector3 tempLocation = gameObject.transform.position;
