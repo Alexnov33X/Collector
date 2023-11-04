@@ -109,7 +109,7 @@ public class PlayerHand : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeSummon);
         yield return SummonPhase();
         //yield return new WaitForSeconds(summonCardAnimation);
-        boardRegulator.OrderAttackToCells(isPlayer);
+        yield return boardRegulator.OrderAttackToCells(isPlayer);
     }
 
     /// <summary>
@@ -149,13 +149,12 @@ public class PlayerHand : MonoBehaviour
 
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
         var fiddle = Instantiate(cardFiddle, gameObject.transform);
-        
+        yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
         
         handList.Add(newCardEntity);
 
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
-        Debug.Log(newCardExample.transform.position.z);
     }
 
     /// <summary>

@@ -87,9 +87,9 @@ public class GameBoardRegulator : MonoBehaviour
         return null;
     }
 
-    public void OrderAttackToCells(bool isPlayer)
+    public IEnumerator OrderAttackToCells(bool isPlayer)
     {
-        StartCoroutine(CreatureAttacks(isPlayer));
+        yield return StartCoroutine(CreatureAttacks(isPlayer));
     }
     //Проходимся по всем ячейкам и говорим им атаковать
     public IEnumerator CreatureAttacks(bool isPlayer)

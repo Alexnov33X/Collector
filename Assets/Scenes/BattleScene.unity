@@ -3601,7 +3601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576e00335985f7c4491a30dca8a0a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardPrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+  CardPrefab: {fileID: 1655264287443387262, guid: 23849dce94064a543bfe642e20249914, type: 3}
   boardRegulator: {fileID: 575844266}
   SummonPoint: {fileID: 575844265}
   DeckLocation: {fileID: 2012055068}

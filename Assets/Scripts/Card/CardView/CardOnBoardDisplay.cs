@@ -63,7 +63,7 @@ public class CardOnBoardDisplay : MonoBehaviour
     {
         attackText.text = cardEntity.cardData.Attack.ToString();
         if (healthText.text != cardEntity.cardData.Health.ToString())
-            healthText.color = Color.magenta;
+            healthText.color = Color.HSVToRGB(35, 100, 100);
         healthText.text = cardEntity.cardData.Health.ToString();
     }
 }
