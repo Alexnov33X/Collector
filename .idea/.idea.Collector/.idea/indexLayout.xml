@@ -3,7 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
-      <Path>Library/PackageCache/com.unity.collab-proxy@2.0.7</Path>
+      <Path>Library/PackageCache/com.unity.collab-proxy@2.1.0</Path>
       <Path>Library/PackageCache/com.unity.editorcoroutines@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
       <Path>Library/PackageCache/com.unity.ide.rider@3.0.24</Path>
@@ -22,6 +22,7 @@
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>.plastic</Path>
       <Path>.vscode</Path>
       <Path>Library</Path>
       <Path>Logs</Path>

@@ -1,0 +1,4 @@
+repository "Collector@DoskoiPanda@cloud"
+  path "/"
+    br "/main"
+    co "/main"

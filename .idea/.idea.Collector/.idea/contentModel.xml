@@ -206,7 +206,6 @@
               <e p="CardOnHandDisplay.cs" t="Include" />
               <e p="PlayerHeroDisplay.cs" t="Include" />
             </e>
-            <e p="PlayerHero.cs" t="Include" />
           </e>
           <e p="Deck" t="Include">
             <e p="Enemy" t="Include" />
@@ -232,8 +231,12 @@
           </e>
           <e p="PlayerData" t="Include">
             <e p="Player.cs" t="Include" />
-            <e p="PlayerDisplay.cs" t="Include" />
             <e p="PlayerStats.cs" t="Include" />
+          </e>
+          <e p="PlayerHero" t="Include">
+            <e p="PlayerDamageTaken.cs" t="Include" />
+            <e p="PlayerDisplay.cs" t="Include" />
+            <e p="PlayerHero.cs" t="Include" />
           </e>
           <e p="TemporaryServer" t="Include">
             <e p="DeckOnServer.cs" t="Include" />
