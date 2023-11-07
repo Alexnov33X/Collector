@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerDamageTaken : MonoBehaviour
 {
- 
+
     [SerializeField] private TextMeshProUGUI healthDamageText;
 
     void Start()
@@ -17,14 +17,14 @@ public class PlayerDamageTaken : MonoBehaviour
         healthDamageText.text = health;
         healthDamageText.gameObject.SetActive(true);
         StartCoroutine(AnimateDamage());
-
     }
     private IEnumerator AnimateDamage()
     {
-        LeanTween.moveLocal(gameObject, transform.position + new Vector3(0, 90, 0), 1);
+        LeanTween.moveLocal(gameObject, transform.localPosition + new Vector3(0, 100, 0), 1);
         yield return new WaitForSeconds(1f);
+        //LeanTween.moveLocal(gameObject, transform.position + new Vector3(0, -100, 0), 0.01f);
         healthDamageText.gameObject.SetActive(false);
-        LeanTween.moveLocal(gameObject, transform.position + new Vector3(0, -90, 0), 0);
+        transform.localPosition = transform.localPosition + new Vector3(0, -100, 0);
         //StartingPhase();
         //yield return playerHand.ExecuteHandPhases();
         //yield return new WaitForSeconds(delayBetweenPlayerAndEnemy);

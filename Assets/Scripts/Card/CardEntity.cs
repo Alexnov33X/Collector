@@ -96,7 +96,7 @@ public class CardEntity : MonoBehaviour
             }
             else
             {
-                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition + new Vector3(0, 500 + 200*row, 0), attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition + new Vector3(0, 80 + 200*row, 0), attackDelay));
                 gameBoardRegulator.enemyHero.OnHit(cardData.Attack);
             }
         }
@@ -115,7 +115,7 @@ public class CardEntity : MonoBehaviour
             }
             else
             {
-                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition - new Vector3(0, 500 + 200 * row, 0), attackDelay));
+                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition - new Vector3(0, 80 + 200 * row, 0), attackDelay));
                 gameBoardRegulator.playerHero.OnHit(cardData.Attack);
             }
         }
