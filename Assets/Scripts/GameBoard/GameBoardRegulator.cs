@@ -79,7 +79,7 @@ public class GameBoardRegulator : MonoBehaviour
 
         int index = Random.Range(0, 6); //finding random spawn spot
 
-        if (!boardSide[index / 3, index % 3].isOccupied) // need unit counter, when counter = 6 do not search
+        if (!boardSide[index / 3, index % 3].isOccupied) // need unit counter, when counter = 6 do not search and return NULL
             return boardSide[index / 3, index % 3];
         else
         {
@@ -88,8 +88,6 @@ public class GameBoardRegulator : MonoBehaviour
                 index = Random.Range(0, 6);
             return boardSide[index / 3, index % 3];
         }
-
-        return null;
     }
 
     public IEnumerator OrderAttackToCells(bool isPlayer)
@@ -100,26 +98,26 @@ public class GameBoardRegulator : MonoBehaviour
     public IEnumerator CreatureAttacks(bool isPlayer)
     {
         if (isPlayer)
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 2; j++)
                 {
-                    if (playerSide[i, j].occupant != null)
+                    if (playerSide[j, i].occupant != null)
                     {
-                        yield return playerSide[i, j].occupant.Attack(this, isPlayer, i, j);
+                        yield return playerSide[j, i].occupant.Attack(this, isPlayer, j, i);
                         yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }
             }
         else
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 2; j++)
                 {
-                    if (enemySide[i, j].occupant != null)
+                    if (enemySide[j, i].occupant != null)
                     {
-                        yield return enemySide[i, j].occupant.Attack(this, isPlayer, i, j);
+                        yield return enemySide[j, i].occupant.Attack(this, isPlayer, j, i);
                         yield return new WaitForSeconds(attackDelay + 0.1f);
                     }
                 }

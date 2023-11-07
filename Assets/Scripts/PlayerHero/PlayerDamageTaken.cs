@@ -10,7 +10,6 @@ public class PlayerDisplay : MonoBehaviour
     
     public void updateInformation(string health)
     {
-            healthText.text = health;
-            
+            healthText.text = health;         
     }
 }

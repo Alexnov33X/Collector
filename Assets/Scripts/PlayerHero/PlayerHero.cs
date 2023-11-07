@@ -6,7 +6,7 @@ public class PlayerHero : MonoBehaviour
 {
     public PlayerHeroDisplay pd;
 
-    [SerializeField] private int health = 90;
+    [SerializeField] private int health = 20;
     [SerializeField] private bool mainPlayer = false; //это герой игрока, буль решит это
     public int Health { get => health; set => health = value; }
     public bool MainPlayer { get => mainPlayer; set => mainPlayer = value; }
@@ -23,7 +23,7 @@ public class PlayerHero : MonoBehaviour
     public void OnHit(int damage)
     {
         Health -= damage;
-        if (Health < 0)
+        if (Health <= 0)
         {
             Health = 0;
             pd.updateInformation(Health.ToString());

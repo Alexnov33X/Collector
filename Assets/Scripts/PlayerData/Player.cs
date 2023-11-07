@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private int health = 90;
     public int Health { get => health; set => health = value; }
     // Start is called before the first frame update
-    void Start()
+    void Start() //DEPRECATED, SEE PLAYERHERO
     {
         pd.updateInformation(health.ToString());
     }

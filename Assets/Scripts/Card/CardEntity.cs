@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
@@ -21,6 +22,8 @@ public class CardEntity : MonoBehaviour
     /// Слой для отображения на доске
     /// </summary>
     [SerializeField] private GameObject boardLayer;
+
+    private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
 
     /// <summary>
     /// Экземпляр класса, который будет хранить всю информацию о 
@@ -77,43 +80,43 @@ public class CardEntity : MonoBehaviour
 
     //row и column - координаты этого существа на поле боя, для просчёта лина и эффектов вероятно нужен будет
     //В этом методе ищем что атаковать и атакуем
-    public IEnumerator Attack(GameBoardRegulator gb, bool isPlayer, int row, int column)
+    public IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
         if (isPlayer)
         {
-            if (gb.enemyFirstLine[column].isOccupied)
+            if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimationLocal(gb.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                gb.enemyFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
             }
-            else if (gb.enemySecondLine[column].isOccupied)
+            else if (gameBoardRegulator.enemySecondLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimationLocal(gb.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                gb.enemySecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
             }
             else
             {
                 yield return StartCoroutine(AttackAnimationLocal(transform.localPosition + new Vector3(0, 500 + 200*row, 0), attackDelay));
-                gb.enemyHero.OnHit(cardData.Attack);
+                gameBoardRegulator.enemyHero.OnHit(cardData.Attack);
             }
         }
         else
         {
-            if (gb.playerFirstLine[column].isOccupied)
+            if (gameBoardRegulator.playerFirstLine[column].isOccupied)
             {
-                yield return StartCoroutine(AttackAnimationLocal(gb.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                gb.playerFirstLine[column].occupant.OnHit(gb, !isPlayer, 0, column, cardData.Attack);
+                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
 
             }
-            else if (gb.playerSecondLine[column].isOccupied)
+            else if (gameBoardRegulator.playerSecondLine[column].isOccupied)
             {
-                yield return  StartCoroutine(AttackAnimationLocal(gb.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                gb.playerSecondLine[column].occupant.OnHit(gb, !isPlayer, 1, column, cardData.Attack);
+                yield return  StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
             }
             else
             {
                 yield return StartCoroutine(AttackAnimationLocal(transform.localPosition - new Vector3(0, 500 + 200 * row, 0), attackDelay));
-                gb.playerHero.OnHit(cardData.Attack);
+                gameBoardRegulator.playerHero.OnHit(cardData.Attack);
             }
         }
         Debug.Log("OVARDIA");
@@ -149,6 +152,11 @@ public class CardEntity : MonoBehaviour
                 gb.enemySide[row, column].DestroyCardinCell();
 
         }
+    }
+
+    private void Start()
+    {
+        gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
     }
 
 }
