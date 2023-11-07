@@ -2876,10 +2876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2689eeb6b5ee94e876ce3a758abffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCostChangeAnimation: 0.25
+  cardCostChangeAnimation: 0.3
   attackAnimation: 0.8
   gameStartDelay: 0
-  delayBetweenPlayerAndEnemy: 0
+  delayBetweenPlayerAndEnemy: 0.2
   cardReceiveDelay: 0.2
   delayBeforeSummon: 1
   summonCardAnimation: 0.5
