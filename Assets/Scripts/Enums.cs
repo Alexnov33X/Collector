@@ -9,7 +9,7 @@ public static class Enums
 {
     public enum CardType
     {
-        Creature,
+        Creature = 0,
         Spell,
         Artifact,
         Field
@@ -17,7 +17,7 @@ public static class Enums
 
     public enum CardRarity
     {
-        Common,
+        Common = 0,
         Rare,
         Epic,
         Legendary
@@ -25,9 +25,9 @@ public static class Enums
 
     public enum CardUniverse
     {
-        Dragons1,
-        Dragons2,
-        Dragons3
+        Dragons = 0,
+        Pirates,
+        Circus
     }
 
     /// <summary>
@@ -35,14 +35,17 @@ public static class Enums
     /// </summary>
     public enum CardState
     {
-        OnHand,
+        OnHand = 0,
         OnBoard
     }
 
     public enum CardAbility
     {
-        DefaultVerticalLinearAttack,
+        DefaultVerticalLinearAttack = 0,
         DefaultHorizontalLinearAttack,
         EveryoneAttack,
+        Sleep,
+        IgniteBoard
+
     }
 }

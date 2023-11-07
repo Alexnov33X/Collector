@@ -22,6 +22,8 @@ public class CardEntity : MonoBehaviour
     /// Слой для отображения на доске
     /// </summary>
     [SerializeField] private GameObject boardLayer;
+    private bool firstStrike; //true if creature did not attack
+    private int inActive = 0;
 
     private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
 
@@ -82,44 +84,99 @@ public class CardEntity : MonoBehaviour
     //В этом методе ищем что атаковать и атакуем
     public IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
-        if (isPlayer)
+        if (inActive > 0) // для спячки
         {
-            if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
-            {
-                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
-            }
-            else if (gameBoardRegulator.enemySecondLine[column].isOccupied)
-            {
-                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
-            }
-            else
-            {
-                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition + new Vector3(0, 80 + 200*row, 0), attackDelay));
-                gameBoardRegulator.enemyHero.OnHit(cardData.Attack);
-            }
+            inActive--;
+            yield return new WaitForEndOfFrame();
         }
         else
         {
-            if (gameBoardRegulator.playerFirstLine[column].isOccupied)
+            if (isPlayer)
             {
-                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                    gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
 
-            }
-            else if (gameBoardRegulator.playerSecondLine[column].isOccupied)
-            {
-                yield return  StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (i != column)
+                                gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                        }
+                    }
+                }
+                else if (gameBoardRegulator.enemySecondLine[column].isOccupied)
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                    gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (i != column)
+                                gameBoardRegulator.enemySecondLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                        }
+                    }
+                }
+                else
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(transform.localPosition + new Vector3(0, 80 + 200 * row, 0), attackDelay));
+                    gameBoardRegulator.enemyHero.OnHit(cardData.Attack);
+                }
             }
             else
             {
-                yield return StartCoroutine(AttackAnimationLocal(transform.localPosition - new Vector3(0, 80 + 200 * row, 0), attackDelay));
-                gameBoardRegulator.playerHero.OnHit(cardData.Attack);
+                if (gameBoardRegulator.playerFirstLine[column].isOccupied)
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                    gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (i != column)
+                                gameBoardRegulator.playerFirstLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                        }
+                    }
+
+                }
+                else if (gameBoardRegulator.playerSecondLine[column].isOccupied)
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                    gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+
+                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (i != column)
+                                gameBoardRegulator.playerSecondLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                        }
+                    }
+                }
+                else
+                {
+                    yield return StartCoroutine(AttackAnimationLocal(transform.localPosition - new Vector3(0, 80 + 200 * row, 0), attackDelay));
+                    gameBoardRegulator.playerHero.OnHit(cardData.Attack);
+                }
             }
         }
-        Debug.Log("OVARDIA");
     }
 
     //LeanTween анимация для Атаки позиции

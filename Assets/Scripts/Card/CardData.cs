@@ -1,5 +1,6 @@
 ﻿using static Enums;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CardData
 {
@@ -61,10 +62,14 @@ public class CardData
     /// </summary>
     private CardState cardState;
 
+    public List<CardAbility> abilities;
+    public List<int> abilityPotency;
+
     /// <summary>
     /// Id карты. Пока не юзаем, так как не нужен.
     /// </summary>
     private int cardId;
+
     #endregion
 
     #region Class Properties
@@ -112,6 +117,8 @@ public class CardData
         cardState = CardState.OnHand;
 
         cardId = cardInfo.CardId;
+        abilities = cardInfo.abilities;
+        abilityPotency = cardInfo.abilityPotency;
     }
 
     public void PrintCardData()
