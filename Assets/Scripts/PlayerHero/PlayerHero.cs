@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerHero : MonoBehaviour
 {
-    public PlayerHeroDisplay pd;
+    [SerializeField] private PlayerHeroDisplay heroDisplay;
+    [SerializeField] private PlayerDamageTaken damageTaken;
 
     [SerializeField] private int health = 20;
     [SerializeField] private bool mainPlayer = false; //это герой игрока, буль решит это
@@ -13,7 +14,7 @@ public class PlayerHero : MonoBehaviour
 
     void Start()
     {
-        pd.updateInformation(health.ToString());
+        heroDisplay.updateInformation(health.ToString());
     }
 
     /// <summary>
@@ -23,16 +24,17 @@ public class PlayerHero : MonoBehaviour
     public void OnHit(int damage)
     {
         Health -= damage;
+        damageTaken.takeDamage("-"+damage.ToString());
         if (Health <= 0)
         {
             Health = 0;
-            pd.updateInformation(Health.ToString());
+            heroDisplay.updateInformation(Health.ToString());
             if (MainPlayer)
                 EventBus.OnGameVictory?.Invoke();
             else
                 EventBus.OnGameLoss?.Invoke();
         }
-        pd.updateInformation(Health.ToString());
+        heroDisplay.updateInformation(Health.ToString());
     }
 
 }

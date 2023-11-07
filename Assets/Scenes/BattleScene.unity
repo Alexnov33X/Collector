@@ -769,13 +769,14 @@ GameObject:
   - component: {fileID: 563296996}
   - component: {fileID: 563296998}
   - component: {fileID: 563296997}
+  - component: {fileID: 563296999}
   m_Layer: 5
   m_Name: PlayerDamageTaken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &563296996
 RectTransform:
   m_ObjectHideFlags: 0
@@ -892,6 +893,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563296995}
   m_CullTransparentMesh: 1
+--- !u!114 &563296999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563296995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609eecfc9ccdca34c858e7572994bfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDamageText: {fileID: 563296997}
 --- !u!1 &566880686
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa49830b0078024cad888b0dadf2dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 566880691}
+  heroDisplay: {fileID: 566880691}
+  damageTaken: {fileID: 1387636232}
   health: 15
   mainPlayer: 0
 --- !u!114 &566880691
@@ -3017,13 +3032,14 @@ GameObject:
   - component: {fileID: 1387636229}
   - component: {fileID: 1387636231}
   - component: {fileID: 1387636230}
+  - component: {fileID: 1387636232}
   m_Layer: 5
   m_Name: EnemyDamageTaken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1387636229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3140,6 +3156,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387636228}
   m_CullTransparentMesh: 1
+--- !u!114 &1387636232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387636228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609eecfc9ccdca34c858e7572994bfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDamageText: {fileID: 1387636230}
 --- !u!1 &1474690165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,7 +3967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa49830b0078024cad888b0dadf2dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 1736102002}
+  heroDisplay: {fileID: 1736102002}
+  damageTaken: {fileID: 563296999}
   health: 15
   mainPlayer: 1
 --- !u!114 &1736102002
