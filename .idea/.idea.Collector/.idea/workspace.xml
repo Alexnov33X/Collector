@@ -10,11 +10,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@2.1.0/Editor/PlasticSCM/Inspector/DrawInspectorOperations.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/AnimationAndDelays.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHero/PlayerDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
       </list>
     </option>
   </component>
@@ -59,6 +66,7 @@
       <updated>1698755343256</updated>
       <workItem from="1698755352144" duration="1379000" />
       <workItem from="1699354650120" duration="1786000" />
+      <workItem from="1699532997186" duration="5780000" />
     </task>
     <servers />
   </component>
