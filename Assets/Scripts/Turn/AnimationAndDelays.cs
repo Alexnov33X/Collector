@@ -32,6 +32,11 @@ public class AnimationAndDelays : MonoBehaviour
     [Header("Время анимации взятия карты")]
     [SerializeField]
     public float drawingCardAnimation = 1f;
+
+    [Header("Время анимации получения урона игроком")]
+    [SerializeField]
+    public float heroDamageTakenAnimation = 1f;
+
     void Start()
     {
     }

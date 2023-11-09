@@ -22,11 +22,12 @@ public class CardEntity : MonoBehaviour
     /// Слой для отображения на доске
     /// </summary>
     [SerializeField] private GameObject boardLayer;
-    private bool firstStrike; //true if creature did not attack
-    private int inActive = 0;
+    private bool firstStrike = true; //true if creature did not attack
+    private bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
+    private Vector2Int boardPosition = new Vector2Int();
 
     private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
-
+    private CardOnBoardDisplay displayController;
     /// <summary>
     /// Экземпляр класса, который будет хранить всю информацию о 
     /// </summary>
@@ -41,6 +42,7 @@ public class CardEntity : MonoBehaviour
         handLayer.SetActive(true);
         boardLayer.SetActive(false);
         attackDelay = AnimationAndDelays.instance.attackAnimation;
+        isEnemyEntity = isEnemy;
     }
 
     /// <summary>
@@ -54,6 +56,7 @@ public class CardEntity : MonoBehaviour
         boardLayer.SetActive(true);
 
         EventBus.OnCardStateChanged?.Invoke();
+        displayController = GetComponentInChildren<CardOnBoardDisplay>();
     }
 
     /// <summary>
@@ -84,48 +87,91 @@ public class CardEntity : MonoBehaviour
     //В этом методе ищем что атаковать и атакуем
     public IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
-        if (inActive > 0) // для спячки
+        boardPosition.x = row;
+        boardPosition.y = column;
+        if (cardData.abilities.Contains(CardAbility.Sleep) && cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)] > 0) // для спячки
         {
-            inActive--;
+            cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)]--;
+            displayController.Sleep(true);
             yield return new WaitForEndOfFrame();
         }
         else
         {
+            displayController.Sleep(false);
             if (isPlayer)
             {
                 if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
                 {
-                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                    gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                    //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                    //gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
-                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemySecondLine[column].isOccupied) //VERTICAL additional attack
+                    {
+                        Debug.Log("Vertical");
+                        ApplyIgnite(gameBoardRegulator, 1, column, false); 
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay));
+                        yield return new WaitForSeconds(attackDelay);
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                    }
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack)) //HORIZONTAL addtional attack
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            if (i != column)
-                                gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                            if (gameBoardRegulator.enemyFirstLine[i].isOccupied)
+                            {
+                                Debug.Log("Horizontal");
+                                ApplyIgnite(gameBoardRegulator, 0, i, false);
+                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[i].occupant.gameObject.transform.localPosition, attackDelay));
+                                yield return new WaitForSeconds(attackDelay);
+                                gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                            }
                         }
                     }
+
+                    else //DEFAULT attack
+                    {
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                        ApplyIgnite(gameBoardRegulator, 0, column, false);
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                    }
+
+                    firstStrike = false; //If we damage creature, then first strike should proc. It should not proc on enemyHero
                 }
                 else if (gameBoardRegulator.enemySecondLine[column].isOccupied)
                 {
-                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                    gameBoardRegulator.enemySecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                    //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                    //gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
-                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemyFirstLine[column].isOccupied)
+                    {
+                        Debug.Log("Vertical");
+                        ApplyIgnite(gameBoardRegulator, 0, column, false);
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay * 2));
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                    }
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            if (i != column)
-                                gameBoardRegulator.enemySecondLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                            if (gameBoardRegulator.enemySecondLine[i].isOccupied)
+                            {
+                                Debug.Log("Horizontal");
+                                ApplyIgnite(gameBoardRegulator, 1, i, false);
+                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[i].occupant.gameObject.transform.localPosition, attackDelay*2));
+                                gameBoardRegulator.enemySecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                            }
                         }
                     }
+                    else
+                    {
+                        ApplyIgnite(gameBoardRegulator, 1, column, false);
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                    }
+
+                    firstStrike = false;
                 }
                 else
                 {
@@ -138,37 +184,67 @@ public class CardEntity : MonoBehaviour
                 if (gameBoardRegulator.playerFirstLine[column].isOccupied)
                 {
                     yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                    gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
-                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.playerSecondLine[column].isOccupied)
+                    {
+                        Debug.Log("Vertical");
+                        ApplyIgnite(gameBoardRegulator, 1, column, true);
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                    }
 
                     if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            if (i != column)
-                                gameBoardRegulator.playerFirstLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
+                            if (gameBoardRegulator.playerFirstLine[i].isOccupied)
+                            {
+                                Debug.Log("Horizontal");
+                                ApplyIgnite(gameBoardRegulator, 0, i, true);
+                                gameBoardRegulator.playerFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                            }
                         }
                     }
+                    else
+                    {
+                        ApplyIgnite(gameBoardRegulator, 0, column, true);
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                    }
+
+                    firstStrike = false;
 
                 }
                 else if (gameBoardRegulator.playerSecondLine[column].isOccupied)
                 {
                     yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                    gameBoardRegulator.playerSecondLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack))
-                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(gameBoardRegulator, !isPlayer, 0, column, cardData.Attack);
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.playerFirstLine[column].isOccupied)
+                    {
+                        Debug.Log("Vertical");
+                        ApplyIgnite(gameBoardRegulator, 0, column, true);
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+
+                    }
+
+                    else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            if (i != column)
-                                gameBoardRegulator.playerSecondLine[i].occupant.OnHit(gameBoardRegulator, !isPlayer, 1, column, cardData.Attack);
+                            if (gameBoardRegulator.playerSecondLine[i].isOccupied)
+                            {
+                                Debug.Log("Horizontal");
+                                ApplyIgnite(gameBoardRegulator, 1, i, true);
+                                gameBoardRegulator.playerSecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                            }
                         }
                     }
+                    else
+                    {
+                        ApplyIgnite(gameBoardRegulator, 1, column, true);
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                    }
+
+                    firstStrike = false;
                 }
                 else
                 {
@@ -176,6 +252,22 @@ public class CardEntity : MonoBehaviour
                     gameBoardRegulator.playerHero.OnHit(cardData.Attack);
                 }
             }
+        }
+
+    }
+
+    private void ApplyIgnite(GameBoardRegulator gameBoardRegulator, int targetRow, int targetColumn, bool isPlayer)
+    {
+        if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike && isPlayer)
+        {
+            gameBoardRegulator.playerSide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
+            firstStrike = false;
+        }
+        else
+            if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike)
+        {
+            gameBoardRegulator.enemySide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
+            firstStrike = false;
         }
     }
 
@@ -197,18 +289,55 @@ public class CardEntity : MonoBehaviour
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя
-    public void OnHit(GameBoardRegulator gb, bool isPlayer, int row, int column, int damage)
+    public void OnHit(bool isPlayer, int row, int column, int damage)
     {
         cardData.Health -= damage;
         EventBus.OnCardsInfoChanged?.Invoke();
         if (cardData.Health <= 0)
         {
             if (isPlayer)
-                gb.playerSide[row, column].DestroyCardinCell();
+                gameBoardRegulator.playerSide[row, column].DestroyCardinCell();
             else
-                gb.enemySide[row, column].DestroyCardinCell();
+                gameBoardRegulator.enemySide[row, column].DestroyCardinCell();
 
         }
+    }
+
+    public void TurnEnd(bool isPlayer, int row, int column)
+    {
+        if (cardData.abilities.Contains(CardAbility.Ignited))
+        {
+            cardData.Health--;
+            cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Ignited)]--;
+            if (cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Ignited)] == 0)
+                RemoveAbility(CardAbility.Ignited);
+            EventBus.OnCardsInfoChanged?.Invoke();
+            if (cardData.Health <= 0)
+            {
+                if (isPlayer)
+                    gameBoardRegulator.playerSide[row, column].DestroyCardinCell();
+                else
+                    gameBoardRegulator.enemySide[row, column].DestroyCardinCell();
+            }
+        }
+
+    }
+
+    public void ReceiveAbility(CardAbility cardAbility, int potency)
+    {
+        cardData.abilities.Add(cardAbility);
+        cardData.abilityPotency.Add(potency);
+        if (cardAbility == CardAbility.Ignited)
+            displayController.BURN(true);
+
+    }
+
+    public void RemoveAbility(CardAbility cardAbility)
+    {
+        cardData.abilityPotency.RemoveAt(cardData.abilities.FindIndex(x => x == cardAbility));
+        cardData.abilities.Remove(cardAbility);
+        if (cardAbility == CardAbility.Ignited)
+            displayController.BURN(false);
     }
 
     private void Start()

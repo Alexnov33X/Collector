@@ -45,7 +45,9 @@ public static class Enums
         DefaultHorizontalLinearAttack,
         EveryoneAttack,
         Sleep,
-        IgniteBoard
+        IgniteCreature,
+        Ignited
+
 
     }
 }

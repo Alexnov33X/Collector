@@ -105,7 +105,7 @@ public class GameBoardRegulator : MonoBehaviour
                     if (playerSide[j, i].occupant != null)
                     {
                         yield return playerSide[j, i].occupant.Attack(this, isPlayer, j, i);
-                        yield return new WaitForSeconds(attackDelay + 0.1f);
+                        yield return new WaitForSeconds(attackDelay);
                     }
                 }
             }
@@ -118,7 +118,37 @@ public class GameBoardRegulator : MonoBehaviour
                     if (enemySide[j, i].occupant != null)
                     {
                         yield return enemySide[j, i].occupant.Attack(this, isPlayer, j, i);
-                        yield return new WaitForSeconds(attackDelay + 0.1f);
+                        yield return new WaitForSeconds(attackDelay);
+                    }
+                }
+            }
+        }
+    }
+
+    public IEnumerator TurnEnd(bool isPlayer)
+    {
+        if (isPlayer)
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (playerSide[j, i].occupant != null)
+                    {
+                        playerSide[j, i].occupant.TurnEnd(isPlayer, j, i);
+                        yield return new WaitForSeconds(attackDelay);
+                    }
+                }
+            }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (enemySide[j, i].occupant != null)
+                    {
+                        enemySide[j, i].occupant.TurnEnd(isPlayer, j, i);
+                        yield return new WaitForSeconds(attackDelay);
                     }
                 }
             }

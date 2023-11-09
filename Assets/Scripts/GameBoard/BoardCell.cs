@@ -58,4 +58,5 @@ public class BoardCell : MonoBehaviour
         occupant = null;
         isOccupied = false;
     }
+
 }
