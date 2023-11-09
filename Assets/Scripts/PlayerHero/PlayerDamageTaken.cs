@@ -20,16 +20,9 @@ public class PlayerDamageTaken : MonoBehaviour
     }
     private IEnumerator AnimateDamage()
     {
-        LeanTween.moveLocal(gameObject, transform.localPosition + new Vector3(0, 100, 0), 1);
-        yield return new WaitForSeconds(1f);
-        //LeanTween.moveLocal(gameObject, transform.position + new Vector3(0, -100, 0), 0.01f);
+        LeanTween.moveLocal(gameObject, transform.localPosition + new Vector3(0, 100, 0), AnimationAndDelays.instance.heroDamageTakenAnimation);
+        yield return new WaitForSeconds(AnimationAndDelays.instance.heroDamageTakenAnimation);
         healthDamageText.gameObject.SetActive(false);
         transform.localPosition = transform.localPosition + new Vector3(0, -100, 0);
-        //StartingPhase();
-        //yield return playerHand.ExecuteHandPhases();
-        //yield return new WaitForSeconds(delayBetweenPlayerAndEnemy);
-        //yield return enemyHand.ExecuteHandPhases();
-        //yield return new WaitForSeconds(AnimationAndDelays.instance.delayBetweenTurns);
-        //EndingPhase();
     }
 }

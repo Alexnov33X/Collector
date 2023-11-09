@@ -117,8 +117,8 @@ public class CardData
         cardState = CardState.OnHand;
 
         cardId = cardInfo.CardId;
-        abilities = cardInfo.abilities;
-        abilityPotency = cardInfo.abilityPotency;
+        abilities = new List<CardAbility>(cardInfo.abilities);
+        abilityPotency = new List < int > (cardInfo.abilityPotency);
     }
 
     public void PrintCardData()

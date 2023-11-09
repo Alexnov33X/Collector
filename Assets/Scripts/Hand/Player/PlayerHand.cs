@@ -49,7 +49,6 @@ public class PlayerHand : MonoBehaviour
     /// Лист который будет записывать в себя карты, которые нужно будет убрать из руки
     /// </summary>
     private List<CardEntity> removeCardsList;
-    private float delay = 0.25f; //задержка в секундах для анимаций
     private float cardReceiveDelay = 1;
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
@@ -71,7 +70,7 @@ public class PlayerHand : MonoBehaviour
     {
         handList = new List<CardEntity>(HandCapacity);
         removeCardsList = new List<CardEntity>();
-        delay = AnimationAndDelays.instance.cardCostChangeAnimation; //берём параметр из хранилища
+//берём параметрs из хранилища
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
@@ -110,6 +109,7 @@ public class PlayerHand : MonoBehaviour
         yield return SummonPhase();
         //yield return new WaitForSeconds(summonCardAnimation);
         yield return boardRegulator.OrderAttackToCells(isPlayer);
+        yield return boardRegulator.TurnEnd(isPlayer);
     }
 
     /// <summary>
@@ -120,7 +120,7 @@ public class PlayerHand : MonoBehaviour
         foreach (CardEntity card in handList)
         {
             card.ReduceCardCost();
-            yield return new WaitForSecondsRealtime(delay);
+            yield return new WaitForSecondsRealtime(AnimationAndDelays.instance.cardCostChangeAnimation);
         }
         //Вызов ивента переехал в CardEntity, это не оптимально но добавляет эффект постепенных анимаций которые хотел Саня
         //EventBus.OnCardsInfoChanged?.Invoke();

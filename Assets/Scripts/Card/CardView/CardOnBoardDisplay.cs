@@ -66,4 +66,33 @@ public class CardOnBoardDisplay : MonoBehaviour
             healthText.color = Color.HSVToRGB(35, 100, 100);
         healthText.text = cardEntity.cardData.Health.ToString();
     }
+
+    public void BURN(bool on)
+    {
+        if (on)
+        {
+            healthText.color = Color.red;
+            attackText.color = Color.red;
+        }
+        else
+        {
+            healthText.color = Color.HSVToRGB(35, 100, 100);
+            attackText.color = Color.white;
+        }
+    }
+
+    public void Sleep(bool on)
+    {
+        if (on)
+        {
+            healthText.color = Color.black;
+            attackText.color = Color.black;
+        }
+        else
+        {
+            if (healthText.color == Color.black)
+            healthText.color = Color.HSVToRGB(35, 100, 100);
+            attackText.color = Color.white;
+        }
+    }
 }

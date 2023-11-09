@@ -19,10 +19,11 @@ MonoBehaviour:
   RarityImage: {fileID: 21300000, guid: 9a389c770a0f6fc42a302dfbb5ca47db, type: 3}
   UniverseImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
   CardCost: 1
-  Attack: 4
-  Health: 6
+  Attack: 3
+  Health: 5
   CardType: 0
   CardUniverse: 0
   CardRarity: 0
-  abilities: 
+  abilities: 01000000
+  abilityPotency: 00000000
   CardId: 0
