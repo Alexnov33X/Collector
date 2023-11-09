@@ -66,7 +66,8 @@
       <updated>1698755343256</updated>
       <workItem from="1698755352144" duration="1379000" />
       <workItem from="1699354650120" duration="1786000" />
-      <workItem from="1699532997186" duration="18713000" />
+      <workItem from="1699532997186" duration="18805000" />
+      <workItem from="1699563869526" duration="5094000" />
     </task>
     <servers />
   </component>
@@ -77,24 +78,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs</url>
-          <line>51</line>
-          <properties documentPath="F:\UnityHub\Projects\Collector\Collector\Assets\Scripts\Search\SearchPlayer.cs" initialLine="51">
-            <startOffsets>
-              <option value="1764" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1764" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

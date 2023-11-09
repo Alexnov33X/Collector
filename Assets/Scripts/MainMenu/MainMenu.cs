@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(false);
         ReturnBaseSize();
         searchPlayer.gameObject.SetActive(true);
-        searchPlayer.Animation(timeCloseMenu);
+        searchPlayer.OpenSearch(timeCloseMenu);
     }
     public void ReturnBaseSize()
     {
