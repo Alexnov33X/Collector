@@ -24,6 +24,7 @@
       <Path>.idea</Path>
       <Path>.plastic</Path>
       <Path>.vscode</Path>
+      <Path>Builds</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>

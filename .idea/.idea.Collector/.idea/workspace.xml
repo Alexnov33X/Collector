@@ -10,11 +10,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@2.1.0/Editor/PlasticSCM/Inspector/DrawInspectorOperations.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/AnimationAndDelays.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHero/PlayerDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
       </list>
     </option>
   </component>
@@ -59,6 +66,7 @@
       <updated>1698755343256</updated>
       <workItem from="1698755352144" duration="1379000" />
       <workItem from="1699354650120" duration="1786000" />
+      <workItem from="1699532997186" duration="18713000" />
     </task>
     <servers />
   </component>
@@ -69,5 +77,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs</url>
+          <line>51</line>
+          <properties documentPath="F:\UnityHub\Projects\Collector\Collector\Assets\Scripts\Search\SearchPlayer.cs" initialLine="51">
+            <startOffsets>
+              <option value="1764" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1764" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
