@@ -774,7 +774,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &300940496
@@ -2305,6 +2305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765495120}
+  - component: {fileID: 765495121}
   m_Layer: 5
   m_Name: Opponent_found
   m_TagString: Untagged
@@ -2333,6 +2334,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &765495121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765495119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfe571357148c846b71a313f24fa5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentOpponentFound: {fileID: 915235662}
+  offset: {x: 0, y: 2, z: 0}
+  timeMove: 1.5
+  timeGetColor: 1.5
 --- !u!1 &766875913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,8 +3400,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3412,7 +3429,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -435.4801, w: -39.904472}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4466,6 +4483,7 @@ MonoBehaviour:
   summonCardAnimation: 0.5
   delayBetweenTurns: 0
   drawingCardAnimation: 1
+  heroDamageTakenAnimation: 1
 --- !u!1 &1254515265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,9 +6131,8 @@ MonoBehaviour:
   angle: 0
   radius: 0.3
   speed: 1.5
-  windowOpponentFound: {fileID: 765495119}
-  contentOpponentFound: {fileID: 915235662}
-  offset: {x: 0, y: 2, z: 0}
+  findingOpponent: {fileID: 765495121}
+  timeClose: 0.2
 --- !u!1 &1843098844
 GameObject:
   m_ObjectHideFlags: 0

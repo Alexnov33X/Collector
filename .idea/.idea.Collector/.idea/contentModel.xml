@@ -243,6 +243,7 @@
             <e p="PlayerHero.cs" t="Include" />
           </e>
           <e p="Search" t="Include">
+            <e p="FindingOpponent.cs" t="Include" />
             <e p="SearchPlayer.cs" t="Include" />
           </e>
           <e p="TemporaryServer" t="Include">
@@ -260,6 +261,7 @@
           </e>
         </e>
         <e p="Sprites" t="Include">
+          <e p="Cards" t="Include" />
           <e p="CardSources" t="Include">
             <e p="Artworks" t="Include" />
             <e p="BoardCardElements" t="Include">
@@ -276,6 +278,8 @@
             <e p="Portals" t="Include" />
           </e>
           <e p="MainMenu" t="Include" />
+          <e p="Menu" t="Include" />
+          <e p="PreBattle" t="Include" />
           <e p="References" t="Include" />
           <e p="Search" t="Include" />
           <e p="TempSprites" t="Include">
