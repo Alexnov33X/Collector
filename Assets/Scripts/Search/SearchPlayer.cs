@@ -25,11 +25,11 @@ public class SearchPlayer : MonoBehaviour
     public void Update()
     {
         if(tmpTimer > 0) tmpTimer-= Time.deltaTime;
-        if(tmpTimer < 0) {tmpTimer = 0; AnimationClose(); Invoke("OpenOpponentFound", timeClose + 0.1f);}
+        if(tmpTimer < 0) {tmpTimer = 0; AnimationClose(); Invoke("OpenOpponentFound", timeClose + 0.2f);}
         angle += Time.deltaTime; // меняется плавно значение угла
         var x = -Mathf.Cos (angle * speed) * radius;
         var y = Mathf.Sin (angle * speed) * radius;
-       icon.transform.position = new Vector3( x, y, icon.transform.position.z);
+        icon.transform.position = new Vector3( x, y, icon.transform.position.z);
     }
 
     public void OpenSearch(float time)
