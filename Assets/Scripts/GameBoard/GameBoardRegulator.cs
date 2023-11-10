@@ -22,6 +22,8 @@ public class GameBoardRegulator : MonoBehaviour
     public PlayerHero enemyHero; //сохраняем ссылки на игроков на поле
     public PlayerHero playerHero;
     private float attackDelay = 1;
+    private int playerUnits = 0;
+    private int enemyUnits = 0;
 
     private void Start()
     {
@@ -55,16 +57,19 @@ public class GameBoardRegulator : MonoBehaviour
     public bool TrySummonCardToPlayerBoard(CardEntity card, bool isPlayer)
     {
         BoardCell freeCell = null;
-        if (isPlayer)
+        if (isPlayer && playerUnits < 6)
             freeCell = ReturnFreeCell(playerSide);
-        else
+        else if (enemyUnits < 6)
             freeCell = ReturnFreeCell(enemySide);
         if (freeCell == null)
             return false;
 
         card.gameObject.transform.SetParent(gameObject.transform);
         freeCell.SetCardinCell(card);
-
+        if (isPlayer)
+            playerUnits++;
+        else
+            enemyUnits++;
         return true;
 
     }
@@ -79,7 +84,7 @@ public class GameBoardRegulator : MonoBehaviour
 
         int index = Random.Range(0, 6); //finding random spawn spot
 
-        if (!boardSide[index / 3, index % 3].isOccupied) // need unit counter, when counter = 6 do not search and return NULL
+        if (!boardSide[index / 3, index % 3].isOccupied)
             return boardSide[index / 3, index % 3];
         else
         {

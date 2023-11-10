@@ -87,8 +87,6 @@ public class CardEntity : MonoBehaviour
     //В этом методе ищем что атаковать и атакуем
     public IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
-        boardPosition.x = row;
-        boardPosition.y = column;
         if (cardData.abilities.Contains(CardAbility.Sleep) && cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)] > 0) // для спячки
         {
             cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)]--;
@@ -108,7 +106,7 @@ public class CardEntity : MonoBehaviour
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemySecondLine[column].isOccupied) //VERTICAL additional attack
                     {
                         Debug.Log("Vertical");
-                        ApplyIgnite(gameBoardRegulator, 1, column, false); 
+                        ApplyIgnite(gameBoardRegulator, 1, column, false);
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay));
                         yield return new WaitForSeconds(attackDelay);
                         gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
@@ -147,8 +145,9 @@ public class CardEntity : MonoBehaviour
                     {
                         Debug.Log("Vertical");
                         ApplyIgnite(gameBoardRegulator, 0, column, false);
-                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay * 2));
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
                         gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        yield return new WaitForSeconds(attackDelay);
                     }
 
                     else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
@@ -159,8 +158,9 @@ public class CardEntity : MonoBehaviour
                             {
                                 Debug.Log("Horizontal");
                                 ApplyIgnite(gameBoardRegulator, 1, i, false);
-                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[i].occupant.gameObject.transform.localPosition, attackDelay*2));
+                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[i].occupant.gameObject.transform.localPosition, attackDelay));
                                 gameBoardRegulator.enemySecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                                yield return new WaitForSeconds(attackDelay);
                             }
                         }
                     }
@@ -190,6 +190,7 @@ public class CardEntity : MonoBehaviour
                         Debug.Log("Vertical");
                         ApplyIgnite(gameBoardRegulator, 1, column, true);
                         gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        yield return new WaitForSeconds(attackDelay);
                     }
 
                     if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
@@ -201,6 +202,7 @@ public class CardEntity : MonoBehaviour
                                 Debug.Log("Horizontal");
                                 ApplyIgnite(gameBoardRegulator, 0, i, true);
                                 gameBoardRegulator.playerFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                                yield return new WaitForSeconds(attackDelay);
                             }
                         }
                     }
@@ -223,7 +225,7 @@ public class CardEntity : MonoBehaviour
                         Debug.Log("Vertical");
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
                         gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
-
+                        yield return new WaitForSeconds(attackDelay);
                     }
 
                     else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
@@ -235,6 +237,7 @@ public class CardEntity : MonoBehaviour
                                 Debug.Log("Horizontal");
                                 ApplyIgnite(gameBoardRegulator, 1, i, true);
                                 gameBoardRegulator.playerSecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                                yield return new WaitForSeconds(attackDelay);
                             }
                         }
                     }
@@ -263,8 +266,7 @@ public class CardEntity : MonoBehaviour
             gameBoardRegulator.playerSide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
             firstStrike = false;
         }
-        else
-            if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike)
+        else if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike)
         {
             gameBoardRegulator.enemySide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
             firstStrike = false;
@@ -323,7 +325,7 @@ public class CardEntity : MonoBehaviour
 
     }
 
-    public void ReceiveAbility(CardAbility cardAbility, int potency)
+    public void ReceiveAbility(CardAbility cardAbility, int potency) // receive ability
     {
         cardData.abilities.Add(cardAbility);
         cardData.abilityPotency.Add(potency);
@@ -334,10 +336,21 @@ public class CardEntity : MonoBehaviour
 
     public void RemoveAbility(CardAbility cardAbility)
     {
-        cardData.abilityPotency.RemoveAt(cardData.abilities.FindIndex(x => x == cardAbility));
+        cardData.abilityPotency.RemoveAt(cardData.abilities.FindIndex(x => x == cardAbility)); //remove ability
         cardData.abilities.Remove(cardAbility);
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(false);
+    }
+
+    public void changeAbilityPotency(CardAbility cardAbility, int value)
+    {
+        int index = cardData.abilities.FindIndex(x => x == cardAbility);
+        cardData.abilityPotency[index] += value;
+        if (cardData.abilityPotency[index] <= 0)
+        {
+            cardData.abilities.Remove(cardAbility);
+            cardData.abilityPotency.RemoveAt(index);
+        }
     }
 
     private void Start()

@@ -10,6 +10,7 @@ public class BoardCell : MonoBehaviour
     /// Карта, которая занимает клетку
     /// </summary>
     [HideInInspector] public CardEntity occupant;
+    public Vector2 cellPosition;
     private float summonCardAnimation = 0.5f;
 
     private void Start()
