@@ -10,5 +10,5 @@ public static class PlayerBattleDeck
     public static List<CardScriptableObject> BattleDeck { get { return battleDeck; } set => battleDeck = value; }
 
     private static List<CardScriptableObject> enemyBattleDeck = new List<CardScriptableObject>(); //Костылим для колоды второго игрока
-    public static List<CardScriptableObject> EnemyBattleDeck { get { return battleDeck; } set => battleDeck = value; }
+    public static List<CardScriptableObject> EnemyBattleDeck { get { return enemyBattleDeck; } set => enemyBattleDeck = value; }
 }

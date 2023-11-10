@@ -1647,6 +1647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &644615791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &761505550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &766875913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &935686222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,6 +3128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1035156664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,6 +3353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1064683758
 GameObject:
   m_ObjectHideFlags: 0
@@ -3952,7 +3958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfCards: {fileID: 720275039}
-  enemyDeck: 0
+  enemyDeck: 1
 --- !u!1 &1173581200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,6 +4086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1199078008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,6 +4177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1230652385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4389,6 +4397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1259846696
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,6 +4756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1609184485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,6 +4981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &1642357834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,6 +6641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   occupant: {fileID: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!1 &2130518403
 GameObject:
   m_ObjectHideFlags: 0

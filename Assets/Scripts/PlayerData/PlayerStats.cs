@@ -27,13 +27,16 @@ public static class PlayerStats
     {
         //временная затычка, пока мы без БД
         PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck.OfType<CardScriptableObject>().ToList();
+        PlayerDecks.CurrentEnemyDeck = ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck.OfType<CardScriptableObject>().ToList();
 
         //Инициализируем боевую колоду игрока
         PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
+        PlayerBattleDeck.EnemyBattleDeck = PlayerDecks.CurrentEnemyDeck;
     }
 
     private static void SyncPlayerDecks()
     {
         ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck.ToArray();
+        ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck = PlayerDecks.CurrentEnemyDeck.ToArray();
     }
 }

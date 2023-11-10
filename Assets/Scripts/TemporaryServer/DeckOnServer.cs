@@ -9,4 +9,5 @@ using UnityEngine;
 public class DeckOnServer : ScriptableObject
 {
     public CardScriptableObject[] currentDeck;
+    public CardScriptableObject[] enemyCurrentDeck;
 }
