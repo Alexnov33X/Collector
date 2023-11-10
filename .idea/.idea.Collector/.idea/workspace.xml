@@ -11,8 +11,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@2.1.0/Editor/PlasticSCM/Inspector/DrawInspectorOperations.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -21,6 +23,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/AnimationAndDelays.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHero/PlayerDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
       </list>
     </option>
@@ -67,7 +72,8 @@
       <workItem from="1698755352144" duration="1379000" />
       <workItem from="1699354650120" duration="1786000" />
       <workItem from="1699532997186" duration="18805000" />
-      <workItem from="1699563869526" duration="5094000" />
+      <workItem from="1699563869526" duration="5350000" />
+      <workItem from="1699603025665" duration="13027000" />
     </task>
     <servers />
   </component>
@@ -78,5 +84,11 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="936" y="333" key="run.anything.popup" timestamp="1699603124687">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="333" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1699603124687" />
   </component>
 </project>
