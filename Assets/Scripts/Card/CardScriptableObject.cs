@@ -45,7 +45,6 @@ public class CardScriptableObject : ScriptableObject
     [Header("Card ID")]
     [Tooltip("Id карты. Пока не юзаем, так как не нужен.")]
     public int CardId;
-
     public void Print()
     {
         Debug.Log(Name + ": " + Description + " The card costs: " + CardCost);

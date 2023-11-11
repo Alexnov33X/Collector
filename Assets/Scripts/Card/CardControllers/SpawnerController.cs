@@ -19,7 +19,7 @@ public class SpawnerController : CardEntity
     bool repeatSpawn = false;
 
 
-    public SpawnerController(List<string> creaturesToSpawn, bool repeatSpawn)
+    public void InitiateController(List<string> creaturesToSpawn, bool repeatSpawn)
     {
         this.creaturesToSpawn = creaturesToSpawn;
         if (abilitiesAndStatus.ContainsKey(CardAbility.SpawnCreature))
@@ -34,6 +34,8 @@ public class SpawnerController : CardEntity
 
     public override void TurnStart()
     {
+        base.TurnStart();
+        Debug.Log(abilitiesAndStatus.Keys);
         if (abilitiesAndStatus.ContainsKey(CardAbility.SacrificeSpawn))
             SacrificeSpawn();
         if (abilitiesAndStatus.ContainsKey(CardAbility.SpawnCreature))
@@ -63,8 +65,10 @@ public class SpawnerController : CardEntity
             }
 
         }
+        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn]);
         if (abilitiesAndStatus[CardAbility.SacrificeSpawn] > 0)
             abilitiesAndStatus[CardAbility.SacrificeSpawn]--;
+        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn]);
     }
 
     void SpawnAddionalCreatures() //just spawn stuff whenever ability potency reaches 0

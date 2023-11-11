@@ -35,6 +35,13 @@ public class CardEntity : MonoBehaviour
     /// </summary>
     [HideInInspector] public CardData cardData;
     private float attackDelay = 0.8f;
+
+    private void Start()
+    {
+        gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
+        handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
+        boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
+    }
     public void InitializeCard(CardScriptableObject card, bool isEnemy)
     {
         cardData = new CardData(card);
@@ -371,11 +378,6 @@ public class CardEntity : MonoBehaviour
             cardData.abilityPotency.RemoveAt(index);
         }
         abilitiesAndStatus[cardAbility] += value;
-    }
-
-    private void Start()
-    {
-        gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
     }
 
 }

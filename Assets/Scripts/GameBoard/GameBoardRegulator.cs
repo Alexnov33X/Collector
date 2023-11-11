@@ -167,4 +167,34 @@ public class GameBoardRegulator : MonoBehaviour
             }
         }
     }
+    public IEnumerator TurnStart(bool isPlayer)
+    {
+        if (isPlayer)
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (playerSide[j, i].occupant != null)
+                    {
+                        playerSide[j, i].occupant.TurnStart();
+                        yield return new WaitForSeconds(attackDelay);
+                    }
+                }
+            }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (enemySide[j, i].occupant != null)
+                    {
+                        enemySide[j, i].occupant.TurnStart();
+                        yield return new WaitForSeconds(attackDelay);
+                    }
+                }
+            }
+        }
+    }
+
 }

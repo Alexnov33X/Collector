@@ -9,7 +9,7 @@ public class CardData
     /// <summary>
     /// Название карты
     /// </summary>
-    private string name;
+    private string name = "None";
     /// <summary>
     /// Описание карты
     /// </summary>
@@ -139,22 +139,20 @@ public class CardData
             );
     }
 
-    public static CardEntity selectController(string cardName)
+    public static void selectController(GameObject receiver, string cardName)
     {
         List<string> creaturesToSpawn = new List<string>();
         switch (cardName)
         {
             case "DragonEgg":
                 creaturesToSpawn.Add("D1");
-                return new SpawnerController(creaturesToSpawn, false);
+                receiver.AddComponent<SpawnerController>().InitiateController(creaturesToSpawn, false);
+                break;
             case "SpawnerMob":
                 break;
             default:
-                return new CardEntity();
-        }
-
-        return null;
-
-
+                receiver.AddComponent<CardEntity>();
+                break;
+        };
     }
 }

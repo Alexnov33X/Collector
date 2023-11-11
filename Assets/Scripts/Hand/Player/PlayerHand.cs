@@ -102,6 +102,7 @@ public class PlayerHand : MonoBehaviour
     }
     public IEnumerator Phases()
     {
+        yield return boardRegulator.TurnStart(isPlayer);
         yield return StartCoroutine(CostReductionPhase());
         yield return new WaitForSeconds(cardReceiveDelay);
         yield return StartCoroutine(CardTransferPhase());
@@ -146,9 +147,11 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-        var controller = CardData.selectController(transferedCard.Name).GetType(); //In cardData we create controller and get his type
-        var cor = (CardEntity)newCardExample.AddComponent(controller);
+        CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type
+        //CardEntity currentController = newCardExample.GetComponent<CardEntity>();
+        //newController.ha
         CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+        //newCardEntity = newController;
         var fiddle = Instantiate(cardFiddle, gameObject.transform);
         yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
