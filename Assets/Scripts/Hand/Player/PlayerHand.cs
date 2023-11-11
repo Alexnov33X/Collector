@@ -147,6 +147,7 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+        Debug.Log(transferedCard.Name);
         CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type
         //CardEntity currentController = newCardExample.GetComponent<CardEntity>();
         //newController.ha

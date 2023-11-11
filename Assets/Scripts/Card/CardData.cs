@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 
 public class CardData
 {
@@ -65,6 +66,7 @@ public class CardData
 
     public List<CardAbility> abilities;
     public List<int> abilityPotency;
+    public Dictionary<CardAbility, int> abilityAndStatus = new Dictionary<CardAbility, int>();
 
     /// <summary>
     /// Id карты. Пока не юзаем, так как не нужен.
@@ -120,6 +122,11 @@ public class CardData
         cardId = cardInfo.CardId;
         abilities = new List<CardAbility>(cardInfo.abilities);
         abilityPotency = new List<int>(cardInfo.abilityPotency);
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            CardAbility key = abilities[i];
+            abilityAndStatus.Add(key, abilityPotency[i]);
+        }
     }
 
     public void PrintCardData()
@@ -146,7 +153,8 @@ public class CardData
         {
             case "DragonEgg":
                 creaturesToSpawn.Add("D1");
-                receiver.AddComponent<SpawnerController>().InitiateController(creaturesToSpawn, false);
+                var a = receiver.AddComponent<SpawnerController>();
+                a.InitiateController(creaturesToSpawn, false);
                 break;
             case "SpawnerMob":
                 break;

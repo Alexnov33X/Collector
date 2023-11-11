@@ -23,9 +23,9 @@ public class CreatureSpawner : MonoBehaviour
         }
         gameBoardRegulator = GetComponent<GameBoardRegulator>();
         creatures = new Dictionary<string, CardScriptableObject>();
-        foreach (CardScriptableObject so in creaturesList)      
+        foreach (CardScriptableObject so in creaturesList)
             creatures.Add(so.Name, so);
-        
+
     }
 
     // Update is called once per frame
@@ -45,15 +45,17 @@ public class CreatureSpawner : MonoBehaviour
     public CardEntity spawnCreatureByName(string creatureName, bool forPlayer)
     {
         var creature = Instantiate(CreaturePrefab);
-        CardEntity newCardEntity = creature.GetComponent<CardEntity>(); 
+        CardEntity newCardEntity = creature.GetComponent<CardEntity>();
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         return newCardEntity;
     }
 
     public void spawnCreatureByNameOnField(string creatureName, bool forPlayer)
     {
-        var creature = Instantiate(CreaturePrefab);
+        GameObject creature = Instantiate(CreaturePrefab);
+        CardData.selectController(creature, creatureName);
         CardEntity newCardEntity = creature.GetComponent<CardEntity>();
+        Debug.Log(creatureName);
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
     }

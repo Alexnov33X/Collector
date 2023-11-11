@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static Enums;
 
 /// <summary>
@@ -47,7 +48,11 @@ public class CardEntity : MonoBehaviour
         cardData = new CardData(card);
         //cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke(isEnemy);
-
+        abilitiesAndStatus = cardData.abilityAndStatus;
+        if (handLayer == null)
+            handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
+        if (boardLayer == null)
+            boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
         handLayer.SetActive(true);
         boardLayer.SetActive(false);
         attackDelay = AnimationAndDelays.instance.attackAnimation;
@@ -322,7 +327,9 @@ public class CardEntity : MonoBehaviour
 
     public virtual void TurnStart()
     {
-
+        Debug.Log(abilitiesAndStatus.Keys);
+        foreach (var key in abilitiesAndStatus.Keys)
+            Debug.Log(key.ToString());
 
     }
 
@@ -353,8 +360,10 @@ public class CardEntity : MonoBehaviour
 
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(true);
-
-        abilitiesAndStatus.Add(cardAbility, potency);
+        if (abilitiesAndStatus.ContainsKey(cardAbility))
+            abilitiesAndStatus[cardAbility] += potency;
+        else
+            abilitiesAndStatus.Add(cardAbility, potency);
 
     }
 

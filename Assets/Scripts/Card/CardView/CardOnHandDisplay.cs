@@ -58,6 +58,7 @@ public class CardOnHandDisplay : MonoBehaviour
 
     private void InitializeCardView(bool enemyside)
     {
+        cardEntity = GetComponentInParent<CardEntity>();
         nameText.text = cardEntity.cardData.Name;
         descriptionText.text = cardEntity.cardData.Description;
 

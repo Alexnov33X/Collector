@@ -23,7 +23,7 @@ public class SpawnerController : CardEntity
     {
         this.creaturesToSpawn = creaturesToSpawn;
         if (abilitiesAndStatus.ContainsKey(CardAbility.SpawnCreature))
-        timerUntilSpawn = abilitiesAndStatus[CardAbility.SpawnCreature];
+            timerUntilSpawn = abilitiesAndStatus[CardAbility.SpawnCreature];
         this.repeatSpawn = repeatSpawn;
     }
 
