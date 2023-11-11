@@ -46,7 +46,19 @@ public static class Enums
         EveryoneAttack,
         Sleep,
         IgniteCreature,
-        Ignited
+        Ignited,
+        SacrificeSpawn,       //Kill self and spawn new card on current place
+        SpawnCreature
+
+
+    }
+
+    public enum UniqueCard
+    {
+       Common = 0,
+       LegendaryBeast,
+       LegendaryDragon,
+       Spawner
 
 
     }

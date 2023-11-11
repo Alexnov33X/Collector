@@ -1,3 +1,4 @@
+using UnityEditor.UI;
 using UnityEngine;
 
 public class BoardCell : MonoBehaviour
@@ -37,6 +38,7 @@ public class BoardCell : MonoBehaviour
     {
         occupant = card;
         isOccupied = true;
+        card.cellHost = this;
         SetCardCellTransform(card);
     }
 

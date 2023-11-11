@@ -6,7 +6,7 @@ public class CreatureSpawner : MonoBehaviour
 {
     public GameObject CreaturePrefab;
     public List<CardScriptableObject> creaturesList;
-    Dictionary<string, CardScriptableObject> creatures;
+    Dictionary<string, CardScriptableObject> creatures = new Dictionary<string, CardScriptableObject>();
     public static CreatureSpawner instance = null;
     private GameBoardRegulator gameBoardRegulator;
 
@@ -34,10 +34,26 @@ public class CreatureSpawner : MonoBehaviour
         return Instantiate(CreaturePrefab, where);
     }
 
-    public void spawnCreature(string creatureName, bool forPlayer)
+    //public GameObject spawnCreatureByName()
+    //{
+    //    var creature = Instantiate(CreaturePrefab);
+    //    CardEntity newCardEntity = creature.GetComponent<CardEntity>();
+    //    newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
+    //    return creature;
+    //}
+
+    public CardEntity spawnCreatureByName(string creatureName, bool forPlayer)
     {
         var creature = Instantiate(CreaturePrefab);
         CardEntity newCardEntity = creature.GetComponent<CardEntity>(); 
+        newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
+        return newCardEntity;
+    }
+
+    public void spawnCreatureByNameOnField(string creatureName, bool forPlayer)
+    {
+        var creature = Instantiate(CreaturePrefab);
+        CardEntity newCardEntity = creature.GetComponent<CardEntity>();
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
     }

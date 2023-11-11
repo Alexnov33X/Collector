@@ -1572,10 +1572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreaturePrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
   creaturesList:
-  - {fileID: 11400000, guid: 672bd9418ed6aaf4eaee5ff302c2d38f, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9958f648ee3e5da439521bced6aff168, type: 2}
+  - {fileID: 11400000, guid: eefa7c12e1a2ad14ab3c48bde4658cd6, type: 2}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0

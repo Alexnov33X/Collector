@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerDecksOnServer
   m_EditorClassIdentifier: 
   currentDeck:
-  - {fileID: 11400000, guid: 672bd9418ed6aaf4eaee5ff302c2d38f, type: 2}
-  - {fileID: 11400000, guid: 672bd9418ed6aaf4eaee5ff302c2d38f, type: 2}
-  - {fileID: 11400000, guid: d8522effd6b243147bb0711566598f9d, type: 2}
+  - {fileID: 11400000, guid: 7d91e6116557ae64597ee273300e3402, type: 2}
+  - {fileID: 11400000, guid: 7d91e6116557ae64597ee273300e3402, type: 2}
+  - {fileID: 11400000, guid: 7d91e6116557ae64597ee273300e3402, type: 2}
   - {fileID: 11400000, guid: 672bd9418ed6aaf4eaee5ff302c2d38f, type: 2}
   - {fileID: 11400000, guid: d8522effd6b243147bb0711566598f9d, type: 2}
   - {fileID: 11400000, guid: d8522effd6b243147bb0711566598f9d, type: 2}

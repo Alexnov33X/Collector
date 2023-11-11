@@ -70,7 +70,7 @@ public class PlayerHand : MonoBehaviour
     {
         handList = new List<CardEntity>(HandCapacity);
         removeCardsList = new List<CardEntity>();
-//берём параметрs из хранилища
+        //берём параметрs из хранилища
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
@@ -146,12 +146,13 @@ public class PlayerHand : MonoBehaviour
         CardScriptableObject transferedCard = PullRandomCard();
 
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-
-        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>(); //тут остатки кода попыток анимировать взятие карты из колоды
+        var controller = CardData.selectController(transferedCard.Name).GetType(); //In cardData we create controller and get his type
+        var cor = (CardEntity)newCardExample.AddComponent(controller);
+        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
         var fiddle = Instantiate(cardFiddle, gameObject.transform);
         yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
-        
+
         handList.Add(newCardEntity);
 
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
@@ -167,8 +168,8 @@ public class PlayerHand : MonoBehaviour
         var x = go.GetComponent<RectTransform>();
         LeanTween.move(go, position, time);
         EventBus.OnPlayerBatttleDeckAmountChanged?.Invoke();
-        yield return new WaitForSecondsRealtime(time);  
-        go.transform.SetParent(transform, true);  
+        yield return new WaitForSecondsRealtime(time);
+        go.transform.SetParent(transform, true);
         Destroy(fiddle);
     }
 

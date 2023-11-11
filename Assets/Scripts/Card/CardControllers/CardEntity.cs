@@ -22,10 +22,11 @@ public class CardEntity : MonoBehaviour
     /// Слой для отображения на доске
     /// </summary>
     [SerializeField] private GameObject boardLayer;
-    private bool firstStrike = true; //true if creature did not attack
-    private bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
+    protected bool firstStrike = true; //true if creature did not attack
+    protected bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
     private Vector2Int boardPosition = new Vector2Int();
-    public Dictionary<CardAbility, int> abilitiesAndStatus;
+    public BoardCell cellHost;
+    public Dictionary<CardAbility, int> abilitiesAndStatus = new Dictionary<CardAbility, int>();
 
     private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
     private CardOnBoardDisplay displayController;
@@ -44,6 +45,7 @@ public class CardEntity : MonoBehaviour
         boardLayer.SetActive(false);
         attackDelay = AnimationAndDelays.instance.attackAnimation;
         isEnemyEntity = isEnemy;
+        displayController = GetComponentInChildren<CardOnBoardDisplay>();
     }
 
     /// <summary>
@@ -86,7 +88,7 @@ public class CardEntity : MonoBehaviour
 
     //row и column - координаты этого существа на поле боя, для просчёта лина и эффектов вероятно нужен будет
     //В этом методе ищем что атаковать и атакуем
-    public IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
+    public virtual IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
         if (cardData.abilities.Contains(CardAbility.Sleep) && cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)] > 0) // для спячки
         {
@@ -94,6 +96,8 @@ public class CardEntity : MonoBehaviour
             displayController.Sleep(true);
             yield return new WaitForEndOfFrame();
         }
+        else if (cardData.Attack < 1)
+            yield return new WaitForEndOfFrame();
         else
         {
             displayController.Sleep(false);
@@ -276,15 +280,17 @@ public class CardEntity : MonoBehaviour
 
     //LeanTween анимация для Атаки позиции
     // 238
-    public IEnumerator AttackAnimation(Vector3 location, float time)
+    public virtual IEnumerator AttackAnimation(Vector3 location, float time)
     {
+        transform.SetAsLastSibling();
         Vector3 tempLocation = gameObject.transform.position;
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
     }
-    public IEnumerator AttackAnimationLocal(Vector3 location, float time)
+    public virtual IEnumerator AttackAnimationLocal(Vector3 location, float time)
     {
+        transform.SetAsLastSibling();
         Vector3 tempLocation = gameObject.transform.position;
         LeanTween.moveLocal(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
@@ -292,7 +298,7 @@ public class CardEntity : MonoBehaviour
     }
 
     //метод получения удара. Если умираем то сообщаем об этом полю боя
-    public void OnHit(bool isPlayer, int row, int column, int damage)
+    public virtual void OnHit(bool isPlayer, int row, int column, int damage)
     {
         cardData.Health -= damage;
         EventBus.OnCardsInfoChanged?.Invoke();
@@ -306,7 +312,14 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    public void TurnEnd(bool isPlayer, int row, int column)
+
+    public virtual void TurnStart()
+    {
+
+
+    }
+
+    public virtual void TurnEnd(bool isPlayer, int row, int column)
     {
         if (cardData.abilities.Contains(CardAbility.Ignited))
         {
@@ -330,8 +343,11 @@ public class CardEntity : MonoBehaviour
     {
         cardData.abilities.Add(cardAbility);
         cardData.abilityPotency.Add(potency);
+
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(true);
+
+        abilitiesAndStatus.Add(cardAbility, potency);
 
     }
 
@@ -341,6 +357,8 @@ public class CardEntity : MonoBehaviour
         cardData.abilities.Remove(cardAbility);
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(false);
+        abilitiesAndStatus.Remove(cardAbility);
+
     }
 
     public void changeAbilityPotency(CardAbility cardAbility, int value)
@@ -352,6 +370,7 @@ public class CardEntity : MonoBehaviour
             cardData.abilities.Remove(cardAbility);
             cardData.abilityPotency.RemoveAt(index);
         }
+        abilitiesAndStatus[cardAbility] += value;
     }
 
     private void Start()

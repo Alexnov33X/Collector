@@ -1,6 +1,7 @@
 ﻿using static Enums;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class CardData
 {
@@ -17,7 +18,7 @@ public class CardData
     /// <summary>
     /// Спрайт Карты. Арт сущности
     /// </summary>
-    private Sprite artworkHandImage;    
+    private Sprite artworkHandImage;
     /// <summary>
     /// Спрайт Карты. Арт сущности
     /// </summary>
@@ -118,7 +119,7 @@ public class CardData
 
         cardId = cardInfo.CardId;
         abilities = new List<CardAbility>(cardInfo.abilities);
-        abilityPotency = new List < int > (cardInfo.abilityPotency);
+        abilityPotency = new List<int>(cardInfo.abilityPotency);
     }
 
     public void PrintCardData()
@@ -136,5 +137,24 @@ public class CardData
             "cardState:" + cardState + "\n " +
             "cardId:" + cardId
             );
+    }
+
+    public static CardEntity selectController(string cardName)
+    {
+        List<string> creaturesToSpawn = new List<string>();
+        switch (cardName)
+        {
+            case "DragonEgg":
+                creaturesToSpawn.Add("D1");
+                return new SpawnerController(creaturesToSpawn, false);
+            case "SpawnerMob":
+                break;
+            default:
+                return new CardEntity();
+        }
+
+        return null;
+
+
     }
 }

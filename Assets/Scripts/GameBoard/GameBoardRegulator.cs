@@ -48,7 +48,7 @@ public class GameBoardRegulator : MonoBehaviour
             { playerFirstLine[0], playerFirstLine[1], playerFirstLine[2]},
             { playerSecondLine[0], playerSecondLine[1], playerSecondLine[2] }
         };
-        for (int i = 0; i< 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             enemySide[i / 3, i % 3].cellPosition = new Vector2(i / 3, i % 3);
             enemySide[i / 3, i % 3].cellSide = false;
