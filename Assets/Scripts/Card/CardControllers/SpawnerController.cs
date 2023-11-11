@@ -47,7 +47,7 @@ public class SpawnerController : CardEntity
     {
         if (abilitiesAndStatus[CardAbility.SacrificeSpawn] == 0)
         {
-            if (creaturesToSpawn.Count == 0)
+            if (creaturesToSpawn.Count == 1)
             {
                 var replacementCreature = CreatureSpawner.instance.spawnCreatureByName(creaturesToSpawn[0], isEnemyEntity);
                 replacementCreature.transform.position = transform.position;

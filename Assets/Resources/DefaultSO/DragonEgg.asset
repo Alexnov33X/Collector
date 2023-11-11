@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
   m_Name: DragonEgg
   m_EditorClassIdentifier: 
-  Name: Yasmin
+  Name: DragonEgg
   Description: When entering the battlefield, gives +1/+1 to its owner
   ArtworkHandImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
   ArtworkBoardImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
@@ -25,5 +25,5 @@ MonoBehaviour:
   CardUniverse: 0
   CardRarity: 0
   abilities: 06000000
-  abilityPotency: 01000000
+  abilityPotency: 00000000
   CardId: 0
