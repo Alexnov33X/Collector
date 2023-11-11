@@ -1498,6 +1498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575844265}
   - component: {fileID: 575844266}
+  - component: {fileID: 575844267}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -1557,6 +1558,24 @@ MonoBehaviour:
   - {fileID: 1254515269}
   enemyHero: {fileID: 566880690}
   playerHero: {fileID: 1736102001}
+--- !u!114 &575844267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575844264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b4320d9c631514f8e9487892a9f420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreaturePrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+  creaturesList:
+  - {fileID: 11400000, guid: 672bd9418ed6aaf4eaee5ff302c2d38f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1667,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &644615791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,6 +2134,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &761505550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,6 +2226,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &766875913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2606,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &935686222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,6 +3152,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1035156664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3354,6 +3378,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1064683758
 GameObject:
   m_ObjectHideFlags: 0
@@ -4087,6 +4112,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1199078008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4178,6 +4204,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1230652385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,6 +4425,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1259846696
 GameObject:
   m_ObjectHideFlags: 0
@@ -4757,6 +4785,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1609184485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4982,6 +5011,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &1642357834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,6 +6672,7 @@ MonoBehaviour:
   isOccupied: 0
   occupant: {fileID: 0}
   cellPosition: {x: 0, y: 0}
+  cellSide: 0
 --- !u!1 &2130518403
 GameObject:
   m_ObjectHideFlags: 0

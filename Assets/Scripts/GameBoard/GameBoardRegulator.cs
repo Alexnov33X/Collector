@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
+
 
 public class GameBoardRegulator : MonoBehaviour
 {
@@ -47,6 +48,13 @@ public class GameBoardRegulator : MonoBehaviour
             { playerFirstLine[0], playerFirstLine[1], playerFirstLine[2]},
             { playerSecondLine[0], playerSecondLine[1], playerSecondLine[2] }
         };
+        for (int i = 0; i< 6; i++)
+        {
+            enemySide[i / 3, i % 3].cellPosition = new Vector2(i / 3, i % 3);
+            enemySide[i / 3, i % 3].cellSide = false;
+            playerSide[i / 3, i % 3].cellPosition = new Vector2(i / 3, i % 3);
+            playerSide[i / 3, i % 3].cellSide = true;
+        }
     }
 
     /// <summary>
@@ -82,15 +90,15 @@ public class GameBoardRegulator : MonoBehaviour
     public BoardCell ReturnFreeCell(BoardCell[,] boardSide)
     {
 
-        int index = Random.Range(0, 6); //finding random spawn spot
+        int index = UnityEngine.Random.Range(0, 6); //finding random spawn spot
 
         if (!boardSide[index / 3, index % 3].isOccupied)
             return boardSide[index / 3, index % 3];
         else
         {
-            index = Random.Range(0, 6);
+            index = UnityEngine.Random.Range(0, 6);
             while (boardSide[index / 3, index % 3].isOccupied)
-                index = Random.Range(0, 6);
+                index = UnityEngine.Random.Range(0, 6);
             return boardSide[index / 3, index % 3];
         }
     }

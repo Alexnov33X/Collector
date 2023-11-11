@@ -25,6 +25,7 @@ public class CardEntity : MonoBehaviour
     private bool firstStrike = true; //true if creature did not attack
     private bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
     private Vector2Int boardPosition = new Vector2Int();
+    public Dictionary<CardAbility, int> abilitiesAndStatus;
 
     private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
     private CardOnBoardDisplay displayController;
@@ -36,7 +37,7 @@ public class CardEntity : MonoBehaviour
     public void InitializeCard(CardScriptableObject card, bool isEnemy)
     {
         cardData = new CardData(card);
-        cardData.PrintCardData();
+        //cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke(isEnemy);
 
         handLayer.SetActive(true);

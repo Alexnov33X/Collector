@@ -11,6 +11,7 @@ public class BoardCell : MonoBehaviour
     /// </summary>
     [HideInInspector] public CardEntity occupant;
     public Vector2 cellPosition;
+    public bool cellSide = false; //true if player-cell
     private float summonCardAnimation = 0.5f;
 
     private void Start()
@@ -36,7 +37,6 @@ public class BoardCell : MonoBehaviour
     {
         occupant = card;
         isOccupied = true;
-
         SetCardCellTransform(card);
     }
 
