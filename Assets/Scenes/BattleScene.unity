@@ -1572,8 +1572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreaturePrefab: {fileID: 1655264287443387262, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
   creaturesList:
-  - {fileID: 11400000, guid: 9958f648ee3e5da439521bced6aff168, type: 2}
   - {fileID: 11400000, guid: eefa7c12e1a2ad14ab3c48bde4658cd6, type: 2}
+  - {fileID: 11400000, guid: 2f230b27095f18b4e9142a97195d9433, type: 2}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &644615792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2754,7 +2754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &939510998
 RectTransform:
   m_ObjectHideFlags: 0
