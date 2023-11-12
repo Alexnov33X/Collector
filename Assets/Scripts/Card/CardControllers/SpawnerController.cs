@@ -51,8 +51,10 @@ public class SpawnerController : CardEntity
             {
                 var replacementCreature = CreatureSpawner.instance.spawnCreatureByName(creaturesToSpawn[0], isEnemyEntity);
                 replacementCreature.transform.position = transform.position;
+                replacementCreature.transform.SetParent(gameBoardRegulator.transform, true);
+                replacementCreature.transform.localScale = transform.localScale;
                 cellHost.SetCardinCell(replacementCreature);
-                Destroy(this);
+                Destroy(gameObject);
                 return;
             }
             else
@@ -65,10 +67,10 @@ public class SpawnerController : CardEntity
             }
 
         }
-        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn]);
+        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn].ToString());
         if (abilitiesAndStatus[CardAbility.SacrificeSpawn] > 0)
             abilitiesAndStatus[CardAbility.SacrificeSpawn]--;
-        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn]);
+        Debug.Log(abilitiesAndStatus[CardAbility.SacrificeSpawn].ToString());
     }
 
     void SpawnAddionalCreatures() //just spawn stuff whenever ability potency reaches 0

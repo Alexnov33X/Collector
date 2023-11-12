@@ -29,8 +29,8 @@ public class CardEntity : MonoBehaviour
     public BoardCell cellHost;
     public Dictionary<CardAbility, int> abilitiesAndStatus = new Dictionary<CardAbility, int>();
 
-    private GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
-    private CardOnBoardDisplay displayController;
+    protected GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
+    protected CardOnBoardDisplay displayController;
     /// <summary>
     /// Экземпляр класса, который будет хранить всю информацию о 
     /// </summary>
@@ -40,11 +40,14 @@ public class CardEntity : MonoBehaviour
     private void Start()
     {
         gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
-        handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
-        boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
+        //Debug.Log(GetComponentInChildren<CardOnHandDisplay>() == null);
+        //handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
+        //boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
     }
     public void InitializeCard(CardScriptableObject card, bool isEnemy)
     {
+        handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
+        boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
         cardData = new CardData(card);
         //cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke(isEnemy);

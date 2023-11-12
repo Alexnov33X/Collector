@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,6 +60,7 @@ public class CardOnHandDisplay : MonoBehaviour
     private void InitializeCardView(bool enemyside)
     {
         cardEntity = GetComponentInParent<CardEntity>();
+        Debug.Log(cardEntity.IsUnityNull());
         nameText.text = cardEntity.cardData.Name;
         descriptionText.text = cardEntity.cardData.Description;
 

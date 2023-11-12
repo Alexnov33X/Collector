@@ -53,7 +53,7 @@ public class CreatureSpawner : MonoBehaviour
 
     public void spawnCreatureByNameOnField(string creatureName, bool forPlayer)
     {
-        GameObject creature = Instantiate(CreaturePrefab, transform);
+        GameObject creature = Instantiate(CreaturePrefab, transform.parent);
         CardData.selectController(creature, creatureName);
         CardEntity newCardEntity = creature.GetComponent<CardEntity>();
         Debug.Log(creatureName);
