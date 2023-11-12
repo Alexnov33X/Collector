@@ -59,7 +59,7 @@ public class SpawnerController : CardEntity
             }
             else
             {
-                foreach (string creature in creaturesToSpawn)
+                foreach (string creature in creaturesToSpawn) //summon all creatures and then kill ourself
                 {
                     CreatureSpawner.instance.spawnCreatureByNameOnField(creature, isEnemyEntity);
                 }

@@ -392,4 +392,12 @@ public class CardEntity : MonoBehaviour
         abilitiesAndStatus[cardAbility] += value;
     }
 
+    public void changeStats(int attack, int health) //Buffs/Debuffs and damage/heal effects go here
+    {
+        cardData.Attack += attack;
+        cardData.Health += health;
+        if (cardData.Health <= 0)
+            cellHost.DestroyCardinCell();
+    }
+
 }

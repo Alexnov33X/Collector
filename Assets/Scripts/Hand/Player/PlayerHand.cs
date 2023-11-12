@@ -105,7 +105,7 @@ public class PlayerHand : MonoBehaviour
         yield return boardRegulator.TurnStart(isPlayer);
         yield return StartCoroutine(CostReductionPhase());
         yield return new WaitForSeconds(cardReceiveDelay);
-        yield return StartCoroutine(CardTransferPhase());
+        yield return StartCoroutine(DrawCardPhase(1));
         yield return new WaitForSeconds(delayBeforeSummon);
         yield return SummonPhase();
         //yield return new WaitForSeconds(summonCardAnimation);
@@ -130,36 +130,39 @@ public class PlayerHand : MonoBehaviour
     /// <summary>
     /// - Фаза выдачи карты
     /// </summary>
-    private IEnumerator CardTransferPhase()
+    private IEnumerator DrawCardPhase(int amount)
     {
-        //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
-        if (PlayerBattleDeck.BattleDeck.Count <= 0)
+        for (int i = 0; i < amount; i++)
         {
+            //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
+            if (PlayerBattleDeck.BattleDeck.Count <= 0)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            //Если в Руке не осталось места, то пропускаем фазу
+            if (handList.Count() >= HandCapacity)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            CardScriptableObject transferedCard = PullRandomCard();
+
+            GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+            Debug.Log(transferedCard.Name);
+            CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type
+                                                                            //CardEntity currentController = newCardExample.GetComponent<CardEntity>();
+                                                                            //newController.ha
+            CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+                                                                                 //newCardEntity = newController;
+            var fiddle = Instantiate(cardFiddle, gameObject.transform);
             yield return new WaitForEndOfFrame();
+            newCardEntity.InitializeCard(transferedCard, !isPlayer);
+
+            handList.Add(newCardEntity);
+
+            yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
         }
-
-        //Если в Руке не осталось места, то пропускаем фазу
-        if (handList.Count() >= HandCapacity)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        CardScriptableObject transferedCard = PullRandomCard();
-
-        GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-        Debug.Log(transferedCard.Name);
-        CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type
-        //CardEntity currentController = newCardExample.GetComponent<CardEntity>();
-        //newController.ha
-        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
-        //newCardEntity = newController;
-        var fiddle = Instantiate(cardFiddle, gameObject.transform);
-        yield return new WaitForEndOfFrame();
-        newCardEntity.InitializeCard(transferedCard, !isPlayer);
-
-        handList.Add(newCardEntity);
-
-        yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
     }
 
     /// <summary>
