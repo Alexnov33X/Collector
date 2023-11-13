@@ -57,9 +57,15 @@ public class BoardCell : MonoBehaviour
 
     public void DestroyCardinCell()
     {
+        if (occupant.isEnemyEntity)
+            FindObjectOfType<GameBoardRegulator>().EnemyUnitsCount--;
+        else
+            FindObjectOfType<GameBoardRegulator>().PlayerUnitsCount--;
+
         Destroy(occupant.gameObject);
         occupant = null;
         isOccupied = false;
+        
     }
 
 }

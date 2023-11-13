@@ -130,7 +130,7 @@ public class PlayerHand : MonoBehaviour
     /// <summary>
     /// - Фаза выдачи карты
     /// </summary>
-    private IEnumerator DrawCardPhase(int amount)
+    public IEnumerator DrawCardPhase(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -150,9 +150,7 @@ public class PlayerHand : MonoBehaviour
 
             GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
             Debug.Log(transferedCard.Name);
-            CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type
-                                                                            //CardEntity currentController = newCardExample.GetComponent<CardEntity>();
-                                                                            //newController.ha
+            CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
             CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
                                                                                  //newCardEntity = newController;
             var fiddle = Instantiate(cardFiddle, gameObject.transform);
@@ -191,15 +189,21 @@ public class PlayerHand : MonoBehaviour
             {
                 //проверяет получилось ли призвать карту на доску
                 if (boardRegulator.TrySummonCardToPlayerBoard(card, isPlayer))
-                    removeCardsList.Add(card);
+                {
+                    card.OnCardPlayed();
+                    removeCardsList.Add(card);       
+                    
+                }
             }
         }
 
         //Удаляем из руки карты,которые ушли на доску
         foreach (CardEntity card in removeCardsList)
         {
+            if (card.cardData.abilityAndStatus.ContainsKey(Enums.CardAbility.DrawCards))
+                yield return new WaitForSeconds(AnimationAndDelays.instance.drawingCardAnimation * card.cardData.abilityAndStatus[Enums.CardAbility.DrawCards]); //waiting to draw cards
             handList.Remove(card);
-            yield return new WaitForSeconds(summonCardAnimation);
+            yield return new WaitForSeconds(AnimationAndDelays.instance.summonCardAnimation);
         }
         removeCardsList.Clear();
     }

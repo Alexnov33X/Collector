@@ -48,8 +48,13 @@ public static class Enums
         IgniteCreature,
         Ignited,
         SacrificeSpawn,       //Kill self and spawn new card on current place
-        SpawnCreature
-
+        SpawnCreature,
+        SummonCopy,
+        InnateCard,         //Card appears in heand when game starts
+        DrawCards,
+        PartnerSummon,      //summon card when another card spawns
+        Shoot,              //Shoots a random enemy
+        ShootForEachAlly,
 
     }
 

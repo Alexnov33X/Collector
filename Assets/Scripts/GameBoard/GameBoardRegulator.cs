@@ -23,8 +23,11 @@ public class GameBoardRegulator : MonoBehaviour
     public PlayerHero enemyHero; //сохраняем ссылки на игроков на поле
     public PlayerHero playerHero;
     private float attackDelay = 1;
-    private int playerUnits = 0;
-    private int enemyUnits = 0;
+    int playerUnits = 0;
+    int enemyUnits = 0;
+
+    public int PlayerUnitsCount { get => playerUnits; set => playerUnits = value; }
+    public int EnemyUnitsCount { get => enemyUnits; set => enemyUnits = value; }
 
     private void Start()
     {
@@ -65,9 +68,9 @@ public class GameBoardRegulator : MonoBehaviour
     public bool TrySummonCardToPlayerBoard(CardEntity card, bool isPlayer)
     {
         BoardCell freeCell = null;
-        if (isPlayer && playerUnits < 6)
+        if (isPlayer && PlayerUnitsCount < 6)
             freeCell = ReturnFreeCell(playerSide);
-        else if (enemyUnits < 6)
+        else if (EnemyUnitsCount < 6)
             freeCell = ReturnFreeCell(enemySide);
         if (freeCell == null)
             return false;
