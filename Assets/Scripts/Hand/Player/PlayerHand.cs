@@ -191,7 +191,8 @@ public class PlayerHand : MonoBehaviour
                 if (boardRegulator.TrySummonCardToPlayerBoard(card, isPlayer))
                 {
                     card.OnCardPlayed();
-                    removeCardsList.Add(card);                
+                    removeCardsList.Add(card);       
+                    
                 }
             }
         }
@@ -199,8 +200,10 @@ public class PlayerHand : MonoBehaviour
         //Удаляем из руки карты,которые ушли на доску
         foreach (CardEntity card in removeCardsList)
         {
+            if (card.cardData.abilityAndStatus.ContainsKey(Enums.CardAbility.DrawCards))
+                yield return new WaitForSeconds(AnimationAndDelays.instance.drawingCardAnimation * card.cardData.abilityAndStatus[Enums.CardAbility.DrawCards]); //waiting to draw cards
             handList.Remove(card);
-            yield return new WaitForSeconds(summonCardAnimation);
+            yield return new WaitForSeconds(AnimationAndDelays.instance.summonCardAnimation);
         }
         removeCardsList.Clear();
     }

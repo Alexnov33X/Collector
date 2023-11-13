@@ -54,7 +54,8 @@ public static class Enums
         DrawCards,
         PartnerSummon,      //summon card when another card spawns
         Shoot,              //Shoots a random enemy
-        
+        ShootForEachAlly,
+
     }
 
     public enum UniqueCard

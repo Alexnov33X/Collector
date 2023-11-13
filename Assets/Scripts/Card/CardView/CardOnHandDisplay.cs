@@ -60,20 +60,19 @@ public class CardOnHandDisplay : MonoBehaviour
     private void InitializeCardView(bool enemyside)
     {
         cardEntity = GetComponentInParent<CardEntity>();
-        Debug.Log(cardEntity.IsUnityNull());
-        nameText.text = cardEntity.cardData.Name;
-        descriptionText.text = cardEntity.cardData.Description;
+        if (cardEntity != null && cardEntity.cardData != null)
+        {
+            nameText.text = cardEntity.cardData.Name;
+            descriptionText.text = cardEntity.cardData.Description;
 
-        costText.text = cardEntity.cardData.CardCost.ToString();
-        attackText.text = cardEntity.cardData.Attack.ToString();
-        healthText.text = cardEntity.cardData.Health.ToString();
+            costText.text = cardEntity.cardData.CardCost.ToString();
+            attackText.text = cardEntity.cardData.Attack.ToString();
+            healthText.text = cardEntity.cardData.Health.ToString();
 
-        artworkImage.sprite = cardEntity.cardData.ArtworkHandImage;
-        rarityImage.sprite = cardEntity.cardData.RarityImage;
-        universeImage.sprite = cardEntity.cardData.UniverseImage;
-        //if (enemyside)
-        //    rarityImage.rectTransform.position = new Vector3(rarityImage.rectTransform.position.x, rarityImage.rectTransform.position.y, rarityImage.rectTransform.position.z - 290);
-
+            artworkImage.sprite = cardEntity.cardData.ArtworkHandImage;
+            rarityImage.sprite = cardEntity.cardData.RarityImage;
+            universeImage.sprite = cardEntity.cardData.UniverseImage;
+        }      
     }
 
     /// <summary>

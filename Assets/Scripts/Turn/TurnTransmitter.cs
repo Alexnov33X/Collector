@@ -97,7 +97,6 @@ public class TurnTransmitter : MonoBehaviour
             StartCoroutine(playerHand.DrawCardPhase(amount));
         else
             StartCoroutine(enemyHand.DrawCardPhase(amount));
-
     }
 
 }

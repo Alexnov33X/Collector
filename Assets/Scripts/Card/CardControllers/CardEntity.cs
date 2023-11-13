@@ -24,7 +24,7 @@ public class CardEntity : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject boardLayer;
     protected bool firstStrike = true; //true if creature did not attack
-    protected bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
+    public bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
     private Vector2Int boardPosition = new Vector2Int();
     public BoardCell cellHost;
     public Dictionary<CardAbility, int> abilitiesAndStatus = new Dictionary<CardAbility, int>();
@@ -120,14 +120,15 @@ public class CardEntity : MonoBehaviour
             {
                 if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
                 {
-                    //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                    //gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
-
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemySecondLine[column].isOccupied) //VERTICAL additional attack
                     {
                         Debug.Log("Vertical");
-                        ApplyIgnite(gameBoardRegulator, 1, column, false);
-                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay));
+                        ApplyIgnite(gameBoardRegulator, 0, column, false); //attack main target
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
+                        yield return new WaitForSeconds(attackDelay);
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay)); //attack second target
                         yield return new WaitForSeconds(attackDelay);
                         gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
                     }
@@ -139,7 +140,8 @@ public class CardEntity : MonoBehaviour
                             if (gameBoardRegulator.enemyFirstLine[i].isOccupied)
                             {
                                 Debug.Log("Horizontal");
-                                ApplyIgnite(gameBoardRegulator, 0, i, false);
+                                if (i == column)
+                                    ApplyIgnite(gameBoardRegulator, 0, i, false); //ignite only main target
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[i].occupant.gameObject.transform.localPosition, attackDelay));
                                 yield return new WaitForSeconds(attackDelay);
                                 gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
@@ -164,7 +166,12 @@ public class CardEntity : MonoBehaviour
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemyFirstLine[column].isOccupied)
                     {
                         Debug.Log("Vertical");
-                        ApplyIgnite(gameBoardRegulator, 0, column, false);
+                        ApplyIgnite(gameBoardRegulator, 1, column, false);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay));
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        yield return new WaitForSeconds(attackDelay);
+
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
                         gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
@@ -177,7 +184,8 @@ public class CardEntity : MonoBehaviour
                             if (gameBoardRegulator.enemySecondLine[i].isOccupied)
                             {
                                 Debug.Log("Horizontal");
-                                ApplyIgnite(gameBoardRegulator, 1, i, false);
+                                if (i == column)
+                                    ApplyIgnite(gameBoardRegulator, 1, i, false);
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[i].occupant.gameObject.transform.localPosition, attackDelay));
                                 gameBoardRegulator.enemySecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
@@ -203,24 +211,33 @@ public class CardEntity : MonoBehaviour
             {
                 if (gameBoardRegulator.playerFirstLine[column].isOccupied)
                 {
-                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                    //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
 
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.playerSecondLine[column].isOccupied)
                     {
                         Debug.Log("Vertical");
-                        ApplyIgnite(gameBoardRegulator, 1, column, true);
+                        ApplyIgnite(gameBoardRegulator, 0, column, true);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        yield return new WaitForSeconds(attackDelay);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                         gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
                     }
 
-                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack) || cardData.abilityAndStatus.ContainsKey(CardAbility.DefaultHorizontalLinearAttack))
                     {
                         for (int i = 0; i < 3; i++)
                         {
                             if (gameBoardRegulator.playerFirstLine[i].isOccupied)
                             {
                                 Debug.Log("Horizontal");
-                                ApplyIgnite(gameBoardRegulator, 0, i, true);
+                                if (i == column)
+                                    ApplyIgnite(gameBoardRegulator, 0, i, true);
+
+                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[i].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                                 gameBoardRegulator.playerFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
                             }
@@ -237,18 +254,24 @@ public class CardEntity : MonoBehaviour
                 }
                 else if (gameBoardRegulator.playerSecondLine[column].isOccupied)
                 {
-                    yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                    //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
 
 
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.playerFirstLine[column].isOccupied)
                     {
                         Debug.Log("Vertical");
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        yield return new WaitForSeconds(attackDelay);
+
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                         gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
                     }
 
-                    else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack))
+                    else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack) || cardData.abilityAndStatus.ContainsKey(CardAbility.DefaultHorizontalLinearAttack))
                     {
                         for (int i = 0; i < 3; i++)
                         {
@@ -256,6 +279,8 @@ public class CardEntity : MonoBehaviour
                             {
                                 Debug.Log("Horizontal");
                                 ApplyIgnite(gameBoardRegulator, 1, i, true);
+
+                                yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[i].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                                 gameBoardRegulator.playerSecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
                             }
@@ -321,8 +346,16 @@ public class CardEntity : MonoBehaviour
                 gameBoardRegulator.playerSide[row, column].DestroyCardinCell();
             else
                 gameBoardRegulator.enemySide[row, column].DestroyCardinCell();
-
         }
+    }
+
+    public virtual void OnHit(int damage) //updated method
+    {
+        cardData.Health -= damage;
+        EventBus.OnCardsInfoChanged?.Invoke();
+        if (cardData.Health <= 0)    
+            cellHost.DestroyCardinCell();
+        
     }
 
 
@@ -339,6 +372,28 @@ public class CardEntity : MonoBehaviour
         if (cardData.abilityAndStatus.ContainsKey(CardAbility.SummonCopy))
             for (int i = 0; i < cardData.abilityAndStatus[CardAbility.SummonCopy]; i++)
                 CreatureSpawner.instance.spawnCreatureByNameOnField(cardData.Name, !isEnemyEntity);
+
+        if (cardData.abilityAndStatus.ContainsKey(CardAbility.ShootForEachAlly)) //potency is damage, count is creatures
+            if (isEnemyEntity) {
+                var side = gameBoardRegulator.playerSide;
+                int amountOfShots = gameBoardRegulator.EnemyUnitsCount;
+                List<CardEntity> livingCreatures = new List<CardEntity>();
+                foreach (BoardCell cell in side)
+                    if (cell.isOccupied)
+                        livingCreatures.Add(cell.occupant);
+                for (int i = 0; i < amountOfShots;i++)
+                {
+                    int random = Random.Range(0, livingCreatures.Count);
+                    if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                    {
+                        livingCreatures[random].OnHit
+                    }
+                }
+
+            }
+        else
+                for (int i = 0; i < gameBoardRegulator.EnemyUnitsCount; i++)
+                    CreatureSpawner.instance.spawnCreatureByNameOnField(cardData.Name, !isEnemyEntity);
 
     }
 
@@ -364,7 +419,7 @@ public class CardEntity : MonoBehaviour
 
     public void ReceiveAbility(CardAbility cardAbility, int potency) // receive ability
     {
-        cardData.abilities.Add(cardAbility);
+        cardData.abilities.Add(cardAbility); //DEPRECATED
         cardData.abilityPotency.Add(potency);
 
         if (cardAbility == CardAbility.Ignited)
@@ -378,7 +433,7 @@ public class CardEntity : MonoBehaviour
 
     public void RemoveAbility(CardAbility cardAbility)
     {
-        cardData.abilityPotency.RemoveAt(cardData.abilities.FindIndex(x => x == cardAbility)); //remove ability
+        cardData.abilityPotency.RemoveAt(cardData.abilities.FindIndex(x => x == cardAbility)); //DEPRECATED
         cardData.abilities.Remove(cardAbility);
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(false);

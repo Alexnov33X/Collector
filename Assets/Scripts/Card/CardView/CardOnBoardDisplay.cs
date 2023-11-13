@@ -45,10 +45,12 @@ public class CardOnBoardDisplay : MonoBehaviour
     private void InitializeCardView()
     {
         cardEntity = GetComponentInParent<CardEntity>();
-        attackText.text = cardEntity.cardData.Attack.ToString();
-        healthText.text = cardEntity.cardData.Health.ToString();
-
-        artworkImage.sprite = cardEntity.cardData.ArtworkBoardImage;
+        if (cardEntity.cardData != null)
+        {
+            attackText.text = cardEntity.cardData.Attack.ToString();
+            healthText.text = cardEntity.cardData.Health.ToString();
+            artworkImage.sprite = cardEntity.cardData.ArtworkBoardImage;
+        }
     }
 
     /// <summary>
