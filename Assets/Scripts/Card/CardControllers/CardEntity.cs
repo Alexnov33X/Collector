@@ -281,15 +281,13 @@ public class CardEntity : MonoBehaviour
 
     private void ApplyIgnite(GameBoardRegulator gameBoardRegulator, int targetRow, int targetColumn, bool isPlayer)
     {
-        if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike && isPlayer)
+        if (cardData.abilities.Contains(CardAbility.IgniteCreature) && isPlayer)
         {
             gameBoardRegulator.playerSide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
-            firstStrike = false;
         }
-        else if (cardData.abilities.Contains(CardAbility.IgniteCreature) && firstStrike)
+        else if (cardData.abilities.Contains(CardAbility.IgniteCreature))
         {
             gameBoardRegulator.enemySide[targetRow, targetColumn].occupant.ReceiveAbility(CardAbility.Ignited, cardData.abilities.FindIndex(x => x == CardAbility.IgniteCreature));
-            firstStrike = false;
         }
     }
 
@@ -330,9 +328,17 @@ public class CardEntity : MonoBehaviour
 
     public virtual void TurnStart()
     {
-        Debug.Log(abilitiesAndStatus.Keys);
-        foreach (var key in abilitiesAndStatus.Keys)
-            Debug.Log(key.ToString());
+
+    }
+
+    public virtual void OnCardPlayed()
+    {
+        if (cardData.abilityAndStatus.ContainsKey(CardAbility.DrawCards))
+            FindObjectOfType<TurnTransmitter>().DrawCardsForPlayer(cardData.abilityAndStatus[CardAbility.DrawCards], !isEnemyEntity);
+
+        if (cardData.abilityAndStatus.ContainsKey(CardAbility.SummonCopy))
+            for (int i = 0; i < cardData.abilityAndStatus[CardAbility.SummonCopy]; i++)
+                CreatureSpawner.instance.spawnCreatureByNameOnField(cardData.Name, !isEnemyEntity);
 
     }
 

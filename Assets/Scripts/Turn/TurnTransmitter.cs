@@ -26,7 +26,6 @@ public class TurnTransmitter : MonoBehaviour
         gameStartDelay = AnimationAndDelays.instance.gameStartDelay;
         delayBetweenPlayerAndEnemy = AnimationAndDelays.instance.delayBetweenPlayerAndEnemy;
         StartCoroutine(Tasks()); //запускаем игровой цикл
-
     }
     /// <summary>
     /// Выполняет все фазы одного хода. 
@@ -90,6 +89,15 @@ public class TurnTransmitter : MonoBehaviour
         enemyHand.StopAllCoroutines();
         vs.EndGame(false);
         turnStep.gameObject.SetActive(false);
+    }
+
+    public void DrawCardsForPlayer(int amount, bool isPlayer)
+    {
+        if (isPlayer)
+            StartCoroutine(playerHand.DrawCardPhase(amount));
+        else
+            StartCoroutine(enemyHand.DrawCardPhase(amount));
+
     }
 
 }
