@@ -199,8 +199,11 @@
           </e>
           <e p="BattleBootstrapp.cs" t="Include" />
           <e p="Card" t="Include">
+            <e p="CardControllers" t="Include">
+              <e p="CardEntity.cs" t="Include" />
+              <e p="SpawnerController.cs" t="Include" />
+            </e>
             <e p="CardData.cs" t="Include" />
-            <e p="CardEntity.cs" t="Include" />
             <e p="CardScriptableObject.cs" t="Include" />
             <e p="CardView" t="Include">
               <e p="CardOnBoardDisplay.cs" t="Include" />
@@ -222,6 +225,7 @@
           <e p="EventBus.cs" t="Include" />
           <e p="GameBoard" t="Include">
             <e p="BoardCell.cs" t="Include" />
+            <e p="CreatureSpawner.cs" t="Include" />
             <e p="GameBoardRegulator.cs" t="Include" />
           </e>
           <e p="Hand" t="Include">
@@ -250,6 +254,8 @@
             <e p="FindingOpponent.cs" t="Include" />
             <e p="SearchPlayer.cs" t="Include" />
           </e>
+          <e p="SelectDeckTutor.cs" t="Include" />
+          <e p="SO" t="Include" />
           <e p="TemporaryServer" t="Include">
             <e p="DeckOnServer.cs" t="Include" />
             <e p="ServerSurrogate.cs" t="Include" />
@@ -263,9 +269,13 @@
             <e p="UIPercentOnScreen.cs" t="Include" />
             <e p="VictoryScreen.cs" t="Include" />
           </e>
+          <e p="Window.cs" t="Include" />
         </e>
         <e p="Sprites" t="Include">
-          <e p="Cards" t="Include" />
+          <e p="Cards" t="Include">
+            <e p="Dragons" t="Include" />
+            <e p="Pirates" t="Include" />
+          </e>
           <e p="CardSources" t="Include">
             <e p="Artworks" t="Include" />
             <e p="BoardCardElements" t="Include">
@@ -287,6 +297,7 @@
           <e p="PreBattle" t="Include" />
           <e p="References" t="Include" />
           <e p="Search" t="Include" />
+          <e p="SelectDeck" t="Include" />
           <e p="TempSprites" t="Include">
             <e p="Conflicting stuff" t="Include" />
           </e>

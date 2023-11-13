@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Дествующая колода игрока, которая используется для боевки. Инициализируется при начале боя(при загрузке сцены BattleScene) и 
-/// используется только для боя. Инициализация происходит в BattleBootstrapp.
+/// Р”РµСЃС‚РІСѓСЋС‰Р°СЏ РєРѕР»РѕРґР° РёРіСЂРѕРєР°, РєРѕС‚РѕСЂР°СЏ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р±РѕРµРІРєРё. РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚СЃСЏ РїСЂРё РЅР°С‡Р°Р»Рµ Р±РѕСЏ(РїСЂРё Р·Р°РіСЂСѓР·РєРµ СЃС†РµРЅС‹ BattleScene) Рё 
+/// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ Р±РѕСЏ. РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСЂРѕРёСЃС…РѕРґРёС‚ РІ BattleBootstrapp.
 /// </summary>
 public static class PlayerBattleDeck
 {
     private static List<CardScriptableObject> battleDeck = new List<CardScriptableObject>();
     public static List<CardScriptableObject> BattleDeck { get { return battleDeck; } set => battleDeck = value; }
 
-    private static List<CardScriptableObject> enemyBattleDeck = new List<CardScriptableObject>(); //Костылим для колоды второго игрока
+    private static List<CardScriptableObject> enemyBattleDeck = new List<CardScriptableObject>(); //РљРѕСЃС‚С‹Р»РёРј РґР»СЏ РєРѕР»РѕРґС‹ РІС‚РѕСЂРѕРіРѕ РёРіСЂРѕРєР°
     public static List<CardScriptableObject> EnemyBattleDeck { get { return enemyBattleDeck; } set => enemyBattleDeck = value; }
+
 }
+

@@ -7,13 +7,16 @@ using UnityEngine.UI;
 public class Loader : MonoBehaviour
 {
     public float timer;
-    //public float period;
     public Image progressBar;
     public TMP_Text textProgress;
+
+    public Window nextWindow;
+    public void Start()
+    {
+        StartCoroutine(LoadWindow(nextWindow));
+    }
     
-
-
-   public  IEnumerator LoadWindow(GameObject loadedWindow)
+   public  IEnumerator LoadWindow(Window loadedWindow)
     {
         float random1 = Random.Range(1, 50);
         float random2 = Random.Range(51, 95);
@@ -32,7 +35,7 @@ public class Loader : MonoBehaviour
             }
             yield return  new WaitForSecondsRealtime(timer / 100);
         }
-        gameObject.SetActive(false);
-        loadedWindow.SetActive(true);
+        Window currentWindow = GetComponent<Window>();
+        StartCoroutine(currentWindow.Activate(loadedWindow));
     }
 }

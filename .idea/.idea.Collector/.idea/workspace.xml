@@ -15,6 +15,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Window.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -22,9 +23,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/AnimationAndDelays.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHero/PlayerDisplay.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Deck/Player/ForBattle/PlayerBattleDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
       </list>
@@ -74,6 +78,7 @@
       <workItem from="1699532997186" duration="18805000" />
       <workItem from="1699563869526" duration="5350000" />
       <workItem from="1699603025665" duration="13027000" />
+      <workItem from="1699896095744" duration="9893000" />
     </task>
     <servers />
   </component>
