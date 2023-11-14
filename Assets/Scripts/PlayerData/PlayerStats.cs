@@ -7,10 +7,21 @@ using UnityEngine;
 /// </summary>
 public static class PlayerStats
 {
-    public static int rank;
-    /// <summary>
-    /// Получаем инфо с сервера
-    /// </summary>
+    private static int rankPoints;
+
+    public static int RankPoints
+    {
+        get => rankPoints;
+        set
+        {
+            rankPoints = value;
+            UpdateRank();
+        } 
+    }
+
+    public static string rank = "Silver";
+    
+
     public static void LoadPlayerData()
     {
         LoadPlayerDecks();
@@ -39,5 +50,18 @@ public static class PlayerStats
     {
         ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck.ToArray();
         ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck = PlayerDecks.CurrentEnemyDeck.ToArray();
+    }
+
+    public static void UpdateRank()
+    {
+        foreach (var rank in SystemRank.PointsRanks)
+        {
+            if (rankPoints <= rank.Value)
+            {
+                PlayerStats.rank = rank.Key;
+                Debug.Log(PlayerStats.rank);
+                break;
+            }
+        }
     }
 }

@@ -6,8 +6,9 @@ public class Window : MonoBehaviour
 {
 
     public List<GameObject> objects;
-    public float timeOpen, timeClose;
+    public float timeOpen, timeClose, delayBetweenObject;
     public LeanTweenType easingOpenFunction, easingClosedFunction;
+    public bool isOrderObjects;
     public IEnumerator Activate(Window window, bool isCloseOldWindow)
     {
         if (isCloseOldWindow)
@@ -20,14 +21,21 @@ public class Window : MonoBehaviour
             yield return new WaitForSecondsRealtime(timeClose);
             gameObject.SetActive(false);
         }
-        window.gameObject.SetActive(true);
         foreach (var obj in window.objects)
         {
             obj.transform.localScale = new Vector3(0,0,0);
+        }
+        window.gameObject.SetActive(true);
+        foreach (var obj in window.objects)
+        {
             LeanTween.scale(obj, new Vector3(1, 1, 1), window.timeOpen).setEase(easingOpenFunction);
+            if (isOrderObjects)
+            {
+                yield return  new WaitForSecondsRealtime(window.delayBetweenObject);
+            }
         }
         yield return new WaitForSecondsRealtime(window.timeOpen);
-    }
+    } 
     public void OpenNextWindow(Window window)
     {
         StartCoroutine(Activate(window, false));

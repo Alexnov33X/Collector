@@ -480,8 +480,10 @@ MonoBehaviour:
   - {fileID: 347897268}
   timeOpen: 0.3
   timeClose: 0.3
+  delayBetweenObject: 0
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 0
 --- !u!1 &85365730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1085,7 @@ Transform:
   - {fileID: 777987368}
   - {fileID: 1372877071}
   - {fileID: 1237551570}
+  - {fileID: 746125938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &300940493
@@ -1866,6 +1869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e542f1a57918b094380abcefbd1784e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rankPoints: {fileID: 1130477354}
+  rankIcon: {fileID: 2130518405}
 --- !u!114 &416483129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,8 +1890,10 @@ MonoBehaviour:
   - {fileID: 1173581200}
   timeOpen: 0.3
   timeClose: 0
+  delayBetweenObject: 0
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 0
 --- !u!1 &457278640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,7 +1951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47155ef589616ca44a566717372ae8d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da2d7ae200f20b846b1f2e427269cf56, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3243,6 +3250,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfCards: {fileID: 377652124}
   enemyDeck: 0
+--- !u!1 &746125937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746125938}
+  - component: {fileID: 746125939}
+  m_Layer: 5
+  m_Name: SystemRank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &746125938
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746125937}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalScale: {x: 0.0052083335, y: 0.0052083335, z: 0.0052083335}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 181927374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &746125939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746125937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81743d08fe6366f469b921073e896839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 0f7bd755a9b0e6c4b8815b64ecf43626, type: 3}
+  - {fileID: 21300000, guid: 47155ef589616ca44a566717372ae8d2, type: 3}
+  - {fileID: 21300000, guid: 6db5ced095671c6408a2097364a218dd, type: 3}
+  - {fileID: 21300000, guid: da2d7ae200f20b846b1f2e427269cf56, type: 3}
+  - {fileID: 21300000, guid: 9b73528414d373d4297c7a0247fa52ff, type: 3}
+  nameRanks:
+  - Silver
+  - Gold
+  - Platinum
+  - Diamond
+  - Master
+  pointsRank: 64000000c80000002c01000090010000f4010000
 --- !u!1 &752853517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,8 +4308,10 @@ MonoBehaviour:
   objects: []
   timeOpen: 0
   timeClose: 0
+  delayBetweenObject: 0
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 0
 --- !u!1 &978348286
 GameObject:
   m_ObjectHideFlags: 0
@@ -5794,8 +5864,10 @@ MonoBehaviour:
   objects: []
   timeOpen: 0
   timeClose: 0
+  delayBetweenObject: 0
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 0
 --- !u!1 &1254515265
 GameObject:
   m_ObjectHideFlags: 0
@@ -7393,7 +7465,6 @@ GameObject:
   - component: {fileID: 1642357837}
   - component: {fileID: 1642357836}
   - component: {fileID: 1642357835}
-  - component: {fileID: 1642357839}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7491,20 +7562,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1642357839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642357834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da8be33a0b761946ae3390322d67b49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loader: {fileID: 1242267010}
-  mainMenu: {fileID: 416483125}
 --- !u!1 &1657918084
 GameObject:
   m_ObjectHideFlags: 0
@@ -8506,8 +8563,10 @@ MonoBehaviour:
   - {fileID: 1035156664}
   timeOpen: 0.3
   timeClose: 0.3
+  delayBetweenObject: 0
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 0
 --- !u!1 &1843098844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8902,6 +8961,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endText: {fileID: 5410192}
+  rankPointsPlayer: {fileID: 712608672}
+  speedGetPoints: 0.05
+  iconRank: {fileID: 457278642}
+  textNewPoints: {fileID: 1633292822}
+  timeMoveTextNewPoints: 0.3
+  delayShowNewPoints: 1
+  offsetTextNewPoints: {x: 0, y: 0.5, z: 0}
+  colorLoseTextNewPoints: {r: 1, g: 0.44313726, b: 0.32156864, a: 0}
+  colorVictoryTextNewPoints: {r: 0.2, g: 1, b: 0.5647059, a: 0}
 --- !u!114 &1983246351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8921,8 +8989,10 @@ MonoBehaviour:
   - {fileID: 2128588935}
   timeOpen: 0.4
   timeClose: 0.3
+  delayBetweenObject: 0.3
   easingOpenFunction: 0
   easingClosedFunction: 0
+  isOrderObjects: 1
 --- !u!1 &1994316948
 GameObject:
   m_ObjectHideFlags: 0

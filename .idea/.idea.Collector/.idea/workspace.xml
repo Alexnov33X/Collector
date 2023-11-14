@@ -28,12 +28,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Deck/Player/ForBattle/PlayerBattleDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData/PlayerStats.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Turn/TurnTransmitter.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData/PlayerStats.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SystemRank.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/VictoryScreen.cs" />
       </list>
@@ -84,7 +85,7 @@
       <workItem from="1699563869526" duration="5350000" />
       <workItem from="1699603025665" duration="13027000" />
       <workItem from="1699896095744" duration="11095000" />
-      <workItem from="1699955885727" duration="11638000" />
+      <workItem from="1699955885727" duration="25182000" />
     </task>
     <servers />
   </component>
