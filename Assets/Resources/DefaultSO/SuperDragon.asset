@@ -26,4 +26,5 @@ MonoBehaviour:
   CardRarity: 1
   abilities: 0400000008000000
   abilityPotency: 0300000001000000
+
   CardId: -1

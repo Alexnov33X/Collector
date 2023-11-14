@@ -73,7 +73,7 @@ public class PlayerHand : MonoBehaviour
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         drawingCardAnimation = AnimationAndDelays.instance.drawingCardAnimation;
-        //DrawInnateCards();
+        DrawInnateCards();
     }
 
     #region Methods to get or set info to handList
@@ -244,7 +244,7 @@ public class PlayerHand : MonoBehaviour
         yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
 
-        handList.Add(newCardEntity);
+        handList.Add(newCardEntity); 
 
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
         if (instantSummon)
@@ -284,7 +284,11 @@ public class PlayerHand : MonoBehaviour
             var innateCards = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.InnateCard));
             foreach (var card in innateCards)
             {
-                StartCoroutine(AddDefiniteCardToHand(card, false));
+                GameObject newCardExample = Instantiate(CardPrefab, transform);
+                CardData.selectController(newCardExample, card.Name); //In cardData we create controller and get his type                                                                        
+                CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+                newCardEntity.InitializeCard(card, !isPlayer);
+                handList.Add(newCardEntity);
                 PlayerBattleDeck.BattleDeck.Remove(card);
             }
         }
@@ -293,8 +297,12 @@ public class PlayerHand : MonoBehaviour
             var innateCards = PlayerBattleDeck.EnemyBattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.InnateCard));
             foreach (var card in innateCards)
             {
-                StartCoroutine(AddDefiniteCardToHand(card, false));
-                PlayerBattleDeck.BattleDeck.Remove(card);
+                GameObject newCardExample = Instantiate(CardPrefab, transform);
+                CardData.selectController(newCardExample, card.Name); //In cardData we create controller and get his type                                                                        
+                CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+                newCardEntity.InitializeCard(card, !isPlayer);
+                handList.Add(newCardEntity);
+                PlayerBattleDeck.EnemyBattleDeck.Remove(card);
             }
         }
     }

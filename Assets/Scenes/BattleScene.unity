@@ -6196,6 +6196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endText: {fileID: 5410192}
+  textNewPoints: {fileID: 0}
+  colorText: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2003232563
 GameObject:
   m_ObjectHideFlags: 0

@@ -473,7 +473,7 @@ public class CardEntity : MonoBehaviour
             }
             RemoveAbility(CardAbility.KillAndStealStats);
         }
-        CallPartner();
+        //CallPartner();
 
 
     }

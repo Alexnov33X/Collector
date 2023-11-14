@@ -39,8 +39,8 @@ public class CardScriptableObject : ScriptableObject
 
     [Header("Abilities")]
     [Tooltip("Способности и сила эффекта. Например поджог и 3 -> поджог на 3 хода. Надо их соотносить по индексам")]
-    public List<CardAbility> abilities;
-    public List<int> abilityPotency;
+    public List<CardAbility> abilities = new List<CardAbility>();
+    public List<int> abilityPotency = new List<int>();
 
     [Header("Card ID")]
     [Tooltip("Id карты. Пока не юзаем, так как не нужен.")]
