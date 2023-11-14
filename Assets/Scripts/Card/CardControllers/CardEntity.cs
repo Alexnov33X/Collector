@@ -209,7 +209,7 @@ public class CardEntity : MonoBehaviour
             }
             else
             {
-                if (gameBoardRegulator.playerFirstLine[column].isOccupied)
+                if (gameBoardRegulator.playerFirstLine[column].isOccupied) //ENEMY ATTACKS
                 {
                     //yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
 
@@ -246,6 +246,7 @@ public class CardEntity : MonoBehaviour
                     else
                     {
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                         gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
                     }
 
@@ -289,6 +290,7 @@ public class CardEntity : MonoBehaviour
                     else
                     {
                         ApplyIgnite(gameBoardRegulator, 1, column, true);
+                        yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
                         gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
                     }
 
@@ -353,9 +355,9 @@ public class CardEntity : MonoBehaviour
     {
         cardData.Health -= damage;
         EventBus.OnCardsInfoChanged?.Invoke();
-        if (cardData.Health <= 0)    
+        if (cardData.Health <= 0)
             cellHost.DestroyCardinCell();
-        
+
     }
 
 
@@ -367,34 +369,79 @@ public class CardEntity : MonoBehaviour
     public virtual void OnCardPlayed()
     {
         if (cardData.abilityAndStatus.ContainsKey(CardAbility.DrawCards))
+        {
             FindObjectOfType<TurnTransmitter>().DrawCardsForPlayer(cardData.abilityAndStatus[CardAbility.DrawCards], !isEnemyEntity);
+            RemoveAbility(CardAbility.DrawCards);
+        }
 
         if (cardData.abilityAndStatus.ContainsKey(CardAbility.SummonCopy))
+        {
             for (int i = 0; i < cardData.abilityAndStatus[CardAbility.SummonCopy]; i++)
                 CreatureSpawner.instance.spawnCreatureByNameOnField(cardData.Name, !isEnemyEntity);
+            RemoveAbility(CardAbility.SummonCopy);
+        }
 
         if (cardData.abilityAndStatus.ContainsKey(CardAbility.ShootForEachAlly)) //potency is damage, count is creatures
-            if (isEnemyEntity) {
+        {
+            if (isEnemyEntity)
+            {
                 var side = gameBoardRegulator.playerSide;
                 int amountOfShots = gameBoardRegulator.EnemyUnitsCount;
                 List<CardEntity> livingCreatures = new List<CardEntity>();
                 foreach (BoardCell cell in side)
                     if (cell.isOccupied)
                         livingCreatures.Add(cell.occupant);
-                for (int i = 0; i < amountOfShots;i++)
+                for (int i = 0; i < amountOfShots; i++)
                 {
-                    int random = Random.Range(0, livingCreatures.Count);
-                    if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                    if (livingCreatures.Count > 0)
                     {
-                        livingCreatures[random].OnHit
+                        int random = Random.Range(0, livingCreatures.Count);
+                        if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                        {
+                            //var temp = livingCreatures[random];                       
+                            livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
+                            livingCreatures.RemoveAt(random);
+                        }
+                        else
+                            livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
                     }
                 }
 
             }
-        else
-                for (int i = 0; i < gameBoardRegulator.EnemyUnitsCount; i++)
-                    CreatureSpawner.instance.spawnCreatureByNameOnField(cardData.Name, !isEnemyEntity);
+            else
+            {
+                var side = gameBoardRegulator.enemySide;
+                int amountOfShots = gameBoardRegulator.PlayerUnitsCount;
+                List<CardEntity> livingCreatures = new List<CardEntity>();
+                foreach (BoardCell cell in side)
+                    if (cell.isOccupied)
+                        livingCreatures.Add(cell.occupant);
 
+                for (int i = 0; i < amountOfShots; i++)
+                {
+                    if (livingCreatures.Count > 0)
+                    {
+                        int random = Random.Range(0, livingCreatures.Count);
+                        if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                        {
+                            //var temp = livingCreatures[random];                       
+                            livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
+                            livingCreatures.RemoveAt(random);
+                        }
+                        else
+                            livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
+                    }
+                }
+
+            }
+            RemoveAbility(CardAbility.ShootForEachAlly);
+        }
+
+    }
+
+    protected virtual void CallPartner()
+    {
+        FindAnyObjectByType<TurnTransmitter>().CallPartnerInHandsAndDeck(!isEnemyEntity);
     }
 
     public virtual void TurnEnd(bool isPlayer, int row, int column)

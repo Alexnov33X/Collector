@@ -24,6 +24,6 @@ MonoBehaviour:
   CardType: 0
   CardUniverse: 0
   CardRarity: 0
-  abilities: 060000000a000000
-  abilityPotency: 0000000002000000
+  abilities: 060000000a0000000d000000
+  abilityPotency: 000000000100000001000000
   CardId: 0

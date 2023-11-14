@@ -64,10 +64,13 @@ public class CardOnBoardDisplay : MonoBehaviour
 
     public void UpdateInformation()
     {
-        attackText.text = cardEntity.cardData.Attack.ToString();
-        if (healthText.text != cardEntity.cardData.Health.ToString())
-            healthText.color = Color.HSVToRGB(35, 100, 100);
-        healthText.text = cardEntity.cardData.Health.ToString();
+        if (cardEntity != null && cardEntity.cardData != null)
+        {
+            attackText.text = cardEntity.cardData.Attack.ToString();
+            if (healthText.text != cardEntity.cardData.Health.ToString())
+                healthText.color = Color.HSVToRGB(35, 100, 100);
+            healthText.text = cardEntity.cardData.Health.ToString();
+        }
     }
 
     public void BURN(bool on)
@@ -94,7 +97,7 @@ public class CardOnBoardDisplay : MonoBehaviour
         else
         {
             if (healthText.color == Color.black)
-            healthText.color = Color.HSVToRGB(35, 100, 100);
+                healthText.color = Color.HSVToRGB(35, 100, 100);
             attackText.color = Color.white;
         }
     }

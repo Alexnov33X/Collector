@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
-  m_Name: DefaultCard2
+  m_Name: SmallDragon
   m_EditorClassIdentifier: 
-  Name: Edwin
+  Name: Pumpkin
   Description: When entering the battlefield, gives +1/+1 to its owner
-  ArtworkHandImage: {fileID: 21300000, guid: b6c457206fa369341a02115c7e9516b1, type: 3}
-  ArtworkBoardImage: {fileID: 21300000, guid: f4d6c9816439fbf429481a768d273851, type: 3}
+  ArtworkHandImage: {fileID: 21300000, guid: f43f46f4a513dd54ebdef0d0bab79a6a, type: 3}
+  ArtworkBoardImage: {fileID: 21300000, guid: 782359ece6240f04294ceba4428c86f7, type: 3}
   RarityImage: {fileID: 21300000, guid: 9a389c770a0f6fc42a302dfbb5ca47db, type: 3}
-  UniverseImage: {fileID: 21300000, guid: b60e5e0fa1c1f2d468659119fd06da37, type: 3}
+  UniverseImage: {fileID: 21300000, guid: 198b97b5808af7141aee5e02884e3c63, type: 3}
   CardCost: 1
   Attack: 3
   Health: 5
   CardType: 0
   CardUniverse: 0
-  CardRarity: 1
-  abilities: 04000000
-  abilityPotency: 03000000
-  CardId: -1
+  CardRarity: 0
+  abilities: 010000000b000000
+  abilityPotency: 0000000000000000
+  CardId: 0
