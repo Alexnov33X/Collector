@@ -53,7 +53,6 @@ public class PlayerHand : MonoBehaviour
 
     public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
     private float delayBeforeSummon = 1;
-    private float summonCardAnimation = 0.5f;
     private float drawingCardAnimation = 1f;
 
     private void OnEnable()
@@ -73,7 +72,6 @@ public class PlayerHand : MonoBehaviour
         //берём параметрs из хранилища
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
-        summonCardAnimation = AnimationAndDelays.instance.summonCardAnimation;
         drawingCardAnimation = AnimationAndDelays.instance.drawingCardAnimation;
     }
 
@@ -159,7 +157,7 @@ public class PlayerHand : MonoBehaviour
 
             handList.Add(newCardEntity);
 
-            yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, 0.5f, fiddle));
+            yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
         }
     }
 
@@ -191,8 +189,8 @@ public class PlayerHand : MonoBehaviour
                 if (boardRegulator.TrySummonCardToPlayerBoard(card, isPlayer))
                 {
                     card.OnCardPlayed();
-                    removeCardsList.Add(card);       
-                    
+                    removeCardsList.Add(card);
+
                 }
             }
         }
@@ -234,6 +232,43 @@ public class PlayerHand : MonoBehaviour
 
             return card;
         }
+    }
+    public IEnumerator AddDefiniteCardToHand(CardScriptableObject transferedCard)
+    {
+        GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+        CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
+        CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+                                                                             //newCardEntity = newController;
+        var fiddle = Instantiate(cardFiddle, gameObject.transform);
+        yield return new WaitForEndOfFrame();
+        newCardEntity.InitializeCard(transferedCard, !isPlayer);
+        newCardEntity.cardData.CardCost = 0; //reduce cost to 0 to summon later
+        handList.Add(newCardEntity);
+
+        yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
+    }
+
+    public IEnumerator DrawAndSummonPartners()
+    {
+        if (isPlayer)
+        {
+            var partners = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
+            foreach (CardScriptableObject cardSO in partners)
+            {
+                yield return AddDefiniteCardToHand(cardSO);
+                PlayerBattleDeck.BattleDeck.Remove(cardSO);
+            }
+        }
+        else
+        {
+            var partners = PlayerBattleDeck.EnemyBattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
+            foreach (CardScriptableObject cardSO in partners)
+            {
+                yield return AddDefiniteCardToHand(cardSO);
+                PlayerBattleDeck.EnemyBattleDeck.Remove(cardSO);
+            }
+        }
+        yield return SummonPhase();
     }
 
     private void RemoveCardFromHand()

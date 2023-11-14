@@ -1574,6 +1574,8 @@ MonoBehaviour:
   creaturesList:
   - {fileID: 11400000, guid: eefa7c12e1a2ad14ab3c48bde4658cd6, type: 2}
   - {fileID: 11400000, guid: 2f230b27095f18b4e9142a97195d9433, type: 2}
+  - {fileID: 11400000, guid: e4b54ce48ff2dbe40b4b1423f8fb3ccc, type: 2}
+  - {fileID: 11400000, guid: d8522effd6b243147bb0711566598f9d, type: 2}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0
