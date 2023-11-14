@@ -43,6 +43,7 @@ public class VictoryScreen : MonoBehaviour
             textNewPoints.color = colorLoseTextNewPoints;
         }
         Invoke("ShowPoints", delayShowNewPoints);
+        StartCoroutine(GetPoints(result));
     }
     public void ShowPoints()
     {
@@ -55,7 +56,6 @@ public class VictoryScreen : MonoBehaviour
         LeanTween.value(gameObject, UpdateValueExampleCallback,fadeoutcolor, baseColor, timeMoveTextNewPoints);
         LeanTween.move(textNewPoints.gameObject, basePosition, timeMoveTextNewPoints);
 
-        StartCoroutine(GetPoints(result));
     }
 
     private  void UpdateValueExampleCallback(Color val)
@@ -64,7 +64,7 @@ public class VictoryScreen : MonoBehaviour
     }
     public IEnumerator GetPoints(bool isVictory)
     {
-        yield return  new WaitForSecondsRealtime(timeMoveTextNewPoints + 0.2f);
+        yield return  new WaitForSecondsRealtime(timeMoveTextNewPoints + delayShowNewPoints + 0.2f);
         int currentPointsRank = PlayerStats.RankPoints;
         int sumPoints;
         if (isVictory)

@@ -12,8 +12,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Image rankIcon;
     public void OnEnable()
     {
-        Debug.Log(PlayerStats.rank);
-        Debug.Log(SystemRank.SpritesRank[PlayerStats.rank]);
         rankPoints.text = PlayerStats.RankPoints.ToString();
         rankIcon.sprite = SystemRank.SpritesRank[PlayerStats.rank];
     }
