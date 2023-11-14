@@ -8,7 +8,15 @@ public class VictoryScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endText;
 
     [SerializeField] private TMP_Text textNewPoints;
+    [SerializeField] private Color colorText;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        //gameObject.SetActive(false);
+        //endText.color = colorText;
+    }
+
     /// <summary>
     /// В зависимости от победы или поражения меняем текст и показываем его
     /// </summary>

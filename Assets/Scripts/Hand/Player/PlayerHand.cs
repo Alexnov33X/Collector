@@ -73,6 +73,7 @@ public class PlayerHand : MonoBehaviour
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         drawingCardAnimation = AnimationAndDelays.instance.drawingCardAnimation;
+        //DrawInnateCards();
     }
 
     #region Methods to get or set info to handList
@@ -105,7 +106,7 @@ public class PlayerHand : MonoBehaviour
         yield return new WaitForSeconds(cardReceiveDelay);
         yield return StartCoroutine(DrawCardPhase(1));
         yield return new WaitForSeconds(delayBeforeSummon);
-        yield return SummonPhase();
+        yield return SummonPhase(); //problem here
         //yield return new WaitForSeconds(summonCardAnimation);
         yield return boardRegulator.OrderAttackToCells(isPlayer);
         yield return boardRegulator.TurnEnd(isPlayer);
@@ -274,6 +275,28 @@ public class PlayerHand : MonoBehaviour
             }
         }
         yield return SummonPhase();
+    }
+
+    private void DrawInnateCards()
+    {
+        if (isPlayer)
+        {
+            var innateCards = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.InnateCard));
+            foreach (var card in innateCards)
+            {
+                StartCoroutine(AddDefiniteCardToHand(card, false));
+                PlayerBattleDeck.BattleDeck.Remove(card);
+            }
+        }
+        else
+        {
+            var innateCards = PlayerBattleDeck.EnemyBattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.InnateCard));
+            foreach (var card in innateCards)
+            {
+                StartCoroutine(AddDefiniteCardToHand(card, false));
+                PlayerBattleDeck.BattleDeck.Remove(card);
+            }
+        }
     }
 
     private void RemoveCardFromHand()
