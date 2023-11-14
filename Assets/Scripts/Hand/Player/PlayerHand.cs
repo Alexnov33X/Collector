@@ -233,7 +233,7 @@ public class PlayerHand : MonoBehaviour
             return card;
         }
     }
-    public IEnumerator AddDefiniteCardToHand(CardScriptableObject transferedCard)
+    public IEnumerator AddDefiniteCardToHand(CardScriptableObject transferedCard, bool instantSummon)
     {
         GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
         CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
@@ -242,10 +242,15 @@ public class PlayerHand : MonoBehaviour
         var fiddle = Instantiate(cardFiddle, gameObject.transform);
         yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
-        newCardEntity.cardData.CardCost = 0; //reduce cost to 0 to summon later
+
         handList.Add(newCardEntity);
 
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
+        if (instantSummon)
+        {
+            newCardEntity.cardData.CardCost = 0; //reduce cost to 0 to summon later
+            yield return SummonPhase();
+        }
     }
 
     public IEnumerator DrawAndSummonPartners()
@@ -255,7 +260,7 @@ public class PlayerHand : MonoBehaviour
             var partners = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
             foreach (CardScriptableObject cardSO in partners)
             {
-                yield return AddDefiniteCardToHand(cardSO);
+                yield return AddDefiniteCardToHand(cardSO, true);
                 PlayerBattleDeck.BattleDeck.Remove(cardSO);
             }
         }
@@ -264,7 +269,7 @@ public class PlayerHand : MonoBehaviour
             var partners = PlayerBattleDeck.EnemyBattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
             foreach (CardScriptableObject cardSO in partners)
             {
-                yield return AddDefiniteCardToHand(cardSO);
+                yield return AddDefiniteCardToHand(cardSO, true);
                 PlayerBattleDeck.EnemyBattleDeck.Remove(cardSO);
             }
         }

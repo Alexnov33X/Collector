@@ -156,7 +156,10 @@ public class CardData
                 var a = receiver.AddComponent<SpawnerController>();
                 a.InitiateController(creaturesToSpawn, false);
                 break;
-            case "SpawnerMob":
+            case "SkeletonSpawner":
+                creaturesToSpawn.Add("Skeleton");
+                var b = receiver.AddComponent<SpawnerController>();
+                b.InitiateController(creaturesToSpawn, false);
                 break;
             default:
                 receiver.AddComponent<CardEntity>();

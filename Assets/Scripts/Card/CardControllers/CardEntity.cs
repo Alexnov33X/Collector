@@ -25,7 +25,7 @@ public class CardEntity : MonoBehaviour
     [SerializeField] private GameObject boardLayer;
     protected bool firstStrike = true; //true if creature did not attack
     public bool isEnemyEntity = false; // TO DO, make creature understand which side it's on
-    private Vector2Int boardPosition = new Vector2Int();
+    //private Vector2Int boardPosition = new Vector2Int();
     public BoardCell cellHost;
     public Dictionary<CardAbility, int> abilitiesAndStatus = new Dictionary<CardAbility, int>();
 
@@ -424,7 +424,6 @@ public class CardEntity : MonoBehaviour
                         int random = Random.Range(0, livingCreatures.Count);
                         if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
                         {
-                            //var temp = livingCreatures[random];                       
                             livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
                             livingCreatures.RemoveAt(random);
                         }
@@ -436,6 +435,46 @@ public class CardEntity : MonoBehaviour
             }
             RemoveAbility(CardAbility.ShootForEachAlly);
         }
+
+        if (cardData.abilityAndStatus.ContainsKey(CardAbility.KillAndStealStats))
+        {
+            if (isEnemyEntity)
+            {
+                var side = gameBoardRegulator.playerSide;
+                List<CardEntity> livingCreatures = new List<CardEntity>();
+                foreach (BoardCell cell in side)
+                    if (cell.isOccupied)
+                        livingCreatures.Add(cell.occupant);
+                if (livingCreatures.Count > 0)
+                {
+                    int random = Random.Range(0, livingCreatures.Count);
+                    cardData.Health += livingCreatures[random].cardData.Health; //take stats
+                    cardData.Attack += livingCreatures[random].cardData.Attack;
+                    livingCreatures[random].cellHost.DestroyCardinCell(); //kill the creature
+                }
+
+            }
+            else
+            {
+                var side = gameBoardRegulator.enemySide;
+                List<CardEntity> livingCreatures = new List<CardEntity>();
+                foreach (BoardCell cell in side)
+                    if (cell.isOccupied)
+                        livingCreatures.Add(cell.occupant);
+
+                if (livingCreatures.Count > 0)
+                {
+                    int random = Random.Range(0, livingCreatures.Count);
+                    cardData.Health += livingCreatures[random].cardData.Health;
+                    cardData.Attack += livingCreatures[random].cardData.Attack;
+                    livingCreatures[random].cellHost.DestroyCardinCell();
+                }
+
+            }
+            RemoveAbility(CardAbility.KillAndStealStats);
+        }
+        CallPartner();
+
 
     }
 

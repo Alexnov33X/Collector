@@ -55,6 +55,8 @@ public static class Enums
         PartnerSummon,      //summon card when another card spawns
         Shoot,              //Shoots a random enemy
         ShootForEachAlly,
+        KillAndStealStats,
+
 
     }
 
