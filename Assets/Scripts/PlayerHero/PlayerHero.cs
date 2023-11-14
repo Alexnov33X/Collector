@@ -8,7 +8,7 @@ public class PlayerHero : MonoBehaviour
     [SerializeField] private PlayerDamageTaken damageTaken;
 
     [SerializeField] private int health = 20;
-    [SerializeField] private bool mainPlayer = false; //это герой игрока, буль решит это
+    [SerializeField] private bool mainPlayer = false; //СЌС‚Рѕ РіРµСЂРѕР№ РёРіСЂРѕРєР°, Р±СѓР»СЊ СЂРµС€РёС‚ СЌС‚Рѕ
     public int Health { get => health; set => health = value; }
     public bool MainPlayer { get => mainPlayer; set => mainPlayer = value; }
 
@@ -18,8 +18,8 @@ public class PlayerHero : MonoBehaviour
     }
 
     /// <summary>
-    /// Получения урона героем
-    /// Если хп становится <=0 то заканчиваем игру
+    /// РџРѕР»СѓС‡РµРЅРёСЏ СѓСЂРѕРЅР° РіРµСЂРѕРµРј
+    /// Р•СЃР»Рё С…Рї СЃС‚Р°РЅРѕРІРёС‚СЃСЏ <=0 С‚Рѕ Р·Р°РєР°РЅС‡РёРІР°РµРј РёРіСЂСѓ
     /// </summary>
     public void OnHit(int damage)
     {

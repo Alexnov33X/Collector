@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SystemRank.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" root0="FORCE_HIGHLIGHTING" />
@@ -26,11 +27,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Deck/Player/ForBattle/PlayerBattleDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData/PlayerStats.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SystemRank.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/VictoryScreen.cs" />
       </list>
     </option>
   </component>
@@ -78,7 +83,8 @@
       <workItem from="1699532997186" duration="18805000" />
       <workItem from="1699563869526" duration="5350000" />
       <workItem from="1699603025665" duration="13027000" />
-      <workItem from="1699896095744" duration="10486000" />
+      <workItem from="1699896095744" duration="11095000" />
+      <workItem from="1699955885727" duration="11638000" />
     </task>
     <servers />
   </component>

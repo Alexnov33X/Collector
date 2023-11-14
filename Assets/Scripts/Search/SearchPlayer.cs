@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,7 +18,6 @@ public class SearchPlayer : MonoBehaviour
     public float speed = 1f;
      
     public FindingOpponent findingOpponent;
-    public Window cancelWindow;
 
     public void Start()
     {
@@ -48,10 +48,8 @@ public class SearchPlayer : MonoBehaviour
         tmpTimer = timer;
         findingOpponent.Activate();
     }
-    public void Cancel()
+    public void OnDisable()
     {
         tmpTimer = timer;
-        Window currentWindow = GetComponent<Window>();
-        StartCoroutine(currentWindow.Activate(cancelWindow));
     }
 }

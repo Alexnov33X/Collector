@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public static class PlayerStats
 {
+    public static int rank;
     /// <summary>
     /// Получаем инфо с сервера
     /// </summary>

@@ -383,10 +383,15 @@ public class CardEntity : MonoBehaviour
                         livingCreatures.Add(cell.occupant);
                 for (int i = 0; i < amountOfShots;i++)
                 {
-                    int random = Random.Range(0, livingCreatures.Count);
-                    if ((livingCreatures[random].cardData.Health - cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                    if (livingCreatures.Count > 0)
                     {
-                        livingCreatures[random].OnHit
+                        int random = Random.Range(0, livingCreatures.Count);
+                        if ((livingCreatures[random].cardData.Health -
+                             cardData.abilityAndStatus[CardAbility.ShootForEachAlly]) <= 0)
+                        {
+                            livingCreatures[random].OnHit(cardData.abilityAndStatus[CardAbility.ShootForEachAlly]);
+                            livingCreatures.RemoveAt(random);
+                        }
                     }
                 }
 

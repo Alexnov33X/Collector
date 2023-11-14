@@ -13,10 +13,10 @@ public class Loader : MonoBehaviour
     public Window nextWindow;
     public void Start()
     {
-        StartCoroutine(LoadWindow(nextWindow));
+        StartCoroutine(LoadWindow());
     }
     
-   public  IEnumerator LoadWindow(Window loadedWindow)
+   public  IEnumerator LoadWindow()
     {
         float random1 = Random.Range(1, 50);
         float random2 = Random.Range(51, 95);
@@ -36,6 +36,6 @@ public class Loader : MonoBehaviour
             yield return  new WaitForSecondsRealtime(timer / 100);
         }
         Window currentWindow = GetComponent<Window>();
-        StartCoroutine(currentWindow.Activate(loadedWindow));
+        currentWindow.OpenNextWindowAndCloseOldWindow(nextWindow);
     }
 }

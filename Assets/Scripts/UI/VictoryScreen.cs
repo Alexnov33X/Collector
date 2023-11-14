@@ -6,24 +6,25 @@ using UnityEngine;
 public class VictoryScreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI endText;
+
+    [SerializeField] private TMP_Text textNewPoints;
     // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.SetActive(false); //прячем объект в начале игры
-    }
     /// <summary>
-    /// В зависимости от победы или поражения меняем текст и показываем его
+    /// Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РїРѕР±РµРґС‹ РёР»Рё РїРѕСЂР°Р¶РµРЅРёСЏ РјРµРЅСЏРµРј С‚РµРєСЃС‚ Рё РїРѕРєР°Р·С‹РІР°РµРј РµРіРѕ
     /// </summary>
     public void EndGame(bool victory)
     {
-        if (!victory)
-            gameObject.SetActive(true);
+        Window currentWindow = GetComponent<Window>();
+        gameObject.SetActive(true);
+        currentWindow.OpenNextWindow(currentWindow);
+        if(victory)
+        {
+            endText.text = "VICTORY!";
+            textNewPoints.text = "+" + SystemRank.victoryPoints;
+        }
         else
         {
-            endText.text = "You lost!";
-            endText.color = Color.red;
-            gameObject.SetActive(true);
+            endText.text = "DEFEAT";
         }
     }
-
 }

@@ -11,6 +11,7 @@
       <e p="Assets" t="Include">
         <e p="Animations" t="Include" />
         <e p="Fonts" t="Include">
+          <e p="Formular" t="Include" />
           <e p="MainMenu" t="Include" />
           <e p="OFL.txt" t="Include" />
         </e>
@@ -256,6 +257,7 @@
           </e>
           <e p="SelectDeckTutor.cs" t="Include" />
           <e p="SO" t="Include" />
+          <e p="SystemRank.cs" t="Include" />
           <e p="TemporaryServer" t="Include">
             <e p="DeckOnServer.cs" t="Include" />
             <e p="ServerSurrogate.cs" t="Include" />
@@ -301,6 +303,7 @@
           <e p="TempSprites" t="Include">
             <e p="Conflicting stuff" t="Include" />
           </e>
+          <e p="Vicrory" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Documentation" t="Include" />
