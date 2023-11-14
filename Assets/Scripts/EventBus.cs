@@ -30,14 +30,6 @@ public static class EventBus
     /// </summary>
     public static Action OnTurnEnded;
 
-    /// <summary>
-    /// При победе
-    /// </summary>
-    public static Action OnGameVictory;
-
-    /// <summary>
-    /// При поражении
-    /// </summary>
-    public static Action OnGameLoss;
+    public static Action<bool> OnGameOver;
 
 }

@@ -24,17 +24,15 @@ public class PlayerHero : MonoBehaviour
     public void OnHit(int damage)
     {
         Health -= damage;
-        damageTaken.takeDamage("-"+damage.ToString());
+        damageTaken.takeDamage("-" + damage.ToString());
         if (Health <= 0)
         {
             Health = 0;
             heroDisplay.updateInformation(Health.ToString());
-            if (MainPlayer)
-                EventBus.OnGameVictory?.Invoke();
-            else
-                EventBus.OnGameLoss?.Invoke();
+            EventBus.OnGameOver?.Invoke(mainPlayer);
         }
-        heroDisplay.updateInformation(Health.ToString());
+        else
+            heroDisplay.updateInformation(Health.ToString());
     }
 
 }
