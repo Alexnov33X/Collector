@@ -53,7 +53,8 @@ public class CardOnHandDisplay : MonoBehaviour
         isInfoVisible = false;
 
         button.onClick.AddListener(ChangeInfoBlockVisibility);
-        animationDelay = AnimationAndDelays.instance.cardCostChangeAnimation;
+        if (AnimationAndDelays.instance != null)
+            animationDelay = AnimationAndDelays.instance.cardCostChangeAnimation;
     }
 
     private void InitializeCardView(bool enemyside)
