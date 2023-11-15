@@ -126,11 +126,11 @@ public class CardEntity : MonoBehaviour
                         ApplyIgnite(gameBoardRegulator, 0, column, false); //attack main target
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
                         yield return new WaitForSeconds(attackDelay);
-                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(cardData.Attack);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay)); //attack second target
                         yield return new WaitForSeconds(attackDelay);
-                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(cardData.Attack);
                     }
 
                     else if (cardData.abilities.Contains(CardAbility.DefaultHorizontalLinearAttack)) //HORIZONTAL addtional attack
@@ -144,7 +144,7 @@ public class CardEntity : MonoBehaviour
                                     ApplyIgnite(gameBoardRegulator, 0, i, false); //ignite only main target
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[i].occupant.gameObject.transform.localPosition, attackDelay));
                                 yield return new WaitForSeconds(attackDelay);
-                                gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                                gameBoardRegulator.enemyFirstLine[i].occupant.OnHit(cardData.Attack);
                             }
                         }
                     }
@@ -153,7 +153,7 @@ public class CardEntity : MonoBehaviour
                     {
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
                         ApplyIgnite(gameBoardRegulator, 0, column, false);
-                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(cardData.Attack);
                     }
 
                     firstStrike = false; //If we damage creature, then first strike should proc. It should not proc on enemyHero
@@ -169,11 +169,11 @@ public class CardEntity : MonoBehaviour
                         ApplyIgnite(gameBoardRegulator, 1, column, false);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition, attackDelay));
-                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
-                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.enemyFirstLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
                     }
 
@@ -187,7 +187,7 @@ public class CardEntity : MonoBehaviour
                                 if (i == column)
                                     ApplyIgnite(gameBoardRegulator, 1, i, false);
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[i].occupant.gameObject.transform.localPosition, attackDelay));
-                                gameBoardRegulator.enemySecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                                gameBoardRegulator.enemySecondLine[i].occupant.OnHit(cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
                             }
                         }
@@ -196,7 +196,7 @@ public class CardEntity : MonoBehaviour
                     {
                         ApplyIgnite(gameBoardRegulator, 1, column, false);
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemySecondLine[column].occupant.gameObject.transform.localPosition - new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.enemySecondLine[column].occupant.OnHit(cardData.Attack);
                     }
 
                     firstStrike = false;
@@ -219,11 +219,11 @@ public class CardEntity : MonoBehaviour
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
                     }
 
@@ -238,7 +238,7 @@ public class CardEntity : MonoBehaviour
                                     ApplyIgnite(gameBoardRegulator, 0, i, true);
 
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[i].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                                gameBoardRegulator.playerFirstLine[i].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                                gameBoardRegulator.playerFirstLine[i].occupant.OnHit(cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
                             }
                         }
@@ -247,7 +247,7 @@ public class CardEntity : MonoBehaviour
                     {
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(cardData.Attack);
                     }
 
                     firstStrike = false;
@@ -264,11 +264,11 @@ public class CardEntity : MonoBehaviour
                         ApplyIgnite(gameBoardRegulator, 0, column, true);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
 
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerFirstLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(!isPlayer, 0, column, cardData.Attack);
+                        gameBoardRegulator.playerFirstLine[column].occupant.OnHit(cardData.Attack);
                         yield return new WaitForSeconds(attackDelay);
                     }
 
@@ -282,7 +282,7 @@ public class CardEntity : MonoBehaviour
                                 ApplyIgnite(gameBoardRegulator, 1, i, true);
 
                                 yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[i].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                                gameBoardRegulator.playerSecondLine[i].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                                gameBoardRegulator.playerSecondLine[i].occupant.OnHit(cardData.Attack);
                                 yield return new WaitForSeconds(attackDelay);
                             }
                         }
@@ -291,7 +291,7 @@ public class CardEntity : MonoBehaviour
                     {
                         ApplyIgnite(gameBoardRegulator, 1, column, true);
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.playerSecondLine[column].occupant.gameObject.transform.localPosition + new Vector3(0, Y, 0), attackDelay));
-                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(!isPlayer, 1, column, cardData.Attack);
+                        gameBoardRegulator.playerSecondLine[column].occupant.OnHit(cardData.Attack);
                     }
 
                     firstStrike = false;
