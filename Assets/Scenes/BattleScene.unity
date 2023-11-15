@@ -6162,7 +6162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1983246349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6196,8 +6196,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endText: {fileID: 5410192}
+  rankPointsPlayer: {fileID: 0}
+  speedGetPoints: 0
+  iconRank: {fileID: 0}
   textNewPoints: {fileID: 0}
-  colorText: {r: 0, g: 0, b: 0, a: 0}
+  timeMoveTextNewPoints: 0
+  delayShowNewPoints: 0
+  offsetTextNewPoints: {x: 0, y: 0, z: 0}
+  colorLoseTextNewPoints: {r: 0, g: 0, b: 0, a: 0}
+  colorVictoryTextNewPoints: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2003232563
 GameObject:
   m_ObjectHideFlags: 0
