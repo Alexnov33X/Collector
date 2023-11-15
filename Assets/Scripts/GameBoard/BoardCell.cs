@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.UI;
 using UnityEngine;
 
@@ -62,10 +63,18 @@ public class BoardCell : MonoBehaviour
         else
             FindObjectOfType<GameBoardRegulator>().PlayerUnitsCount--;
 
-        Destroy(occupant.gameObject);
+        StartCoroutine(DeathAnimation(occupant.gameObject));
         occupant = null;
         isOccupied = false;
-        
+
+    }
+
+    private IEnumerator DeathAnimation(GameObject creature)
+    {
+        //LeanTween.shake()
+        LeanTween.scale(occupant.gameObject, new Vector3(0.5f, 0.5f, 0.5f), AnimationAndDelays.instance.deathAnimation).setEaseShake();
+        yield return new WaitForSeconds(AnimationAndDelays.instance.deathAnimation);
+        Destroy(creature);
     }
 
 }
