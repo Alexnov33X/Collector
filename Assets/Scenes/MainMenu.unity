@@ -1426,6 +1426,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1601525261}
   - {fileID: 300475913}
   - {fileID: 512562541}
   - {fileID: 14077226}
@@ -1442,7 +1443,6 @@ RectTransform:
   - {fileID: 1914363223}
   - {fileID: 1505977319}
   - {fileID: 768908866}
-  - {fileID: 1601525261}
   m_Father: {fileID: 1486933811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6215,8 +6215,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2392442057419933333, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2392442057419933333, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.800064
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223306574006262889, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -36.300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741946999836842281, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.4007988
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741946999836842281, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.6075993
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098502874956431877, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.300003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2267520259465119545, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03ccbec309b4a144fbc857cf55b2903f, type: 3}
