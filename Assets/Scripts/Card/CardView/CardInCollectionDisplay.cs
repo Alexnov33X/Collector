@@ -32,8 +32,7 @@ public class CardInCollectionDisplay : MonoBehaviour
     [SerializeField] private Button button;
 
     [Header("Card Info")]
-    [SerializeField] private CardScriptableObject cardSO;
-    private float animationDelay = 0.25f;
+    [SerializeField] public CardScriptableObject cardSO;
 
     private bool isInfoVisible;
 
@@ -78,5 +77,7 @@ public class CardInCollectionDisplay : MonoBehaviour
         //button.onClick.AddListener(ChangeInfoBlockVisibility);
 
     }
+    
+    
 
 }
