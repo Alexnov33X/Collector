@@ -7,14 +7,18 @@ using UnityEngine.UI;
 public class SelectDeckTutor : MonoBehaviour
 {
     public List<CardScriptableObject> deck1, deck2;
+    [SerializeField] private DeckOnServer playerDecksServer;
     
     public void GetDeck1()
     {
-        PlayerBattleDeck.BattleDeck.AddRange(deck1);
+
+        playerDecksServer.currentDeck = deck1;
+        playerDecksServer.enemyCurrentDeck = deck2;
     }
     public void GetDeck2()
     {
-        PlayerBattleDeck.BattleDeck.AddRange(deck2);
+        playerDecksServer.currentDeck = deck2;
+        playerDecksServer.enemyCurrentDeck = deck1;
     }
     
 }

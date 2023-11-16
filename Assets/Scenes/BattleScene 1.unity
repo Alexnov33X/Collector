@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &44684974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fbe4cbf0b64c94940b721e3bbeeac081, type: 2}
   - {fileID: 11400000, guid: 53aff8d586242af489204622c8e4016c, type: 2}
   - {fileID: 11400000, guid: c844865df42848a45841e3500be8ea41, type: 2}
+  playerDecksServer: {fileID: 11400000, guid: 534eb4cd2f40b6041aaede699af572a9, type: 2}
 --- !u!114 &44684976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6095,7 +6096,7 @@ MonoBehaviour:
   m_text: Pirates
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38c700135056ae34eaf49302e6f7db5f, type: 2}
-  m_sharedMaterial: {fileID: 613808479922890464, guid: 28319caca2795c74dba2638ee4a43423, type: 2}
+  m_sharedMaterial: {fileID: -9201300608773435501, guid: 38c700135056ae34eaf49302e6f7db5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6158,7 +6159,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 101.14151, z: 0, w: 61.29785}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1262153744
@@ -6967,7 +6968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1541401250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7756,7 +7757,7 @@ MonoBehaviour:
   m_text: Dragons
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38c700135056ae34eaf49302e6f7db5f, type: 2}
-  m_sharedMaterial: {fileID: 613808479922890464, guid: 28319caca2795c74dba2638ee4a43423, type: 2}
+  m_sharedMaterial: {fileID: -9201300608773435501, guid: 38c700135056ae34eaf49302e6f7db5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7819,7 +7820,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 135.05841, z: 0, w: 93.391525}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1664589825
