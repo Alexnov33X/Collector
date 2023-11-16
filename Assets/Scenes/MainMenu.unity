@@ -1114,13 +1114,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351178935}
+  - component: {fileID: 351178936}
   m_Layer: 5
   m_Name: Decks_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &351178935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1138,11 +1139,24 @@ RectTransform:
   - {fileID: 690824441}
   m_Father: {fileID: 1144709934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -1085}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &351178936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351178934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178538ff173cfc24a88a7be0c055001e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherWindow: {fileID: 855015116}
 --- !u!1 &362400778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,7 +2255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &855015117
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2257,9 +2271,9 @@ RectTransform:
   - {fileID: 957835994}
   m_Father: {fileID: 1144709934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 540, y: -325}
   m_SizeDelta: {x: 1100, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855015118
@@ -2274,7 +2288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b9df132f6d02b41a3d22a535ae211a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridCardCollection: {fileID: 396177598}
+  cardCollection: {fileID: 396177603}
   gridDeck: {fileID: 2125284429}
   collectionCardPrefab: {fileID: 1655264287443387262, guid: b3e2e815a1c7257448bb10148a011ff4, type: 3}
 --- !u!1 &879843029
@@ -3549,6 +3563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1144709934}
   - component: {fileID: 1144709935}
+  - component: {fileID: 1144709936}
   m_Layer: 5
   m_Name: Collection
   m_TagString: Untagged
@@ -3604,6 +3619,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1144709936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144709933}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b9df132f6d02b41a3d22a535ae211a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardCollection: {fileID: 396177603}
+  gridDeck: {fileID: 2125284429}
+  collectionCardPrefab: {fileID: 1655264287443387262, guid: b3e2e815a1c7257448bb10148a011ff4, type: 3}
 --- !u!1 &1159030400
 GameObject:
   m_ObjectHideFlags: 0
@@ -3979,7 +4009,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -755, y: -85.100006}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1304887465
 MonoBehaviour:
@@ -5369,9 +5399,9 @@ RectTransform:
   - {fileID: 290919577}
   m_Father: {fileID: 1304887464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 162.5, y: -142.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 235, y: 185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988201171
@@ -5417,7 +5447,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 290919578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 351178936}
+        m_TargetAssemblyTypeName: DeckWindowSwitcher, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1988201172
 MonoBehaviour:
   m_ObjectHideFlags: 0

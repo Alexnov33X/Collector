@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DeckBuilder : MonoBehaviour
 {
-    public GameObject gridCardCollection;
+    public CollectionViewer cardCollection;
     public GameObject gridDeck;
     [SerializeField] static int deckLimit = 24;
     [SerializeField] GameObject collectionCardPrefab;
@@ -90,5 +90,6 @@ public class DeckBuilder : MonoBehaviour
             deckOfCollectionCards.Add(card);
 
         }
+        cardCollection.UpdateAccess();
     }
 }

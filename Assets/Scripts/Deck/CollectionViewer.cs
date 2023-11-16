@@ -23,10 +23,19 @@ public class CollectionViewer : MonoBehaviour
             GameObject emptyCard = Instantiate(collectionCardPrefab, transform);
             var display = emptyCard.GetComponent<CardInCollectionDisplay>();
             display.InitCard(card);
-            if (DeckBuilder.instance.IsCardInDeck(card))
-                display.switchAccess(true);
-            
+            //if (DeckBuilder.instance.IsCardInDeck(card))
+            //    display.switchAccess(true);
+
             cards.Add(display);
+        }
+    }
+
+    public void UpdateAccess()
+    {
+        foreach (var card in cards)
+        {
+            if (DeckBuilder.instance.IsCardInDeck(card.cardSO))
+                card.switchAccess(true);
         }
     }
 
