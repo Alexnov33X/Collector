@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462947749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e967cec382a4dc4a8f92fb6f7a4b170, type: 3}
   m_Name: 
@@ -5794,6 +5794,7 @@ MonoBehaviour:
   summonCardAnimation: 0.5
   delayBetweenTurns: 0
   drawingCardAnimation: 1
+  deathAnimation: 0.2
   heroDamageTakenAnimation: 1
 --- !u!1 &1242267008
 GameObject:
