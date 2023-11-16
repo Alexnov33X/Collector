@@ -10,7 +10,7 @@ public class Loader : MonoBehaviour
     public Image progressBar;
     public TMP_Text textProgress;
 
-    public Window nextWindow;
+  //  public Window nextWindow;
     public void Start()
     {
         StartCoroutine(LoadWindow());
@@ -35,7 +35,7 @@ public class Loader : MonoBehaviour
             }
             yield return  new WaitForSecondsRealtime(timer / 100);
         }
-        Window currentWindow = GetComponent<Window>();
-        currentWindow.OpenNextWindowAndCloseOldWindow(nextWindow);
+        Window window = GetComponent<Window>();
+        window.OpenNextWindowAndCloseOldWindow(window.nextWindow);
     }
 }

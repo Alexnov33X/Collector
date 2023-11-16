@@ -7,9 +7,10 @@ public class Window : MonoBehaviour
 
     public List<GameObject> objects;
     public float timeOpen, timeClose, delayBetweenObject;
-    public LeanTweenType easingOpenFunction, easingClosedFunction;
-    public bool isOrderObjects;
-    public IEnumerator Activate(Window window, bool isCloseOldWindow)
+    [SerializeField] private LeanTweenType easingOpenFunction, easingClosedFunction;
+    [SerializeField] private bool isOrderObjects;
+    public Window nextWindow;
+    private IEnumerator Activate(Window window, bool isCloseOldWindow)
     {
         if (isCloseOldWindow)
         {

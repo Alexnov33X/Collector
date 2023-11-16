@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,26 @@ public class FindingOpponent : MonoBehaviour
     private TMP_Text text;
     public float timeMove;
     public float timeGetColor;
+    [SerializeField] private GameObject battleWindow;
     
-    public void Activate()
+    void UpdateValueExampleCallback(Color val)
+    {
+        text.color = val;
+    }
+
+    private void OpenTimerBeforeBattle()
+    {
+        Window window = GetComponent<Window>();
+        window.OpenNextWindowAndCloseOldWindow(window.nextWindow);
+        battleWindow.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+       AnimationScreen();
+    }
+
+    private void AnimationScreen()
     {
         gameObject.SetActive(true);
         for(int i = 0; i < contentOpponentFound.transform.childCount; i++)
@@ -40,9 +59,9 @@ public class FindingOpponent : MonoBehaviour
             }
             LeanTween.move(currentChild, basePosition, timeMove).setEase(LeanTweenType.easeOutQuint);
         }
-    }
-    void UpdateValueExampleCallback(Color val)
-    {
-        text.color = val;
+
+        Invoke("OpenTimerBeforeBattle", 1.5f);  
     }
 }
+
+

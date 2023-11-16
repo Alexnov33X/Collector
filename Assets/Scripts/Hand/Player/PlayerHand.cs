@@ -6,52 +6,52 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 
 /// <summary>
-/// Сущность. Хранит в себе данные о картах в руке игрока. Может обрабатывать эту инфу.
-/// Переносит карту из деки в руку и из руки на доску
+/// РЎСѓС‰РЅРѕСЃС‚СЊ. РҐСЂР°РЅРёС‚ РІ СЃРµР±Рµ РґР°РЅРЅС‹Рµ Рѕ РєР°СЂС‚Р°С… РІ СЂСѓРєРµ РёРіСЂРѕРєР°. РњРѕР¶РµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ СЌС‚Сѓ РёРЅС„Сѓ.
+/// РџРµСЂРµРЅРѕСЃРёС‚ РєР°СЂС‚Сѓ РёР· РґРµРєРё РІ СЂСѓРєСѓ Рё РёР· СЂСѓРєРё РЅР° РґРѕСЃРєСѓ
 /// </summary>
 public class PlayerHand : MonoBehaviour
 {
     #region Constants
 
     /// <summary>
-    /// Максимальная вместимость руки
+    /// РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ СЂСѓРєРё
     /// </summary>
     private const int HandCapacity = 6;
 
     #endregion
 
     /// <summary>
-    /// Префаб карты
+    /// РџСЂРµС„Р°Р± РєР°СЂС‚С‹
     /// </summary>
     public GameObject CardPrefab;
 
     /// <summary>
-    /// Управляющая станция доски
+    /// РЈРїСЂР°РІР»СЏСЋС‰Р°СЏ СЃС‚Р°РЅС†РёСЏ РґРѕСЃРєРё
     /// </summary>
     public GameBoardRegulator boardRegulator;
 
     /// <summary>
-    /// Точка призыва
+    /// РўРѕС‡РєР° РїСЂРёР·С‹РІР°
     /// </summary>
     public Transform SummonPoint;
 
     /// <summary>
-    /// Точка взятия карты
+    /// РўРѕС‡РєР° РІР·СЏС‚РёСЏ РєР°СЂС‚С‹
     /// </summary>
     public Transform DeckLocation;
 
     /// <summary>
-    /// Список, представляющий собой руку, хранит карты(их компонент CardEntity)
+    /// РЎРїРёСЃРѕРє, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ СЃРѕР±РѕР№ СЂСѓРєСѓ, С…СЂР°РЅРёС‚ РєР°СЂС‚С‹(РёС… РєРѕРјРїРѕРЅРµРЅС‚ CardEntity)
     /// </summary>
     public List<CardEntity> handList;
 
     /// <summary>
-    /// Лист который будет записывать в себя карты, которые нужно будет убрать из руки
+    /// Р›РёСЃС‚ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ Р·Р°РїРёСЃС‹РІР°С‚СЊ РІ СЃРµР±СЏ РєР°СЂС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ Р±СѓРґРµС‚ СѓР±СЂР°С‚СЊ РёР· СЂСѓРєРё
     /// </summary>
     private List<CardEntity> removeCardsList;
     private float cardReceiveDelay = 1;
 
-    public bool isPlayer; //if true - значит это рука игрока, иначе это рука оппонента
+    public bool isPlayer; //if true - Р·РЅР°С‡РёС‚ СЌС‚Рѕ СЂСѓРєР° РёРіСЂРѕРєР°, РёРЅР°С‡Рµ СЌС‚Рѕ СЂСѓРєР° РѕРїРїРѕРЅРµРЅС‚Р°
     private float delayBeforeSummon = 1;
     private float drawingCardAnimation = 1f;
 
@@ -69,7 +69,7 @@ public class PlayerHand : MonoBehaviour
     {
         handList = new List<CardEntity>(HandCapacity);
         removeCardsList = new List<CardEntity>();
-        //берём параметрs из хранилища
+        //Р±РµСЂС‘Рј РїР°СЂР°РјРµС‚СЂs РёР· С…СЂР°РЅРёР»РёС‰Р°
         cardReceiveDelay = AnimationAndDelays.instance.cardReceiveDelay;
         delayBeforeSummon = AnimationAndDelays.instance.delayBeforeSummon;
         drawingCardAnimation = AnimationAndDelays.instance.drawingCardAnimation;
@@ -89,10 +89,10 @@ public class PlayerHand : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Выполняет фазы хода за которые ответственна рука:
-    /// - Фаза снижения стоимости
-    /// - Фаза выдачи карты
-    /// - Фаза призыва
+    /// Р’С‹РїРѕР»РЅСЏРµС‚ С„Р°Р·С‹ С…РѕРґР° Р·Р° РєРѕС‚РѕСЂС‹Рµ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅР° СЂСѓРєР°:
+    /// - Р¤Р°Р·Р° СЃРЅРёР¶РµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё
+    /// - Р¤Р°Р·Р° РІС‹РґР°С‡Рё РєР°СЂС‚С‹
+    /// - Р¤Р°Р·Р° РїСЂРёР·С‹РІР°
     /// </summary>
     /// 
     public IEnumerator ExecuteHandPhases()
@@ -113,7 +113,7 @@ public class PlayerHand : MonoBehaviour
     }
 
     /// <summary>
-    /// - Фаза снижения стоимости
+    /// - Р¤Р°Р·Р° СЃРЅРёР¶РµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё
     /// </summary>
     private IEnumerator CostReductionPhase()
     {
@@ -122,24 +122,24 @@ public class PlayerHand : MonoBehaviour
             card.ReduceCardCost();
             yield return new WaitForSecondsRealtime(AnimationAndDelays.instance.cardCostChangeAnimation);
         }
-        //Вызов ивента переехал в CardEntity, это не оптимально но добавляет эффект постепенных анимаций которые хотел Саня
+        //Р’С‹Р·РѕРІ РёРІРµРЅС‚Р° РїРµСЂРµРµС…Р°Р» РІ CardEntity, СЌС‚Рѕ РЅРµ РѕРїС‚РёРјР°Р»СЊРЅРѕ РЅРѕ РґРѕР±Р°РІР»СЏРµС‚ СЌС„С„РµРєС‚ РїРѕСЃС‚РµРїРµРЅРЅС‹С… Р°РЅРёРјР°С†РёР№ РєРѕС‚РѕСЂС‹Рµ С…РѕС‚РµР» РЎР°РЅСЏ
         //EventBus.OnCardsInfoChanged?.Invoke();
     }
     public GameObject cardFiddle;
     /// <summary>
-    /// - Фаза выдачи карты
+    /// - Р¤Р°Р·Р° РІС‹РґР°С‡Рё РєР°СЂС‚С‹
     /// </summary>
     public IEnumerator DrawCardPhase(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
+            //Р•СЃР»Рё РІ Р‘РѕРµРІРѕР№ Р”РµРєРµ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ РєР°СЂС‚, С‚Рѕ РїСЂРѕРїСѓСЃРєР°РµРј СЌС‚Сѓ С„Р°Р·Сѓ
             if (PlayerBattleDeck.BattleDeck.Count <= 0)
             {
                 yield return new WaitForEndOfFrame();
             }
 
-            //Если в Руке не осталось места, то пропускаем фазу
+            //Р•СЃР»Рё РІ Р СѓРєРµ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ РјРµСЃС‚Р°, С‚Рѕ РїСЂРѕРїСѓСЃРєР°РµРј С„Р°Р·Сѓ
             if (handList.Count() >= HandCapacity)
             {
                 yield return new WaitForEndOfFrame();
@@ -163,9 +163,9 @@ public class PlayerHand : MonoBehaviour
     }
 
     /// <summary>
-    /// Пытались сделать движение карт из колоды в руку
-    /// Не прокатило
-    /// Но метод оставили, может потом пригодится, он универсален
+    /// РџС‹С‚Р°Р»РёСЃСЊ СЃРґРµР»Р°С‚СЊ РґРІРёР¶РµРЅРёРµ РєР°СЂС‚ РёР· РєРѕР»РѕРґС‹ РІ СЂСѓРєСѓ
+    /// РќРµ РїСЂРѕРєР°С‚РёР»Рѕ
+    /// РќРѕ РјРµС‚РѕРґ РѕСЃС‚Р°РІРёР»Рё, РјРѕР¶РµС‚ РїРѕС‚РѕРј РїСЂРёРіРѕРґРёС‚СЃСЏ, РѕРЅ СѓРЅРёРІРµСЂСЃР°Р»РµРЅ
     /// </summary>
     private IEnumerator MoveWithDelay(GameObject go, Vector3 position, float time, GameObject fiddle)
     {
@@ -178,7 +178,7 @@ public class PlayerHand : MonoBehaviour
     }
 
     /// <summary>
-    /// - Фаза призыва
+    /// - Р¤Р°Р·Р° РїСЂРёР·С‹РІР°
     /// </summary>
     private IEnumerator SummonPhase()
     {
@@ -186,7 +186,7 @@ public class PlayerHand : MonoBehaviour
         {
             if (card.cardData.CardCost <= 0)
             {
-                //проверяет получилось ли призвать карту на доску
+                //РїСЂРѕРІРµСЂСЏРµС‚ РїРѕР»СѓС‡РёР»РѕСЃСЊ Р»Рё РїСЂРёР·РІР°С‚СЊ РєР°СЂС‚Сѓ РЅР° РґРѕСЃРєСѓ
                 if (boardRegulator.TrySummonCardToPlayerBoard(card, isPlayer))
                 {
                     card.OnCardPlayed();
@@ -196,7 +196,7 @@ public class PlayerHand : MonoBehaviour
             }
         }
 
-        //Удаляем из руки карты,которые ушли на доску
+        //РЈРґР°Р»СЏРµРј РёР· СЂСѓРєРё РєР°СЂС‚С‹,РєРѕС‚РѕСЂС‹Рµ СѓС€Р»Рё РЅР° РґРѕСЃРєСѓ
         foreach (CardEntity card in removeCardsList)
         {
             if (card.cardData.abilityAndStatus.ContainsKey(Enums.CardAbility.DrawCards))
@@ -210,9 +210,9 @@ public class PlayerHand : MonoBehaviour
     #region Additional Methods for Phases
 
     /// <summary>
-    /// Вытаскивает рандомную карту из боевой колоды и удаляет ее от туда.
+    /// Р’С‹С‚Р°СЃРєРёРІР°РµС‚ СЂР°РЅРґРѕРјРЅСѓСЋ РєР°СЂС‚Сѓ РёР· Р±РѕРµРІРѕР№ РєРѕР»РѕРґС‹ Рё СѓРґР°Р»СЏРµС‚ РµРµ РѕС‚ С‚СѓРґР°.
     /// </summary>
-    /// <returns>Возвращает ScriptableObject карты</returns>     
+    /// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ ScriptableObject РєР°СЂС‚С‹</returns>     
     private CardScriptableObject PullRandomCard()
     {
         if (isPlayer)
@@ -227,7 +227,7 @@ public class PlayerHand : MonoBehaviour
         else
         {
             int elementIndex = Random.Range(0, PlayerBattleDeck.EnemyBattleDeck.Count);
-
+            Debug.Log(PlayerBattleDeck.EnemyBattleDeck.Count);
             CardScriptableObject card = PlayerBattleDeck.EnemyBattleDeck[elementIndex];
             PlayerBattleDeck.EnemyBattleDeck.RemoveAt(elementIndex);
 

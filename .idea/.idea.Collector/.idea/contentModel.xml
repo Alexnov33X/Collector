@@ -11,6 +11,7 @@
       <e p="Assets" t="Include">
         <e p="Animations" t="Include" />
         <e p="Fonts" t="Include">
+          <e p="Battle" t="Include" />
           <e p="Formular" t="Include" />
           <e p="MainMenu" t="Include" />
           <e p="OFL.txt" t="Include" />
@@ -197,6 +198,9 @@
         <e p="Scripts" t="Include">
           <e p="Battle" t="Include">
             <e p="BattleActions.cs" t="Include" />
+            <e p="PreBattle" t="Include">
+              <e p="TimerStartBattle.cs" t="Include" />
+            </e>
           </e>
           <e p="BattleBootstrapp.cs" t="Include" />
           <e p="Card" t="Include">
@@ -207,6 +211,7 @@
             <e p="CardData.cs" t="Include" />
             <e p="CardScriptableObject.cs" t="Include" />
             <e p="CardView" t="Include">
+              <e p="CardInCollectionDisplay.cs" t="Include" />
               <e p="CardOnBoardDisplay.cs" t="Include" />
               <e p="CardOnHandDisplay.cs" t="Include" />
               <e p="PlayerHeroDisplay.cs" t="Include" />
@@ -268,12 +273,17 @@
             <e p="TurnTransmitter.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="MenuFooterBlock.cs" t="Include" />
             <e p="UIPercentOnScreen.cs" t="Include" />
             <e p="VictoryScreen.cs" t="Include" />
           </e>
           <e p="Window.cs" t="Include" />
         </e>
         <e p="Sprites" t="Include">
+          <e p="Battle" t="Include">
+            <e p="TimerStartBattle" t="Include" />
+            <e p="Vicrory" t="Include" />
+          </e>
           <e p="Cards" t="Include">
             <e p="Dragons" t="Include" />
             <e p="Pirates" t="Include" />
@@ -303,7 +313,6 @@
           <e p="TempSprites" t="Include">
             <e p="Conflicting stuff" t="Include" />
           </e>
-          <e p="Vicrory" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Documentation" t="Include" />

@@ -45,8 +45,7 @@ public class SearchPlayer : MonoBehaviour
     public void OpenOpponentFound()
     {
         gameObject.SetActive(false);
-        tmpTimer = timer;
-        findingOpponent.Activate();
+        findingOpponent.gameObject.SetActive(true);
     }
     public void OnDisable()
     {

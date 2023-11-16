@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Отвечает за отображение карты в руке
+/// РћС‚РІРµС‡Р°РµС‚ Р·Р° РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РєР°СЂС‚С‹ РІ СЂСѓРєРµ
 /// </summary>
 public class CardInCollectionDisplay : MonoBehaviour
 {
