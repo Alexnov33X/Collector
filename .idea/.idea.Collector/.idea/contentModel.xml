@@ -218,6 +218,7 @@
             </e>
           </e>
           <e p="Deck" t="Include">
+            <e p="CollectionViewer.cs" t="Include" />
             <e p="Enemy" t="Include" />
             <e p="Player" t="Include">
               <e p="ForBattle" t="Include">

@@ -8,12 +8,12 @@ using UnityEngine;
 public class TimerStartBattle : MonoBehaviour
 {
 
-  [SerializeField] private int timer;
+  [SerializeField] private int startNumberTimer;
   [SerializeField] private TMP_Text textTimer;
   [SerializeField] private float speedTimer;
     public IEnumerator StartTimer()
     {
-        for (int i = timer; i >= 0; i--)
+        for (int i = startNumberTimer; i > 0; i--)
         {
             textTimer.text = i.ToString();
             yield return new WaitForSecondsRealtime(speedTimer); 
