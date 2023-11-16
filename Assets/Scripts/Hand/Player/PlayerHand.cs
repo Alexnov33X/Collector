@@ -102,7 +102,7 @@ public class PlayerHand : MonoBehaviour
     public IEnumerator Phases()
     {
         yield return boardRegulator.TurnStart(isPlayer);
-        yield return StartCoroutine(CostReductionPhase());
+        yield return StartCoroutine(CostReductionPhase());  
         yield return new WaitForSeconds(cardReceiveDelay);
         yield return StartCoroutine(DrawCardPhase(1));
         yield return new WaitForSeconds(delayBeforeSummon);
