@@ -38,8 +38,8 @@ public static class PlayerStats
     private static void LoadPlayerDecks()
     {
         //временная затычка, пока мы без БД
-        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck.OfType<CardScriptableObject>().ToList();
-        PlayerDecks.CurrentEnemyDeck = ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck.OfType<CardScriptableObject>().ToList();
+        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;//.OfType<CardScriptableObject>().ToList();
+        PlayerDecks.CurrentEnemyDeck = ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck;//.OfType<CardScriptableObject>().ToList();
 
         //Инициализируем боевую колоду игрока
         PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
@@ -48,8 +48,8 @@ public static class PlayerStats
 
     private static void SyncPlayerDecks()
     {
-        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck.ToArray();
-        ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck = PlayerDecks.CurrentEnemyDeck.ToArray();
+        ServerSurrogate.Instance.currentDeckOnServer.currentDeck = PlayerDecks.CurrentDeck;//.ToArray();
+        ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck = PlayerDecks.CurrentEnemyDeck; //.ToArray();
     }
 
     public static void UpdateRank()

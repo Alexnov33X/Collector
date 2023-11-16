@@ -28,7 +28,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Deck/Player/ForBattle/PlayerBattleDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
@@ -37,6 +36,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/VictoryScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/TurnTransmitter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
       </list>
     </option>
   </component>
@@ -86,6 +86,8 @@
       <workItem from="1699603025665" duration="13027000" />
       <workItem from="1699896095744" duration="11095000" />
       <workItem from="1699955885727" duration="26994000" />
+      <workItem from="1699992615169" duration="67000" />
+      <workItem from="1700125683680" duration="291000" />
     </task>
     <servers />
   </component>

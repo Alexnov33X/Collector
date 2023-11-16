@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// затычка, что-то вроде записи в БД о деке игрока.
+/// Р·Р°С‚С‹С‡РєР°, С‡С‚Рѕ-С‚Рѕ РІСЂРѕРґРµ Р·Р°РїРёСЃРё РІ Р‘Р” Рѕ РґРµРєРµ РёРіСЂРѕРєР°.
 /// </summary>
 [CreateAssetMenu(fileName = "DeckOnServer", menuName = "Deck")]
 public class DeckOnServer : ScriptableObject
 {
-    public CardScriptableObject[] currentDeck;
-    public CardScriptableObject[] enemyCurrentDeck;
+    
+    public List<CardScriptableObject> currentDeck;
+    public List<CardScriptableObject> enemyCurrentDeck;
 }
