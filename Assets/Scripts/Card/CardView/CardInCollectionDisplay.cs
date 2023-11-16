@@ -27,20 +27,23 @@ public class CardInCollectionDisplay : MonoBehaviour
 
     [Header("Info Block")]
     [SerializeField] private GameObject infoBlock;
+    [SerializeField] private GameObject hider;
 
-    //[Header("Button")]
-    //[SerializeField] private Button button;
+    [Header("Button")]
+    [SerializeField] private Button button;
 
     [Header("Card Info")]
     [SerializeField] public CardScriptableObject cardSO;
 
-    private bool isInfoVisible;
+    //private bool isInfoVisible;
     private bool isMouseDown;
     private bool hasStartedHold;
+    public bool isSelected = false;
 
     void Start()
     {
-        isInfoVisible = false;
+        //isInfoVisible = false;
+        infoBlock.SetActive(false);
         if (cardSO != null)
         {
             nameText.text = cardSO.Name;
@@ -60,7 +63,7 @@ public class CardInCollectionDisplay : MonoBehaviour
 
     public void InitCard(CardScriptableObject card)
     {
-        isInfoVisible = false;
+        //isInfoVisible = false;
         cardSO = card;
         if (cardSO != null)
         {
@@ -79,22 +82,36 @@ public class CardInCollectionDisplay : MonoBehaviour
 
     }
 
-    public void switchAccess(bool activate)
+    public void switchAccess(bool cardSelected)
     {
-
+        isSelected = cardSelected;
+        if (isSelected)
+        {
+            hider.SetActive(true);          
+        }
+        hider.SetActive(false);
     }
 
     private void OnMouseDown()
     {
         isMouseDown = true;
         StartCoroutine(ClickAndHoldCoroutine());
+        Debug.Log("MOUSE DOWN");
     }
-
     private void OnMouseUp()
     {
+        Debug.Log(DeckBuilder.instance.ToString());
+        if (hasStartedHold)
+        {
+            hasStartedHold = false;
+            //Debug.Log("Событие при удерживании кнопки мыши на объекте");
+        }
+        else if (!isSelected)       
+            DeckBuilder.instance.AddCard(this);
+        else 
+            DeckBuilder.instance.RemoveCard(this);
+        
         isMouseDown = false;
-        hasStartedHold = false;
-        StopAllCoroutines();
     }
 
     private IEnumerator ClickAndHoldCoroutine()
@@ -108,7 +125,7 @@ public class CardInCollectionDisplay : MonoBehaviour
             if (timer >= 0.5f && !hasStartedHold)
             {
                 hasStartedHold = true;
-                Debug.Log("Событие при клике на объекте и удерживании как минимум полсекунды");
+                //Debug.Log("Событие при клике на объекте и удерживании как минимум полсекунды");
                 infoBlock.SetActive(!infoBlock.activeSelf);
             }
 
