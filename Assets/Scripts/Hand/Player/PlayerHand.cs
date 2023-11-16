@@ -244,7 +244,7 @@ public class PlayerHand : MonoBehaviour
         yield return new WaitForEndOfFrame();
         newCardEntity.InitializeCard(transferedCard, !isPlayer);
 
-        handList.Add(newCardEntity); 
+        handList.Add(newCardEntity);
 
         yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
         if (instantSummon)
@@ -254,27 +254,14 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    public IEnumerator DrawAndSummonPartners()
+    public void DrawAndSummonPartners()
     {
-        if (isPlayer)
+        var partners = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
+        foreach (CardScriptableObject cardSO in partners)
         {
-            var partners = PlayerBattleDeck.BattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
-            foreach (CardScriptableObject cardSO in partners)
-            {
-                yield return AddDefiniteCardToHand(cardSO, true);
-                PlayerBattleDeck.BattleDeck.Remove(cardSO);
-            }
+            CreatureSpawner.instance.spawnPartnerFromDeck(cardSO.Name, isPlayer, DeckLocation);
+            PlayerBattleDeck.BattleDeck.Remove(cardSO);
         }
-        else
-        {
-            var partners = PlayerBattleDeck.EnemyBattleDeck.FindAll(x => x.abilities.Contains(Enums.CardAbility.PartnerSummon));
-            foreach (CardScriptableObject cardSO in partners)
-            {
-                yield return AddDefiniteCardToHand(cardSO, true);
-                PlayerBattleDeck.EnemyBattleDeck.Remove(cardSO);
-            }
-        }
-        yield return SummonPhase();
     }
 
     private void DrawInnateCards()
@@ -306,7 +293,6 @@ public class PlayerHand : MonoBehaviour
             }
         }
     }
-
     private void RemoveCardFromHand()
     {
 
