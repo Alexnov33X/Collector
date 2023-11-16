@@ -6,44 +6,44 @@ using static Enums;
 public class CardScriptableObject : ScriptableObject
 {
     [Header("Name and Description")]
-    [Tooltip("Название карты")]
+    [Tooltip("РќР°Р·РІР°РЅРёРµ РєР°СЂС‚С‹")]
     public string Name;
-    [Tooltip("Описание карты"), TextArea]
+    [Tooltip("РћРїРёСЃР°РЅРёРµ РєР°СЂС‚С‹"), TextArea]
     public string Description;
 
     [Header("Sprite Elements")]
-    [Tooltip("Спрайт Карты в Руке")]
+    [Tooltip("РЎРїСЂР°Р№С‚ РљР°СЂС‚С‹ РІ Р СѓРєРµ")]
     public Sprite ArtworkHandImage;
-    [Tooltip("Спрайт Карты на Доске")]
+    [Tooltip("РЎРїСЂР°Р№С‚ РљР°СЂС‚С‹ РЅР° Р”РѕСЃРєРµ")]
     public Sprite ArtworkBoardImage;
-    [Tooltip("Спрайт Кристалла Редкости карты")]
+    [Tooltip("РЎРїСЂР°Р№С‚ РљСЂРёСЃС‚Р°Р»Р»Р° Р РµРґРєРѕСЃС‚Рё РєР°СЂС‚С‹")]
     public Sprite RarityImage;
-    [Tooltip("Спрайт Вселенной к которой принадлежит персонаж")]
+    [Tooltip("РЎРїСЂР°Р№С‚ Р’СЃРµР»РµРЅРЅРѕР№ Рє РєРѕС‚РѕСЂРѕР№ РїСЂРёРЅР°РґР»РµР¶РёС‚ РїРµСЂСЃРѕРЅР°Р¶")]
     public Sprite UniverseImage;
 
     [Header("Card Stats")]
-    [Tooltip("Стоимость карты.\r\n Количество ходов, необходимое для розыгрыша карты")]
+    [Tooltip("РЎС‚РѕРёРјРѕСЃС‚СЊ РєР°СЂС‚С‹.\r\n РљРѕР»РёС‡РµСЃС‚РІРѕ С…РѕРґРѕРІ, РЅРµРѕР±С…РѕРґРёРјРѕРµ РґР»СЏ СЂРѕР·С‹РіСЂС‹С€Р° РєР°СЂС‚С‹")]
     public int CardCost;
-    [Tooltip("Значение атаки карты")]
+    [Tooltip("Р—РЅР°С‡РµРЅРёРµ Р°С‚Р°РєРё РєР°СЂС‚С‹")]
     public int Attack;
-    [Tooltip("Значение здоровья карты")]
+    [Tooltip("Р—РЅР°С‡РµРЅРёРµ Р·РґРѕСЂРѕРІСЊСЏ РєР°СЂС‚С‹")]
     public int Health;
 
     [Header("Card Types")]
-    [Tooltip("Тип карты: Существо\\Заклинание\\Артифакт\\Поле")]
+    [Tooltip("РўРёРї РєР°СЂС‚С‹: РЎСѓС‰РµСЃС‚РІРѕ\\Р—Р°РєР»РёРЅР°РЅРёРµ\\РђСЂС‚РёС„Р°РєС‚\\РџРѕР»Рµ")]
     public CardType CardType;
-    [Tooltip("Вселенная карты")]
+    [Tooltip("Р’СЃРµР»РµРЅРЅР°СЏ РєР°СЂС‚С‹")]
     public CardUniverse CardUniverse;
-    [Tooltip("Редкость карты: Common,Rare, Epic,Legendary")]
+    [Tooltip("Р РµРґРєРѕСЃС‚СЊ РєР°СЂС‚С‹: Common,Rare, Epic,Legendary")]
     public CardRarity CardRarity;
 
     [Header("Abilities")]
-    [Tooltip("Способности и сила эффекта. Например поджог и 3 -> поджог на 3 хода. Надо их соотносить по индексам")]
+    [Tooltip("РЎРїРѕСЃРѕР±РЅРѕСЃС‚Рё Рё СЃРёР»Р° СЌС„С„РµРєС‚Р°. РќР°РїСЂРёРјРµСЂ РїРѕРґР¶РѕРі Рё 3 -> РїРѕРґР¶РѕРі РЅР° 3 С…РѕРґР°. РќР°РґРѕ РёС… СЃРѕРѕС‚РЅРѕСЃРёС‚СЊ РїРѕ РёРЅРґРµРєСЃР°Рј")]
     public List<CardAbility> abilities = new List<CardAbility>();
     public List<int> abilityPotency = new List<int>();
 
     [Header("Card ID")]
-    [Tooltip("Id карты. Пока не юзаем, так как не нужен.")]
+    [Tooltip("Id РєР°СЂС‚С‹. РџРѕРєР° РЅРµ СЋР·Р°РµРј, С‚Р°Рє РєР°Рє РЅРµ РЅСѓР¶РµРЅ.")]
     public int CardId;
     public void Print()
     {
