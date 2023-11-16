@@ -39,13 +39,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BattleBootstrapp.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/TurnTransmitter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Sounder.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/PreBattle/TimerStartBattle.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameBoard/GameBoardRegulator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/PreBattle/TimerStartBattle.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Sounder.cs" />
       </list>
     </option>
   </component>

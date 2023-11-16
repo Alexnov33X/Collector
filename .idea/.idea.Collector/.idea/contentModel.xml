@@ -221,6 +221,7 @@
           </e>
           <e p="Deck" t="Include">
             <e p="CollectionViewer.cs" t="Include" />
+            <e p="DeckBuilder.cs" t="Include" />
             <e p="Enemy" t="Include" />
             <e p="Player" t="Include">
               <e p="ForBattle" t="Include">
@@ -290,8 +291,12 @@
             <e p="Vicrory" t="Include" />
           </e>
           <e p="Cards" t="Include">
-            <e p="Dragons" t="Include" />
-            <e p="Pirates" t="Include" />
+            <e p="Dragons" t="Include">
+              <e p="1x1" t="Include" />
+            </e>
+            <e p="Pirates" t="Include">
+              <e p="1x1" t="Include" />
+            </e>
           </e>
           <e p="CardSources" t="Include">
             <e p="Artworks" t="Include" />
