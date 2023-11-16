@@ -60,4 +60,31 @@ public class CreatureSpawner : MonoBehaviour
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
     }
+
+    public void spawnPartnerFromDeck(string creatureName, bool forPlayer, Transform deck)
+    {
+        GameObject creature = Instantiate(CreaturePrefab, deck); //transform.parent
+        CardData.selectController(creature, creatureName);
+        CardEntity newCardEntity = creature.GetComponent<CardEntity>();
+        newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
+        StartCoroutine(MoveWithDelay(newCardEntity.gameObject, transform.parent, 0.5f));
+        gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
+    }
+
+    private IEnumerator MoveWithDelay(GameObject go, Transform position, float time)
+    {
+        LeanTween.move(go, position, time);
+        yield return new WaitForSecondsRealtime(time);
+        go.transform.SetParent(transform.parent, true);
+    }
+
+    //public void spawnCopy(CardEntity original, bool forPlayer)
+    //{
+    //    GameObject creature = Instantiate(CreaturePrefab, transform.parent);
+    //    creature.transform.position = original.transform.position;
+    //    CardData.selectController(creature, original.cardData.Name);
+    //    CardEntity newCardEntity = creature.GetComponent<CardEntity>();      
+    //    newCardEntity.InitializeCard(creatures[original.cardData.Name], forPlayer);
+    //    gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
+    //}
 }

@@ -32,8 +32,7 @@ public class CardInCollectionDisplay : MonoBehaviour
     [SerializeField] private Button button;
 
     [Header("Card Info")]
-    [SerializeField] private CardScriptableObject cardSO;
-    private float animationDelay = 0.25f;
+    [SerializeField] public CardScriptableObject cardSO;
 
     private bool isInfoVisible;
 
@@ -41,19 +40,44 @@ public class CardInCollectionDisplay : MonoBehaviour
     void Start()
     {
         isInfoVisible = false;
+        if (cardSO != null)
+        {
+            nameText.text = cardSO.Name;
+            descriptionText.text = cardSO.Description;
 
-        nameText.text = cardSO.Name;
-        descriptionText.text = cardSO.Description;
+            costText.text = cardSO.CardCost.ToString();
+            attackText.text = cardSO.Attack.ToString();
+            healthText.text = cardSO.Health.ToString();
 
-        costText.text = cardSO.CardCost.ToString();
-        attackText.text = cardSO.Attack.ToString();
-        healthText.text = cardSO.Health.ToString();
-
-        artworkImage.sprite = cardSO.ArtworkHandImage;
-        rarityImage.sprite = cardSO.RarityImage;
-        universeImage.sprite = cardSO.UniverseImage;
+            artworkImage.sprite = cardSO.ArtworkHandImage;
+            rarityImage.sprite = cardSO.RarityImage;
+            universeImage.sprite = cardSO.UniverseImage;
+        }
         //button.onClick.AddListener(ChangeInfoBlockVisibility);
-       
+
     }
+
+    public void InitCard(CardScriptableObject card)
+    {
+        isInfoVisible = false;
+        cardSO = card;
+        if (cardSO != null)
+        {
+            nameText.text = cardSO.Name;
+            descriptionText.text = cardSO.Description;
+
+            costText.text = cardSO.CardCost.ToString();
+            attackText.text = cardSO.Attack.ToString();
+            healthText.text = cardSO.Health.ToString();
+
+            artworkImage.sprite = cardSO.ArtworkHandImage;
+            rarityImage.sprite = cardSO.RarityImage;
+            universeImage.sprite = cardSO.UniverseImage;
+        }
+        //button.onClick.AddListener(ChangeInfoBlockVisibility);
+
+    }
+    
+    
 
 }
