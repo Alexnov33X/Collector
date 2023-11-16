@@ -38,7 +38,7 @@ public class CardInCollectionDisplay : MonoBehaviour
     //private bool isInfoVisible;
     private bool isMouseDown;
     private bool hasStartedHold;
-    public bool isSelected = false;
+    private bool isSelected = false;
 
     void Start()
     {
@@ -79,8 +79,6 @@ public class CardInCollectionDisplay : MonoBehaviour
             universeImage.sprite = cardSO.UniverseImage;
         }
         switchAccess(false);
-        //button.onClick.AddListener(ChangeInfoBlockVisibility);
-
     }
 
     public void switchAccess(bool cardSelected)
@@ -102,7 +100,7 @@ public class CardInCollectionDisplay : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        Debug.Log(DeckBuilder.instance.ToString());
+        //Debug.Log(DeckBuilder.instance.ToString());
         if (hasStartedHold)
         {
             hasStartedHold = false;
@@ -126,8 +124,7 @@ public class CardInCollectionDisplay : MonoBehaviour
 
             if (timer >= 0.5f && !hasStartedHold)
             {
-                hasStartedHold = true;
-                //Debug.Log("Событие при клике на объекте и удерживании как минимум полсекунды");
+                hasStartedHold = true; //you can pop window or do animation here !!!!!!!!!!!!!!
                 infoBlock.SetActive(!infoBlock.activeSelf);
             }
 

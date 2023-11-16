@@ -12,10 +12,10 @@ public class DeckBuilder : MonoBehaviour
     [SerializeField] GameObject collectionCardPrefab;
     private int deckCount = 0;
     private List<CardScriptableObject> deck;
-    private List<CardInCollectionDisplay> deckOfCollectionCards= new List<CardInCollectionDisplay>();
+    private List<CardInCollectionDisplay> deckOfCollectionCards = new List<CardInCollectionDisplay>();
     public static DeckBuilder instance;
 
-    public void SaveDeck()
+    public void SaveDeck() //SAVES THE DECK. NEEDS BUTTON
     {
         deck = new List<CardScriptableObject>();
         var a = gridDeck.GetComponentsInChildren<CardInCollectionDisplay>();
@@ -29,12 +29,11 @@ public class DeckBuilder : MonoBehaviour
     public bool IsCardInDeck(CardScriptableObject card)
     {
         return deck.Contains(card);
-
     }
 
     public void AddCard(CardInCollectionDisplay cardToAdd)
     {
-        if (!deck.Contains(cardToAdd.cardSO) && deckCount<deckLimit)
+        if (!deck.Contains(cardToAdd.cardSO) && deckCount < deckLimit)
             deck.Add(cardToAdd.cardSO);
         deckCount = deck.Count;
         cardToAdd.switchAccess(true);
@@ -50,7 +49,7 @@ public class DeckBuilder : MonoBehaviour
         RecompileDeck();
     }
 
-    private void RecompileDeck()
+    private void RecompileDeck() //Updates the looks of cards in deck
     {
         for (int i = 0; i < deckLimit; i++)
         {
@@ -64,7 +63,7 @@ public class DeckBuilder : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         // Теперь, проверяем существование экземпляра
@@ -81,7 +80,7 @@ public class DeckBuilder : MonoBehaviour
         for (int i = 0; i < deckLimit; i++)
         {
             var card = Instantiate(collectionCardPrefab, gridDeck.transform).GetComponent<CardInCollectionDisplay>(); //fill deck with fiddles
-            if (i<deck.Count)
+            if (i < deck.Count)
             {
                 deckCount++;
                 card.InitCard(deck[i]); //make fiddles into real cards
@@ -91,10 +90,5 @@ public class DeckBuilder : MonoBehaviour
             deckOfCollectionCards.Add(card);
 
         }
-        //foreach (CardScriptableObject card in deck)
-        //{
-        //    Instantiate(collectionCardPrefab, gridDeck.transform);
-        //    deckCount++;
-        //}    
     }
 }
