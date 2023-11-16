@@ -38,8 +38,9 @@ public static class PlayerStats
     private static void LoadPlayerDecks()
     {
         //временная затычка, пока мы без БД
-        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;//.OfType<CardScriptableObject>().ToList();
-        PlayerDecks.CurrentEnemyDeck = ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck;//.OfType<CardScriptableObject>().ToList();
+        //Transform to list to make a copy, otherwise original SO gets modified, which is NOT GOOD
+        PlayerDecks.CurrentDeck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck.OfType<CardScriptableObject>().ToList();
+        PlayerDecks.CurrentEnemyDeck = ServerSurrogate.Instance.currentDeckOnServer.enemyCurrentDeck.OfType<CardScriptableObject>().ToList();
 
         //Инициализируем боевую колоду игрока
         PlayerBattleDeck.BattleDeck = PlayerDecks.CurrentDeck;
