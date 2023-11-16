@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DeckBuilder : MonoBehaviour, IPointerClickHandler
+public class DeckBuilder : MonoBehaviour
 {
     public GameObject gridCardCollection;
     public GameObject gridDeck;
@@ -14,11 +14,6 @@ public class DeckBuilder : MonoBehaviour, IPointerClickHandler
     private List<CardScriptableObject> deck;
     private List<CardInCollectionDisplay> deckOfCollectionCards= new List<CardInCollectionDisplay>();
     public static DeckBuilder instance;
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public void SaveDeck()
     {
@@ -31,12 +26,19 @@ public class DeckBuilder : MonoBehaviour, IPointerClickHandler
 
     }
 
+    public bool IsCardInDeck(CardScriptableObject card)
+    {
+        return deck.Contains(card);
+
+    }
+
     public void AddCard(CardInCollectionDisplay cardToAdd)
     {
         if (!deck.Contains(cardToAdd.cardSO) && deckCount<deckLimit)
             deck.Add(cardToAdd.cardSO);
         deckCount = deck.Count;
         cardToAdd.switchAccess(true);
+        RecompileDeck();
     }
 
     public void RemoveCard(CardInCollectionDisplay cardToRemove)
@@ -45,6 +47,7 @@ public class DeckBuilder : MonoBehaviour, IPointerClickHandler
             deck.Remove(cardToRemove.cardSO);
         deckCount = deck.Count;
         cardToRemove.switchAccess(false);
+        RecompileDeck();
     }
 
     private void RecompileDeck()
@@ -77,7 +80,7 @@ public class DeckBuilder : MonoBehaviour, IPointerClickHandler
         deck = ServerSurrogate.Instance.currentDeckOnServer.currentDeck;
         for (int i = 0; i < deckLimit; i++)
         {
-            var card = Instantiate(collectionCardPrefab, gridDeck.transform).GetComponent< CardInCollectionDisplay>(); //fill deck with fiddles
+            var card = Instantiate(collectionCardPrefab, gridDeck.transform).GetComponent<CardInCollectionDisplay>(); //fill deck with fiddles
             if (i<deck.Count)
             {
                 deckCount++;
@@ -93,11 +96,5 @@ public class DeckBuilder : MonoBehaviour, IPointerClickHandler
         //    Instantiate(collectionCardPrefab, gridDeck.transform);
         //    deckCount++;
         //}    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

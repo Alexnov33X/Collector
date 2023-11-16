@@ -23,7 +23,9 @@ public class CollectionViewer : MonoBehaviour
             GameObject emptyCard = Instantiate(collectionCardPrefab, transform);
             var display = emptyCard.GetComponent<CardInCollectionDisplay>();
             display.InitCard(card);
-            Debug.Log(display == null);
+            if (DeckBuilder.instance.IsCardInDeck(card))
+                display.switchAccess(true);
+            
             cards.Add(display);
         }
     }

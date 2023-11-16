@@ -78,6 +78,7 @@ public class CardInCollectionDisplay : MonoBehaviour
             rarityImage.sprite = cardSO.RarityImage;
             universeImage.sprite = cardSO.UniverseImage;
         }
+        switchAccess(false);
         //button.onClick.AddListener(ChangeInfoBlockVisibility);
 
     }
@@ -87,9 +88,10 @@ public class CardInCollectionDisplay : MonoBehaviour
         isSelected = cardSelected;
         if (isSelected)
         {
-            hider.SetActive(true);          
+            hider.SetActive(true);
         }
-        hider.SetActive(false);
+        else
+            hider.SetActive(false);
     }
 
     private void OnMouseDown()
@@ -106,11 +108,11 @@ public class CardInCollectionDisplay : MonoBehaviour
             hasStartedHold = false;
             //Debug.Log("Событие при удерживании кнопки мыши на объекте");
         }
-        else if (!isSelected)       
+        else if (!isSelected)
             DeckBuilder.instance.AddCard(this);
-        else 
+        else
             DeckBuilder.instance.RemoveCard(this);
-        
+
         isMouseDown = false;
     }
 
