@@ -103,7 +103,7 @@ public class PlayerHand : MonoBehaviour
     public IEnumerator Phases()
     {
         yield return boardRegulator.TurnStart(isPlayer);
-        yield return StartCoroutine(CostReductionPhase());  
+        yield return StartCoroutine(CostReductionPhase());
         yield return new WaitForSeconds(cardReceiveDelay);
         yield return StartCoroutine(DrawCardPhase(1));
         yield return new WaitForSeconds(delayBeforeSummon);
@@ -154,6 +154,8 @@ public class PlayerHand : MonoBehaviour
                 CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
                 CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
                                                                                      //newCardEntity = newController;
+                newCardEntity.sounder = sounder;
+
                 var fiddle = Instantiate(cardFiddle, gameObject.transform);
                 yield return new WaitForEndOfFrame();
                 newCardEntity.InitializeCard(transferedCard, !isPlayer);
@@ -222,7 +224,7 @@ public class PlayerHand : MonoBehaviour
     /// <returns>Возвращает ScriptableObject карты</returns>     
     private CardScriptableObject PullRandomCard()
     {
-        if (isPlayer )
+        if (isPlayer)
         {
             int elementIndex = Random.Range(0, PlayerBattleDeck.BattleDeck.Count);
 
@@ -281,6 +283,7 @@ public class PlayerHand : MonoBehaviour
                 CardData.selectController(newCardExample, card.Name); //In cardData we create controller and get his type                                                                        
                 CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
                 newCardEntity.InitializeCard(card, !isPlayer);
+                newCardEntity.sounder = sounder;
                 handList.Add(newCardEntity);
                 PlayerBattleDeck.BattleDeck.Remove(card);
             }

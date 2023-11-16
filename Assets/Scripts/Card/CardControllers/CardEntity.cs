@@ -39,10 +39,10 @@ public class CardEntity : MonoBehaviour
     [HideInInspector] public CardData cardData;
     private float attackDelay = 0.8f;
 
-    [SerializeField] private Sounder sounder;
+    [SerializeField] public Sounder sounder;
     private void Start()
     {
-        gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
+        gameBoardRegulator = GameBoardRegulator.instance;
         //Debug.Log(GetComponentInChildren<CardOnHandDisplay>() == null);
         //handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
         //boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
@@ -52,6 +52,7 @@ public class CardEntity : MonoBehaviour
         handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
         boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
         cardData = new CardData(card);
+
         //cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke(isEnemy);
         abilitiesAndStatus = cardData.abilityAndStatus;
@@ -126,8 +127,7 @@ public class CardEntity : MonoBehaviour
                 if (gameBoardRegulator.enemyFirstLine[column].isOccupied)
                 {
                     if (cardData.abilities.Contains(CardAbility.DefaultVerticalLinearAttack) && gameBoardRegulator.enemySecondLine[column].isOccupied) //VERTICAL additional attack
-                    {
-                        Debug.Log("Vertical");
+                    {  
                         ApplyIgnite(gameBoardRegulator, 0, column, false); //attack main target
                         yield return StartCoroutine(AttackAnimationLocal(gameBoardRegulator.enemyFirstLine[column].occupant.gameObject.transform.localPosition, attackDelay));
                         yield return new WaitForSeconds(attackDelay);

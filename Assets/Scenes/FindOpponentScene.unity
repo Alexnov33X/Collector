@@ -5439,7 +5439,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 1123603648}
   handList: []
   isPlayer: 1
-  sounder: {fileID: 0}
+  sounder: {fileID: 1096583414}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1066039003
 GameObject:
@@ -9110,7 +9110,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 2012055068}
   handList: []
   isPlayer: 0
-  sounder: {fileID: 0}
+  sounder: {fileID: 1096583414}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1736101997
 GameObject:

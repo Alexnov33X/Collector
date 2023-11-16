@@ -13,7 +13,7 @@ public class GameBoardRegulator : MonoBehaviour
     public BoardCell[] enemyFirstLine = new BoardCell[3];
     public BoardCell[] playerFirstLine = new BoardCell[3];
     public BoardCell[] playerSecondLine = new BoardCell[3];
-
+    public static GameBoardRegulator instance;
     /// <summary>
     /// Хранят в себе ячейки соответствующих сторон
     /// </summary>
@@ -31,6 +31,15 @@ public class GameBoardRegulator : MonoBehaviour
 
     private void Start()
     {
+        // Теперь, проверяем существование экземпляра
+        if (instance == null)
+        { // Экземпляр менеджера был найден
+            instance = this; // Задаем ссылку на экземпляр объекта
+        }
+        else if (instance == this)
+        { // Экземпляр объекта уже существует на сцене
+            Destroy(gameObject); // Удаляем объект
+        }
         InitializeSideArrays();
         attackDelay = AnimationAndDelays.instance.attackAnimation;
     }

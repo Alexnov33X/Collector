@@ -28,14 +28,15 @@ public class CardInCollectionDisplay : MonoBehaviour
     [Header("Info Block")]
     [SerializeField] private GameObject infoBlock;
 
-    [Header("Button")]
-    [SerializeField] private Button button;
+    //[Header("Button")]
+    //[SerializeField] private Button button;
 
     [Header("Card Info")]
     [SerializeField] public CardScriptableObject cardSO;
 
     private bool isInfoVisible;
-
+    private bool isMouseDown;
+    private bool hasStartedHold;
 
     void Start()
     {
@@ -77,7 +78,44 @@ public class CardInCollectionDisplay : MonoBehaviour
         //button.onClick.AddListener(ChangeInfoBlockVisibility);
 
     }
-    
-    
+
+    public void switchAccess(bool activate)
+    {
+
+    }
+
+    private void OnMouseDown()
+    {
+        isMouseDown = true;
+        StartCoroutine(ClickAndHoldCoroutine());
+    }
+
+    private void OnMouseUp()
+    {
+        isMouseDown = false;
+        hasStartedHold = false;
+        StopAllCoroutines();
+    }
+
+    private IEnumerator ClickAndHoldCoroutine()
+    {
+        float timer = 0f;
+
+        while (isMouseDown)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= 0.5f && !hasStartedHold)
+            {
+                hasStartedHold = true;
+                Debug.Log("Событие при клике на объекте и удерживании как минимум полсекунды");
+                infoBlock.SetActive(!infoBlock.activeSelf);
+            }
+
+            yield return null;
+        }
+    }
+
+
 
 }
