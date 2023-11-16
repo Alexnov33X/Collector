@@ -18,8 +18,12 @@ public class StatusDisplayForCard : MonoBehaviour
         {
             if (i < cardData.abilityAndStatus.Count && StatusStorage.StatusSprites.ContainsKey(cardData.abilities[i].ToString()))
             {
-                imageSlots[i].sprite = StatusStorage.StatusSprites[cardData.abilities[i].ToString()];
+                Sprite x = StatusStorage.StatusSprites[cardData.abilities[i].ToString()];
+                imageSlots[i].sprite = x;
                 imageSlots[i].gameObject.SetActive(true);
+                Debug.Log(i);
+                Debug.Log(imageSlots[i].IsActive());
+                Debug.Log(imageSlots[i].gameObject.ToString());
             }
             else
                 imageSlots[i].gameObject.SetActive(false);

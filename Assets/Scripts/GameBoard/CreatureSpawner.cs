@@ -48,6 +48,7 @@ public class CreatureSpawner : MonoBehaviour
         CardData.selectController(creature, creatureName);
         CardEntity newCardEntity = creature.GetComponent<CardEntity>();
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
+        newCardEntity.UpdateStatus();
         return newCardEntity;
     }
 
@@ -59,6 +60,7 @@ public class CreatureSpawner : MonoBehaviour
         Debug.Log(creatureName);
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
+        newCardEntity.UpdateStatus();
     }
 
     public void spawnPartnerFromDeck(string creatureName, bool forPlayer, Transform deck)
@@ -69,6 +71,7 @@ public class CreatureSpawner : MonoBehaviour
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         StartCoroutine(MoveWithDelay(newCardEntity.gameObject, transform.parent, 0.5f));
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);
+        newCardEntity.UpdateStatus();
     }
 
     private IEnumerator MoveWithDelay(GameObject go, Transform position, float time)

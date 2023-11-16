@@ -377,6 +377,10 @@ public class CardEntity : MonoBehaviour
             RemoveAbility(CardAbility.DrawCards);
         }
 
+        if (cardData.abilityAndStatus.ContainsKey(CardAbility.InnateCard))
+            RemoveAbility(CardAbility.InnateCard);
+
+
         if (cardData.abilityAndStatus.ContainsKey(CardAbility.SummonCopy))
         {
             for (int i = 0; i < cardData.abilityAndStatus[CardAbility.SummonCopy]; i++)
@@ -552,6 +556,10 @@ public class CardEntity : MonoBehaviour
         cardData.Health += health;
         if (cardData.Health <= 0)
             cellHost.DestroyCardinCell();
+    }
+    public void UpdateStatus()
+    {
+        statusDisplay.updateStatus(cardData);
     }
 
 }

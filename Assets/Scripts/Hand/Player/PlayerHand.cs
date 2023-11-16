@@ -134,31 +134,32 @@ public class PlayerHand : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             //Если в Боевой Деке не осталось карт, то пропускаем эту фазу
-            if (PlayerBattleDeck.BattleDeck.Count <= 0)
+            if (isPlayer && (PlayerBattleDeck.BattleDeck.Count <= 0 || handList.Count() >= HandCapacity))
             {
                 yield return new WaitForEndOfFrame();
             }
-
-            //Если в Руке не осталось места, то пропускаем фазу
-            if (handList.Count() >= HandCapacity)
+            else if (!isPlayer && (PlayerBattleDeck.EnemyBattleDeck.Count <= 0 || handList.Count() >= HandCapacity))
             {
                 yield return new WaitForEndOfFrame();
             }
+            else
+            {
 
-            CardScriptableObject transferedCard = PullRandomCard();
+                CardScriptableObject transferedCard = PullRandomCard();
 
-            GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
-            Debug.Log(transferedCard.Name);
-            CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
-            CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
-                                                                                 //newCardEntity = newController;
-            var fiddle = Instantiate(cardFiddle, gameObject.transform);
-            yield return new WaitForEndOfFrame();
-            newCardEntity.InitializeCard(transferedCard, !isPlayer);
+                GameObject newCardExample = Instantiate(CardPrefab, DeckLocation.transform);
+                Debug.Log(transferedCard.Name);
+                CardData.selectController(newCardExample, transferedCard.Name); //In cardData we create controller and get his type                                                                        
+                CardEntity newCardEntity = newCardExample.GetComponent<CardEntity>();//Install controller into a card
+                                                                                     //newCardEntity = newController;
+                var fiddle = Instantiate(cardFiddle, gameObject.transform);
+                yield return new WaitForEndOfFrame();
+                newCardEntity.InitializeCard(transferedCard, !isPlayer);
 
-            handList.Add(newCardEntity);
+                handList.Add(newCardEntity);
 
-            yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
+                yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
+            }
         }
     }
 
@@ -215,7 +216,7 @@ public class PlayerHand : MonoBehaviour
     /// <returns>Возвращает ScriptableObject карты</returns>     
     private CardScriptableObject PullRandomCard()
     {
-        if (isPlayer)
+        if (isPlayer )
         {
             int elementIndex = Random.Range(0, PlayerBattleDeck.BattleDeck.Count);
 
@@ -227,7 +228,6 @@ public class PlayerHand : MonoBehaviour
         else
         {
             int elementIndex = Random.Range(0, PlayerBattleDeck.EnemyBattleDeck.Count);
-            Debug.Log(PlayerBattleDeck.EnemyBattleDeck.Count);
             CardScriptableObject card = PlayerBattleDeck.EnemyBattleDeck[elementIndex];
             PlayerBattleDeck.EnemyBattleDeck.RemoveAt(elementIndex);
 
