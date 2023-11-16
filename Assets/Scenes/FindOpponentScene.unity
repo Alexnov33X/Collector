@@ -2195,7 +2195,7 @@ MonoBehaviour:
   enemyHand: {fileID: 1720185555}
   vs: {fileID: 1983246350}
   turnStep: {fileID: 117129310}
-  sounder: {fileID: 1096583414}
+  startImmediately: 0
 --- !u!4 &462947751
 Transform:
   m_ObjectHideFlags: 0
@@ -3954,6 +3954,7 @@ MonoBehaviour:
   timeMove: 1.5
   timeGetColor: 1.5
   battleWindow: {fileID: 943132910}
+  sounder: {fileID: 1096583414}
 --- !u!114 &765495122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5438,6 +5439,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 1123603648}
   handList: []
   isPlayer: 1
+  sounder: {fileID: 0}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1066039003
 GameObject:
@@ -5572,9 +5574,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 112829a8e4a59554bab051b460ad1600, type: 3}
   - {fileID: 8300000, guid: d703f61dfd546d64d9d4a9b28974544d, type: 3}
   - {fileID: 8300000, guid: e87aad4fe8d555b42ac02fa0ef5393b2, type: 3}
+  - {fileID: 8300000, guid: e86f51eb32bd1884f9f0d7976eef5b15, type: 3}
+  - {fileID: 8300000, guid: e59240ce668efed4cb73e00169e14a2d, type: 3}
+  - {fileID: 8300000, guid: 81ae1591c7a47654391529eb92af624e, type: 3}
   musicClips:
   - {fileID: 8300000, guid: 0c144318e085f574bb4fc45991fac900, type: 3}
   - {fileID: 8300000, guid: 6ca56601aa8ea6b479c2051f15a97e2f, type: 3}
+  - {fileID: 8300000, guid: 828de790c87c8b841b9f65a5791f7345, type: 3}
   soundSource: {fileID: 1674635305}
   musicSource: {fileID: 84607782}
 --- !u!1 &1123603647
@@ -8792,6 +8798,7 @@ MonoBehaviour:
   textTimer: {fileID: 652264034}
   speedTimer: 0.8
   sounder: {fileID: 1096583414}
+  turnTransmitter: {fileID: 462947750}
 --- !u!1 &1714241152
 GameObject:
   m_ObjectHideFlags: 0
@@ -9103,6 +9110,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 2012055068}
   handList: []
   isPlayer: 0
+  sounder: {fileID: 0}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1736101997
 GameObject:
@@ -9288,6 +9296,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1096583414}
+        m_TargetAssemblyTypeName: Sounder, Assembly-CSharp
+        m_MethodName: PlayMusic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: main_theme
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1780164550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9385,6 +9405,7 @@ MonoBehaviour:
   radius: 0.3
   speed: 1.5
   findingOpponent: {fileID: 765495121}
+  sounder: {fileID: 1096583414}
 --- !u!114 &1798588874
 MonoBehaviour:
   m_ObjectHideFlags: 0

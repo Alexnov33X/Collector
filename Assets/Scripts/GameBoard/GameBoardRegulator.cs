@@ -6,8 +6,8 @@ using System;
 public class GameBoardRegulator : MonoBehaviour
 {
     /// <summary>
-    /// Unity инспектор не отображает двумерный массив, поэтому используем 
-    /// одномерные массивы для инициализции enemySide and playerSide
+    /// Unity РёРЅСЃРїРµРєС‚РѕСЂ РЅРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ РґРІСѓРјРµСЂРЅС‹Р№ РјР°СЃСЃРёРІ, РїРѕСЌС‚РѕРјСѓ РёСЃРїРѕР»СЊР·СѓРµРј 
+    /// РѕРґРЅРѕРјРµСЂРЅС‹Рµ РјР°СЃСЃРёРІС‹ РґР»СЏ РёРЅРёС†РёР°Р»РёР·С†РёРё enemySide and playerSide
     /// </summary>
     public BoardCell[] enemySecondLine = new BoardCell[3];
     public BoardCell[] enemyFirstLine = new BoardCell[3];
@@ -15,12 +15,12 @@ public class GameBoardRegulator : MonoBehaviour
     public BoardCell[] playerSecondLine = new BoardCell[3];
 
     /// <summary>
-    /// Хранят в себе ячейки соответствующих сторон
+    /// РҐСЂР°РЅСЏС‚ РІ СЃРµР±Рµ СЏС‡РµР№РєРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… СЃС‚РѕСЂРѕРЅ
     /// </summary>
-    public BoardCell[,] enemySide; //делаю публичным для упрощенного доступа других классов. Нет смысла это прятать...
+    public BoardCell[,] enemySide; //РґРµР»Р°СЋ РїСѓР±Р»РёС‡РЅС‹Рј РґР»СЏ СѓРїСЂРѕС‰РµРЅРЅРѕРіРѕ РґРѕСЃС‚СѓРїР° РґСЂСѓРіРёС… РєР»Р°СЃСЃРѕРІ. РќРµС‚ СЃРјС‹СЃР»Р° СЌС‚Рѕ РїСЂСЏС‚Р°С‚СЊ...
     public BoardCell[,] playerSide;
 
-    public PlayerHero enemyHero; //сохраняем ссылки на игроков на поле
+    public PlayerHero enemyHero; //СЃРѕС…СЂР°РЅСЏРµРј СЃСЃС‹Р»РєРё РЅР° РёРіСЂРѕРєРѕРІ РЅР° РїРѕР»Рµ
     public PlayerHero playerHero;
     private float attackDelay = 1;
     int playerUnits = 0;
@@ -36,7 +36,7 @@ public class GameBoardRegulator : MonoBehaviour
     }
 
     /// <summary>
-    /// Инициализирует enemySide и playerSide BoardCell'ами
+    /// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ enemySide Рё playerSide BoardCell'Р°РјРё
     /// </summary>
     private void InitializeSideArrays()
     {
@@ -61,10 +61,10 @@ public class GameBoardRegulator : MonoBehaviour
     }
 
     /// <summary>
-    /// Попытаться призвать Карты из руки на доску
+    /// РџРѕРїС‹С‚Р°С‚СЊСЃСЏ РїСЂРёР·РІР°С‚СЊ РљР°СЂС‚С‹ РёР· СЂСѓРєРё РЅР° РґРѕСЃРєСѓ
     /// </summary>
-    /// <param name="card">Карта для призыва</param>
-    /// <returns>true - получилось / false - нет</returns>
+    /// <param name="card">РљР°СЂС‚Р° РґР»СЏ РїСЂРёР·С‹РІР°</param>
+    /// <returns>true - РїРѕР»СѓС‡РёР»РѕСЃСЊ / false - РЅРµС‚</returns>
     public bool TrySummonCardToPlayerBoard(CardEntity card, bool isPlayer)
     {
         BoardCell freeCell = null;
@@ -86,10 +86,10 @@ public class GameBoardRegulator : MonoBehaviour
     }
 
     /// <summary>
-    /// Находит свободную клетку и возвращает ее. Если все клетки заняты, то возвращает null
+    /// РќР°С…РѕРґРёС‚ СЃРІРѕР±РѕРґРЅСѓСЋ РєР»РµС‚РєСѓ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РµРµ. Р•СЃР»Рё РІСЃРµ РєР»РµС‚РєРё Р·Р°РЅСЏС‚С‹, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ null
     /// </summary>
-    /// <param name="boardSide">В какой доске искать</param>
-    /// <returns>Возвращает свободный BoardCell или null</returns>
+    /// <param name="boardSide">Р’ РєР°РєРѕР№ РґРѕСЃРєРµ РёСЃРєР°С‚СЊ</param>
+    /// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРІРѕР±РѕРґРЅС‹Р№ BoardCell РёР»Рё null</returns>
     public BoardCell ReturnFreeCell(BoardCell[,] boardSide)
     {
 
@@ -110,7 +110,7 @@ public class GameBoardRegulator : MonoBehaviour
     {
         yield return StartCoroutine(CreatureAttacks(isPlayer));
     }
-    //Проходимся по всем ячейкам и говорим им атаковать
+    //РџСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ РІСЃРµРј СЏС‡РµР№РєР°Рј Рё РіРѕРІРѕСЂРёРј РёРј Р°С‚Р°РєРѕРІР°С‚СЊ
     public IEnumerator CreatureAttacks(bool isPlayer)
     {
         if (isPlayer)

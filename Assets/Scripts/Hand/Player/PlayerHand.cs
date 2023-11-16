@@ -55,6 +55,7 @@ public class PlayerHand : MonoBehaviour
     private float delayBeforeSummon = 1;
     private float drawingCardAnimation = 1f;
 
+    [SerializeField] private Sounder sounder;
     private void OnEnable()
     {
 
@@ -120,6 +121,7 @@ public class PlayerHand : MonoBehaviour
         foreach (CardEntity card in handList)
         {
             card.ReduceCardCost();
+            sounder.PlaySound("reduce_cost");
             yield return new WaitForSecondsRealtime(AnimationAndDelays.instance.cardCostChangeAnimation);
         }
         //Вызов ивента переехал в CardEntity, это не оптимально но добавляет эффект постепенных анимаций которые хотел Саня
@@ -155,9 +157,8 @@ public class PlayerHand : MonoBehaviour
                 var fiddle = Instantiate(cardFiddle, gameObject.transform);
                 yield return new WaitForEndOfFrame();
                 newCardEntity.InitializeCard(transferedCard, !isPlayer);
-
                 handList.Add(newCardEntity);
-
+                sounder.PlaySound("draw_card");
                 yield return StartCoroutine(MoveWithDelay(newCardExample, fiddle.transform.position, AnimationAndDelays.instance.summonCardAnimation, fiddle));
             }
         }
@@ -200,9 +201,14 @@ public class PlayerHand : MonoBehaviour
         //Удаляем из руки карты,которые ушли на доску
         foreach (CardEntity card in removeCardsList)
         {
+
             if (card.cardData.abilityAndStatus.ContainsKey(Enums.CardAbility.DrawCards))
+            {
+                sounder.PlaySound("summon_card");
                 yield return new WaitForSeconds(AnimationAndDelays.instance.drawingCardAnimation * card.cardData.abilityAndStatus[Enums.CardAbility.DrawCards]); //waiting to draw cards
+            }
             handList.Remove(card);
+            sounder.PlaySound("summon_card");
             yield return new WaitForSeconds(AnimationAndDelays.instance.summonCardAnimation);
         }
         removeCardsList.Clear();

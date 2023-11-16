@@ -18,7 +18,7 @@ public class SearchPlayer : MonoBehaviour
     public float speed = 1f;
      
     public FindingOpponent findingOpponent;
-
+    [SerializeField] private Sounder sounder;
     public void Start()
     {
         tmpTimer = timer;
@@ -46,6 +46,10 @@ public class SearchPlayer : MonoBehaviour
     {
         gameObject.SetActive(false);
         findingOpponent.gameObject.SetActive(true);
+    }
+    public void OnEnable()
+    {
+     sounder.PlayMusic("search_oponnent");   
     }
     public void OnDisable()
     {

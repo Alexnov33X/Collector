@@ -35,5 +35,6 @@ public class TimerStartBattle : MonoBehaviour
     public void OnDisable()
     {
         sounder.PlayMusic("music_battle");
+        turnTransmitter.StartTheGame();
     }
 }

@@ -29,15 +29,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHero/PlayerDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Deck/Player/ForBattle/PlayerBattleDeck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenGame.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelectDeckTutor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TemporaryServer/DeckOnServer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Window.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData/PlayerStats.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SystemRank.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/VictoryScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BattleBootstrapp.cs" />
@@ -45,6 +41,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Turn/TurnTransmitter.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Sounder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/PreBattle/TimerStartBattle.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameBoard/GameBoardRegulator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Search/SearchPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Search/FindingOpponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Hand/Player/PlayerHand.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Card/CardControllers/CardEntity.cs" />
       </list>
     </option>
   </component>
@@ -95,7 +96,7 @@
       <workItem from="1699896095744" duration="11095000" />
       <workItem from="1699955885727" duration="26994000" />
       <workItem from="1699992615169" duration="67000" />
-      <workItem from="1700125683680" duration="21196000" />
+      <workItem from="1700125683680" duration="23736000" />
     </task>
     <servers />
   </component>

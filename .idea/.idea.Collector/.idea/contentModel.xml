@@ -215,6 +215,8 @@
               <e p="CardOnBoardDisplay.cs" t="Include" />
               <e p="CardOnHandDisplay.cs" t="Include" />
               <e p="PlayerHeroDisplay.cs" t="Include" />
+              <e p="StatusDisplayForCard.cs" t="Include" />
+              <e p="StatusStorage.cs" t="Include" />
             </e>
           </e>
           <e p="Deck" t="Include">

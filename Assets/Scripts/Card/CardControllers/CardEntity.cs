@@ -39,6 +39,7 @@ public class CardEntity : MonoBehaviour
     [HideInInspector] public CardData cardData;
     private float attackDelay = 0.8f;
 
+    [SerializeField] private Sounder sounder;
     private void Start()
     {
         gameBoardRegulator = GameObject.FindAnyObjectByType<GameBoardRegulator>();
@@ -108,6 +109,7 @@ public class CardEntity : MonoBehaviour
     //В этом методе ищем что атаковать и атакуем
     public virtual IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
+        sounder.PlaySound("punch_card");
         if (cardData.abilities.Contains(CardAbility.Sleep) && cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)] > 0) // для спячки
         {
             cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)]--;

@@ -16,6 +16,7 @@ public class FindingOpponent : MonoBehaviour
     public float timeMove;
     public float timeGetColor;
     [SerializeField] private GameObject battleWindow;
+    [SerializeField] private Sounder sounder;
     
     void UpdateValueExampleCallback(Color val)
     {
@@ -30,8 +31,10 @@ public class FindingOpponent : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-       AnimationScreen();
+    { 
+        sounder.StopMusic(); 
+        AnimationScreen(); 
+        sounder.PlaySound("oponnent_found");
     }
 
     private void AnimationScreen()
