@@ -18,7 +18,7 @@ public class VictoryScreen : MonoBehaviour
     [SerializeField] private Color colorVictoryTextNewPoints;
     // В зависимости от победы или поражения меняем текст и показываем его
 
-   // public SystemRank systemRank;
+    [SerializeField] private Sounder sounder;
 
     private bool result;
     public void EndGame(bool isVictory)
@@ -34,7 +34,7 @@ public class VictoryScreen : MonoBehaviour
             endText.text = "VICTORY!";
             textNewPoints.text = "+" + SystemRank.victoryPoints;
             textNewPoints.color = colorVictoryTextNewPoints;
-            
+            sounder.PlaySound("victory");
         }
         else
         {

@@ -9,8 +9,7 @@ public class Loader : MonoBehaviour
     public float timer;
     public Image progressBar;
     public TMP_Text textProgress;
-
-  //  public Window nextWindow;
+    
     public void Start()
     {
         StartCoroutine(LoadWindow());
