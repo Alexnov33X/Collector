@@ -36,9 +36,10 @@ public class Sounder: MonoBehaviour
       PlaySound("button_click");
    }
 
-   public void PlayMusic(string name)
+   public void PlayMusic(string name, float volume = 1)
    {
       musicSource.clip = musics[name];
+      musicSource.volume = volume;
       musicSource.Play();
    }
 
