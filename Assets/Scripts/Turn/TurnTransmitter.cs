@@ -16,6 +16,7 @@ public class TurnTransmitter : MonoBehaviour
     public PlayerHand enemyHand;
     public VictoryScreen vs;
     public Button turnStep;
+    public bool startImmediately = false;
     private float gameStartDelay = 1f;
     private float delayBetweenPlayerAndEnemy = 2f;
 
@@ -24,7 +25,8 @@ public class TurnTransmitter : MonoBehaviour
         EventBus.OnGameOver += BattleResult;
         gameStartDelay = AnimationAndDelays.instance.gameStartDelay;
         delayBetweenPlayerAndEnemy = AnimationAndDelays.instance.delayBetweenPlayerAndEnemy;
-        // StartCoroutine(Tasks()); //запускаем игровой цикл
+        if (startImmediately)
+            StartCoroutine(Tasks()); //запускаем игровой цикл
     }
 
     public void StartTheGame()
@@ -69,7 +71,7 @@ public class TurnTransmitter : MonoBehaviour
     {
         StartCoroutine(Tasks()); //Пока что тут просто перезапускаем игровой цикл
     }
-    
+
     /// <summary>
     /// Методы победы и поражения. В них мы
     /// останавливаем все корутины, к сожалению код продолжает выполняться
@@ -80,7 +82,7 @@ public class TurnTransmitter : MonoBehaviour
         StopAllCoroutines();
         playerHand.StopAllCoroutines();
         enemyHand.StopAllCoroutines();
-        vs.EndGame (isVictory);
+        vs.EndGame(isVictory);
     }
     public void DrawCardsForPlayer(int amount, bool isPlayer)
     {

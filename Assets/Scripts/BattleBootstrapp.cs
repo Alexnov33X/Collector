@@ -2,16 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// РўРѕС‡РєР° РІС…РѕРґР° РїСЂРё Р·Р°РїСѓСЃРєРµ СЃС†РµРЅС‹ BattleScene. 
-/// Р—РґРµСЃСЊ РјРѕР¶РЅРѕ С‡РµС‚РєРѕ РїСЂРѕРїРёСЃР°С‚СЊ РїРѕСЂСЏРґРѕРє РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ.(РќРµ РѕР±СЏР·СЏС‚РµР»СЊРЅРѕ РІСЃРµС…, РЅРѕ Р¶РµР»Р°С‚РµР»СЊРЅРѕ)
+/// Точка входа при запуске сцены BattleScene. 
+/// Здесь можно четко прописать порядок инициализации всех объектов.(Не обязятельно всех, но желательно)
 /// </summary>
 public class BattleBootstrapp : MonoBehaviour
 {
-    [SerializeField] private SystemRank systemRank;
     void Awake()
     {
-        //Р—Р°РіСЂСѓР¶Р°РµРј РёРЅС„Сѓ СЃ РІРѕРѕР±СЂР°Р¶Р°РµРјРѕРіРѕ СЃРµСЂРІРµСЂР°(Р’ Р±СѓРґСѓС‰РµРј РІС‹РЅРµСЃРµРј РІ MainBootstrapp)
+        //Загружаем инфу с воображаемого сервера(В будущем вынесем в MainBootstrapp)
         PlayerStats.LoadPlayerData();
-        systemRank.LoadSystemRank();
     }
+
 }

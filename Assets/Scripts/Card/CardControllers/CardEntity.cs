@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static Enums;
@@ -31,6 +32,7 @@ public class CardEntity : MonoBehaviour
 
     protected GameBoardRegulator gameBoardRegulator; //store and initialize gameBoard here instead of throwing refs around
     protected CardOnBoardDisplay displayController;
+    protected StatusDisplayForCard statusDisplay;
     /// <summary>
     /// Экземпляр класса, который будет хранить всю информацию о 
     /// </summary>
@@ -52,10 +54,11 @@ public class CardEntity : MonoBehaviour
         //cardData.PrintCardData();
         EventBus.OnEntityCardInitialized?.Invoke(isEnemy);
         abilitiesAndStatus = cardData.abilityAndStatus;
-        if (handLayer == null)
+        if (handLayer.IsUnityNull())
             handLayer = GetComponentInChildren<CardOnHandDisplay>().gameObject;
-        if (boardLayer == null)
+        if (boardLayer.IsUnityNull())
             boardLayer = GetComponentInChildren<CardOnBoardDisplay>().gameObject;
+        statusDisplay = GetComponentInChildren<StatusDisplayForCard>();
         handLayer.SetActive(true);
         boardLayer.SetActive(false);
         attackDelay = AnimationAndDelays.instance.attackAnimation;
@@ -473,6 +476,7 @@ public class CardEntity : MonoBehaviour
             }
             RemoveAbility(CardAbility.KillAndStealStats);
         }
+        statusDisplay.updateStatus(cardData);
         //CallPartner();
 
 
@@ -515,6 +519,7 @@ public class CardEntity : MonoBehaviour
         else
             abilitiesAndStatus.Add(cardAbility, potency);
 
+        statusDisplay.updateStatus(cardData);
     }
 
     public void RemoveAbility(CardAbility cardAbility)
@@ -524,6 +529,7 @@ public class CardEntity : MonoBehaviour
         if (cardAbility == CardAbility.Ignited)
             displayController.BURN(false);
         abilitiesAndStatus.Remove(cardAbility);
+        statusDisplay.updateStatus(cardData);
 
     }
 
@@ -537,6 +543,7 @@ public class CardEntity : MonoBehaviour
             cardData.abilityPotency.RemoveAt(index);
         }
         abilitiesAndStatus[cardAbility] += value;
+        statusDisplay.updateStatus(cardData);
     }
 
     public void changeStats(int attack, int health) //Buffs/Debuffs and damage/heal effects go here
