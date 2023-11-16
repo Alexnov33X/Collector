@@ -263,6 +263,8 @@
           </e>
           <e p="SelectDeckTutor.cs" t="Include" />
           <e p="SO" t="Include" />
+          <e p="Sounder.cs" t="Include" />
+          <e p="Sounds" t="Include" />
           <e p="SystemRank.cs" t="Include" />
           <e p="TemporaryServer" t="Include">
             <e p="DeckOnServer.cs" t="Include" />

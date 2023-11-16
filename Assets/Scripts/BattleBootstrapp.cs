@@ -8,10 +8,12 @@ using UnityEngine;
 public class BattleBootstrapp : MonoBehaviour
 {
     [SerializeField] private SystemRank systemRank;
+    [SerializeField] private Sounder sounder;
     void Awake()
     {
         //Загружаем инфу с воображаемого сервера(В будущем вынесем в MainBootstrapp)
         PlayerStats.LoadPlayerData();
         systemRank.LoadSystemRank();
+        sounder.LoadSounds();
     }
 }

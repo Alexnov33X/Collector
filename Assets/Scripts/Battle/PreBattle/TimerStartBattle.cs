@@ -18,12 +18,14 @@ public class TimerStartBattle : MonoBehaviour
             textTimer.text = i.ToString();
             yield return new WaitForSecondsRealtime(speedTimer); 
         }
-       
-        gameObject.SetActive(false);
+
+        Window window = GetComponent<Window>();
+        window.OpenNextWindowAndCloseOldWindow(window.nextWindow);
     }
 
     public void OnEnable()
     {
         StartCoroutine(StartTimer());
     }
+    
 }
