@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
   m_Name: TokenDragon
   m_EditorClassIdentifier: 
-  Name: D1
+  Name: Dragon's egg
   Description: 
   ArtworkHandImage: {fileID: 960540728, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   ArtworkBoardImage: {fileID: 960540728, guid: b922d3369baae4e479ff1294d644fb88, type: 3}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f8f9bf724bbf264fbcb7cac47275df5, type: 3}
-  m_Name: TokenDragon 1
+  m_Name: TokenDragonEgg
   m_EditorClassIdentifier: 
-  Name: D2
+  Name: 
   Description: 
   ArtworkHandImage: {fileID: 960540728, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
   ArtworkBoardImage: {fileID: 960540728, guid: b922d3369baae4e479ff1294d644fb88, type: 3}
