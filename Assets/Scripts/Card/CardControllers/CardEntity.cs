@@ -110,7 +110,6 @@ public class CardEntity : MonoBehaviour
     //В этом методе ищем что атаковать и атакуем
     public virtual IEnumerator Attack(GameBoardRegulator gameBoardRegulator, bool isPlayer, int row, int column)
     {
-        sounder.PlaySound("punch_card");
         if (cardData.abilities.Contains(CardAbility.Sleep) && cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)] > 0) // для спячки
         {
             cardData.abilityPotency[cardData.abilities.FindIndex(x => x == CardAbility.Sleep)]--;
@@ -331,6 +330,7 @@ public class CardEntity : MonoBehaviour
         Vector3 tempLocation = gameObject.transform.position;
         LeanTween.move(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
+        sounder.PlaySound("punch_card");
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
     }
     public virtual IEnumerator AttackAnimationLocal(Vector3 location, float time)
@@ -339,6 +339,7 @@ public class CardEntity : MonoBehaviour
         Vector3 tempLocation = gameObject.transform.position;
         LeanTween.moveLocal(gameObject, location, time / 2).setEaseInBack();
         yield return new WaitForSecondsRealtime(time / 2);
+        sounder.PlaySound("punch_card");
         LeanTween.move(gameObject, tempLocation, time / 2).setEaseInBack();
     }
 
