@@ -27,3 +27,4 @@ MonoBehaviour:
   abilities: 060000000a0000000d000000
   abilityPotency: 000000000100000001000000
   CardId: 0
+  creatureToSpawn: {fileID: 11400000, guid: eefa7c12e1a2ad14ab3c48bde4658cd6, type: 2}

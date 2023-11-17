@@ -14,7 +14,7 @@ public class CardOnBoardDisplay : MonoBehaviour
 
     [Header("Artwork")]
     [SerializeField] private Image artworkImage;
-
+    [SerializeField] private Image sleepIcon;
     [Header("Button")]
     [SerializeField] private Button button;
 
@@ -75,30 +75,31 @@ public class CardOnBoardDisplay : MonoBehaviour
 
     public void BURN(bool on)
     {
-        if (on)
-        {
-            healthText.color = Color.red;
-            attackText.color = Color.red;
-        }
-        else
-        {
-            healthText.color = Color.HSVToRGB(35, 100, 100);
-            attackText.color = Color.white;
-        }
+        //if (on)
+        //{
+        //    healthText.color = Color.red;
+        //    attackText.color = Color.red;
+        //}
+        //else
+        //{
+        //    healthText.color = Color.HSVToRGB(35, 100, 100);
+        //    attackText.color = Color.white;
+        //}
     }
 
     public void Sleep(bool on)
     {
-        if (on)
-        {
-            healthText.color = Color.black;
-            attackText.color = Color.black;
-        }
-        else
-        {
-            if (healthText.color == Color.black)
-                healthText.color = Color.HSVToRGB(35, 100, 100);
-            attackText.color = Color.white;
-        }
+        //if (on)
+        //{
+        //    healthText.color = Color.black;
+        //    attackText.color = Color.black;
+        //}
+        //else
+        //{
+        //    if (healthText.color == Color.black)
+        //        healthText.color = Color.HSVToRGB(35, 100, 100);
+        //    attackText.color = Color.white;
+        //}
+        sleepIcon.gameObject.SetActive(on);
     }
 }

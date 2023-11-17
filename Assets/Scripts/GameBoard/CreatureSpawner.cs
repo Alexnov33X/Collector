@@ -6,6 +6,7 @@ using UnityEngine;
 public class CreatureSpawner : MonoBehaviour
 {
     public GameObject CreaturePrefab;
+    public Sounder sounder;
     public CardScriptableObject[] creaturesList;
     Dictionary<string, CardScriptableObject> creatures = new Dictionary<string, CardScriptableObject>();
     public static CreatureSpawner instance = null;
@@ -64,6 +65,7 @@ public class CreatureSpawner : MonoBehaviour
         GameObject creature = Instantiate(CreaturePrefab, transform.parent);
         CardData.selectController(creature, creatureName);
         CardEntity newCardEntity = creature.GetComponent<CardEntity>();
+        newCardEntity.sounder = sounder;
         Debug.Log(creatureName);
         newCardEntity.InitializeCard(creatures[creatureName], forPlayer);
         gameBoardRegulator.TrySummonCardToPlayerBoard(newCardEntity, forPlayer);

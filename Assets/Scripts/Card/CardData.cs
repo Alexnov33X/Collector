@@ -63,7 +63,7 @@ public class CardData
     /// Состояние карты: В руке\На доске
     /// </summary>
     private CardState cardState;
-
+    public CardScriptableObject creatureToSpawn;
     public List<CardAbility> abilities;
     public List<int> abilityPotency;
     public Dictionary<CardAbility, int> abilityAndStatus = new Dictionary<CardAbility, int>();
@@ -127,6 +127,7 @@ public class CardData
             CardAbility key = abilities[i];
             abilityAndStatus.Add(key, abilityPotency[i]);
         }
+        creatureToSpawn = cardInfo.creatureToSpawn;
     }
 
     public void PrintCardData()
@@ -165,5 +166,8 @@ public class CardData
                 receiver.AddComponent<CardEntity>();
                 break;
         };
+
+        //if (!creatureToSpawn.IsUnityNull())
+
     }
 }
