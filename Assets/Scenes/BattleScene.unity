@@ -1627,8 +1627,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarityImages:
-  - {fileID: 21300000, guid: b85c1d751aeba4e4c9acbb094f72a042, type: 3}
-  - {fileID: 21300000, guid: 25cef1bb73e99b346a44fba23bed55ea, type: 3}
+  - {fileID: 21300000, guid: c996b88ff71dcae42b76e772ee8b61fe, type: 3}
+  - {fileID: 21300000, guid: 63b9e2aa027af9a46a52c8f49a880026, type: 3}
+  - {fileID: 21300000, guid: a3c536873b25f054cab481ae875180ff, type: 3}
+  - {fileID: 21300000, guid: bae7c0f81a73b5e4883d09ddfb1499e9, type: 3}
+  - {fileID: 21300000, guid: 1212e67c6ee583d4584458eb2b9faff9, type: 3}
+  - {fileID: 21300000, guid: 9d2e29e4208d74a44860825406be6c5b, type: 3}
+  - {fileID: 21300000, guid: d6a2b444b28b5b841accd65c120212a9, type: 3}
 --- !u!1 &581241136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c097622b687c04b90c5b9645fc2ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  systemRank: {fileID: 0}
+  sounder: {fileID: 0}
 --- !u!4 &777987368
 Transform:
   m_ObjectHideFlags: 0
@@ -3528,6 +3535,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 1123603648}
   handList: []
   isPlayer: 1
+  sounder: {fileID: 0}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1066039003
 GameObject:
@@ -5624,6 +5632,7 @@ MonoBehaviour:
   DeckLocation: {fileID: 2012055068}
   handList: []
   isPlayer: 0
+  sounder: {fileID: 0}
   cardFiddle: {fileID: 1655264287443387262, guid: bcd160ba912eed0479115f9ff3d46501, type: 3}
 --- !u!1 &1736101997
 GameObject:
@@ -6259,6 +6268,7 @@ MonoBehaviour:
   offsetTextNewPoints: {x: 0, y: 0, z: 0}
   colorLoseTextNewPoints: {r: 0, g: 0, b: 0, a: 0}
   colorVictoryTextNewPoints: {r: 0, g: 0, b: 0, a: 0}
+  sounder: {fileID: 0}
 --- !u!1 &2003232563
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class CreatureSpawner : MonoBehaviour
 {
     public GameObject CreaturePrefab;
-    public List<CardScriptableObject> creaturesList;
+    public CardScriptableObject[] creaturesList;
     Dictionary<string, CardScriptableObject> creatures = new Dictionary<string, CardScriptableObject>();
     public static CreatureSpawner instance = null;
     private GameBoardRegulator gameBoardRegulator;
@@ -23,9 +24,15 @@ public class CreatureSpawner : MonoBehaviour
         }
         gameBoardRegulator = GetComponent<GameBoardRegulator>();
         creatures = new Dictionary<string, CardScriptableObject>();
+        //foreach (CardScriptableObject so in creaturesList)
+        //    creatures.Add(so.Name, so);
+
+        UnityEngine.Object[] cardObjects = Resources.LoadAll("DefaultSO");
+        creaturesList = new CardScriptableObject[cardObjects.Length];
+        cardObjects.CopyTo(creaturesList, 0);
+        
         foreach (CardScriptableObject so in creaturesList)
             creatures.Add(so.Name, so);
-
     }
 
     // Update is called once per frame
