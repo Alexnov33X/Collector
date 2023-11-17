@@ -24,6 +24,7 @@ MonoBehaviour:
   CardType: 0
   CardUniverse: 0
   CardRarity: 0
-  abilities: 03000000
-  abilityPotency: 000000000000000000000000
+  abilities: 00000000
+  abilityPotency: 00000000
   CardId: 0
+  creatureToSpawn: {fileID: 0}
