@@ -540,7 +540,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c144318e085f574bb4fc45991fac900, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ecd8ef2523385854cb7087dc089f690a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1593,7 +1593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 483}
+  m_AnchoredPosition: {x: 8, y: 587}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347897270
@@ -1616,7 +1616,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose deck
+  m_text: "\u0412\u044B\u0431\u0435\u0440\u0438 \u0432\u0441\u0435\u043B\u0435\u043D\u043D\u0443\u044E
+    \u0434\u043B\u044F \u0441\u0432\u043E\u0435\u0439 \u043A\u043E\u043B\u043E\u0434\u044B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbcb4b05c0ec3954991a48392f4bf60a, type: 2}
   m_sharedMaterial: {fileID: 3174343033612163981, guid: fbcb4b05c0ec3954991a48392f4bf60a, type: 2}
@@ -1679,7 +1680,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -199.4729, y: 0, z: -218.49323, w: 0}
+  m_margin: {x: -320.26804, y: 0, z: -290.97018, w: -190.46014}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1995,7 +1996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &416483126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4322,7 +4323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b6b99f9c61618ac4c8b6a9b390ca41e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90645fd204f3b8e4ab77e044d8b68c3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5174,7 +5175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Search player...
+  m_text: "\u041F\u043E\u0438\u0441\u043A \u0438\u0433\u0440\u043E\u043A\u0430..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f5e504f6ebd4634b8fd74645070595f, type: 2}
   m_sharedMaterial: {fileID: -3039278985433474310, guid: 3f5e504f6ebd4634b8fd74645070595f, type: 2}
@@ -6437,7 +6438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1242267009
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8246,7 +8247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Opponent found
+  m_text: "\u041F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A \u043D\u0430\u0439\u0434\u0435\u043D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f5e504f6ebd4634b8fd74645070595f, type: 2}
   m_sharedMaterial: {fileID: -3039278985433474310, guid: 3f5e504f6ebd4634b8fd74645070595f, type: 2}
@@ -9296,16 +9297,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1096583414}
-        m_TargetAssemblyTypeName: Sounder, Assembly-CSharp
-        m_MethodName: PlayMusic
-        m_Mode: 5
+      - m_Target: {fileID: 84607782}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ecd8ef2523385854cb7087dc089f690a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: main_theme
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 84607782}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: main_theme
+          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1780164550

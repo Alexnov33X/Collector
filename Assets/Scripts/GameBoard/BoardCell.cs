@@ -5,11 +5,11 @@ using UnityEngine;
 public class BoardCell : MonoBehaviour
 {
     /// <summary>
-    /// Занята клетка или нет
+    /// Р—Р°РЅСЏС‚Р° РєР»РµС‚РєР° РёР»Рё РЅРµС‚
     /// </summary>
     [HideInInspector] public bool isOccupied;
     /// <summary>
-    /// Карта, которая занимает клетку
+    /// РљР°СЂС‚Р°, РєРѕС‚РѕСЂР°СЏ Р·Р°РЅРёРјР°РµС‚ РєР»РµС‚РєСѓ
     /// </summary>
     [HideInInspector] public CardEntity occupant;
     public Vector2 cellPosition;
@@ -22,7 +22,7 @@ public class BoardCell : MonoBehaviour
     }
 
     /// <summary>
-    /// На старте все клетки пустые
+    /// РќР° СЃС‚Р°СЂС‚Рµ РІСЃРµ РєР»РµС‚РєРё РїСѓСЃС‚С‹Рµ
     /// </summary>
     private void InitializeCell()
     {
@@ -32,7 +32,7 @@ public class BoardCell : MonoBehaviour
     }
 
     /// <summary>
-    /// Устанавливает карту клетку
+    /// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РєР°СЂС‚Сѓ РєР»РµС‚РєСѓ
     /// </summary>
     /// <param name="card"></param>
     public void SetCardinCell(CardEntity card)
@@ -44,14 +44,14 @@ public class BoardCell : MonoBehaviour
     }
 
     /// <summary>
-    /// Устанавливает Карте позицию клетки
+    /// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РљР°СЂС‚Рµ РїРѕР·РёС†РёСЋ РєР»РµС‚РєРё
     /// </summary>
     /// <param name="card"></param>
     private void SetCardCellTransform(CardEntity card)
     {
         card.ChangeCardState();
         LeanTween.move(card.gameObject, gameObject.transform.position, summonCardAnimation).setEase(LeanTweenType.easeInSine);
-        // Прикрепляем теперь карту к доске, чтобы она перекрывала игрыове ячейки
+        // РџСЂРёРєСЂРµРїР»СЏРµРј С‚РµРїРµСЂСЊ РєР°СЂС‚Сѓ Рє РґРѕСЃРєРµ, С‡С‚РѕР±С‹ РѕРЅР° РїРµСЂРµРєСЂС‹РІР°Р»Р° РёРіСЂС‹РѕРІРµ СЏС‡РµР№РєРё
         //card.gameObject.transform.SetParent(gameObject.transform); 
         card.gameObject.transform.position = card.gameObject.transform.position;
     }
